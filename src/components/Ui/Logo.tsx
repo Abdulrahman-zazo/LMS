@@ -1,5 +1,5 @@
-import LogoVertical from "../../assets/logo v.png";
-import LogoHorizental from "../../assets/logo h.png";
+import LogoVertical from "../../assets/logo-v-d.png";
+import LogoHorizental from "../../assets/logo-h-d.png";
 import Logoicon from "../../assets/Logoicon.png";
 
 interface IProps {
@@ -8,18 +8,12 @@ interface IProps {
 }
 
 const Logo = ({ type = "v", width }: IProps) => {
-  // if (type === "v") {
-  //   return <img src={LogoVertical} alt="Logo signature" width={width} />;
-  // } else if (type === "h") {
-  //   return <img src={LogoHorizental} alt="Logo signature" width={width} />;
-  // } else {
-  // }
   switch (type) {
     case "v":
       return (
         <img
           src={LogoVertical}
-          alt="Logo signature"
+          alt="Logo H-platform"
           width={width}
           className=""
         />
@@ -28,14 +22,14 @@ const Logo = ({ type = "v", width }: IProps) => {
       return (
         <img
           src={LogoHorizental}
-          alt="Logo signature"
+          alt="Logo  H-platform"
           width={width}
           className=""
         />
       );
     case "icon":
       return (
-        <img src={Logoicon} alt="Logo signature" width={width} className="" />
+        <img src={Logoicon} alt="Logo H-platform" width={width} className="" />
       );
   }
 };

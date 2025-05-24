@@ -4,11 +4,9 @@ import loginImage from "../../../assets/loginpage.png";
 import { Button, Form, Input, message, Spin } from "antd";
 
 import Logo from "../../../components/Ui/Logo";
-import { useLoginMutation } from "../../../app/features/User/userApi";
-import { useAppDispatch } from "../../../app/store";
-import { loginAction } from "../../../app/features/User/userSlice";
-import { encryptToken } from "../../../Cookies/CryptoServices/crypto";
-import { showMessage } from "../../../components/Message/Message";
+// import { useLoginMutation } from "../../../app/features/User/userApi";
+// import { encryptToken } from "../../../Cookies/CryptoServices/crypto";
+// import { showMessage } from "../../../components/Message/Message";
 import { LoadingOutlined } from "@ant-design/icons";
 interface Iuser {
   email: string;
@@ -25,46 +23,48 @@ export const LoginPage = () => {
   };
 
   const navigate = useNavigate();
-  const [login, { data, isLoading }] = useLoginMutation();
+  // const [login, { data, isLoading }] = useLoginMutation();
 
   const onFinish = async (values: Iuser) => {
-    try {
-      setTimeout(
-        () =>
-          showMessage({
-            messageApi,
-            type: "loading",
-            content: "جاري تسجيل الدخول...",
-            duration: 4,
-          }),
-        1000
-      );
+    navigate("/courses");
 
-      const result = await login(values);
-      if (result.data.status === true) {
-        showMessage({
-          messageApi,
-          type: "success",
-          content: "تم التسجيل بنجاح!",
-        });
-        encryptToken(data.user.token);
+    // try {
+    //   setTimeout(
+    //     () =>
+    //       showMessage({
+    //         messageApi,
+    //         type: "loading",
+    //         content: "جاري تسجيل الدخول...",
+    //         duration: 4,
+    //       }),
+    //     1000
+    //   );
 
-        setTimeout(() => navigate("/dashboard"), 1000);
-      } else {
-        showMessage({
-          messageApi,
-          type: "error",
-          content: result.data?.msg,
-        });
-      }
-    } catch (err) {
-      const error = err as { data?: { msg?: string } };
-      showMessage({
-        messageApi,
-        type: "error",
-        content: error.data?.msg || "حدث خطأ أثناء التسجيل",
-      });
-    }
+    //   const result = await login(values);
+    //   if (result.data.status === true) {
+    //     showMessage({
+    //       messageApi,
+    //       type: "success",
+    //       content: "تم التسجيل بنجاح!",
+    //     });
+    //     encryptToken(data.user.token);
+
+    //     setTimeout(() => navigate("/dashboard"), 1000);
+    //   } else {
+    //     showMessage({
+    //       messageApi,
+    //       type: "error",
+    //       content: result.data?.msg,
+    //     });
+    //   }
+    // } catch (err) {
+    //   const error = err as { data?: { msg?: string } };
+    //   showMessage({
+    //     messageApi,
+    //     type: "error",
+    //     content: error.data?.msg || "حدث خطأ أثناء التسجيل",
+    //   });
+    // }
   };
 
   return (

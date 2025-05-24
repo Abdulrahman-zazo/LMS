@@ -1,33 +1,21 @@
-import { useDispatch } from "react-redux";
-import {
-  LogoutOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  NotificationOutlined,
-  NotificationTwoTone,
-} from "@ant-design/icons";
+import { LogoutOutlined, NotificationOutlined } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
-import { Button } from "antd";
-import { useAppSelector } from "../app/store";
-import { collapsedAction } from "../app/features/uiSlice/uiSlice";
+
 import { LogoutHandler } from "./LogoutHandler";
-import { useGetuserInformationQuery } from "../app/features/User/userApi";
+// import { useGetuserInformationQuery } from "../app/features/User/userApi";
 import { cookieService } from "../Cookies/CookiesServices";
 
 const HeaderDashbord = () => {
-  const dispatch = useDispatch();
-  const { uiSlice } = useAppSelector((state) => state);
   const token = cookieService.get("auth_token");
-  console.log(token);
 
-  const { data } = useGetuserInformationQuery(`${token}`);
-  console.log(data?.User);
+  // const { data } = useGetuserInformationQuery(`${token}`);
+  // console.log(data?.User);
 
   return (
     <>
       <Header style={{ padding: 0, background: "#fff" }}>
         <div className="flex justify-between m-auto px-4 ">
-          <Button
+          {/* <Button
             type="text"
             icon={
               uiSlice.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />
@@ -38,7 +26,7 @@ const HeaderDashbord = () => {
               width: 64,
               height: 64,
             }}
-          />
+          /> */}
           <div className="flex justify-center items-center gap-4">
             <button
               type="button"
@@ -59,9 +47,7 @@ const HeaderDashbord = () => {
               alt={data?.User.first_name}
               className="w-[25px] h-[25px] rounded-full object-cover"
             /> */}
-              <p>
-                {data?.User.first_name} {data?.User.last_name}
-              </p>
+              <p>abdulrahman zazo</p>
               <div className="w-[30px] h-[30px] rounded-full object-cover bg-primary" />
             </div>
           </div>

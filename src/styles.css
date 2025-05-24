@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "tailwindcss-animated";
+@theme {
+  --font-display: "Alexandria", "sans-serif";
+  --breakpoint-3xl: 120rem;
+  --color-text: rgba(28, 28, 28, 1);
+  --color-bg-purple: rgba(251, 248, 252, 1);
+  --color-bg-whait: rgba(255, 255, 255, 1);
+  --color-primary-500: rgba(74, 116, 234, 0.5);
+  --color-primary: rgba(93, 76, 154, 1);
+  --color-secondary: rgba(188, 216, 137, 1);
+  --color-beby-blue: rgba(98, 197, 225, 1);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* ... */
+}
+
+:root {
+  font-family: "Alexandria", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@layer base {
+  html,
+  :host {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%; /* الخاصية القياسية */
+  }
+}
