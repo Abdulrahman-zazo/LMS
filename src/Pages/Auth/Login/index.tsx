@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import loginImage from "../../../assets/loginpage.png";
+import loginImage from "../../../assets/icon-site.png";
 import { Button, Form, Input, message, Spin } from "antd";
 
 import Logo from "../../../components/Ui/Logo";

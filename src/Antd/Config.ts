@@ -6,5 +6,6 @@ export const configDesign = {
     colorInfo: "#4a74ea",
     colorTextBase: "#1C1C1C",
     borderRadius: 6,
+    fontFamily: "Alexandria",
   },
 };

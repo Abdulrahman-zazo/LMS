@@ -1,6 +1,6 @@
 import LogoVertical from "../../assets/logo-v-d.png";
-import LogoHorizental from "../../assets/logo-h-d.png";
-import Logoicon from "../../assets/Logoicon.png";
+import LogoHorizental from "../../assets/logo-h.png";
+import Logoicon from "../../assets/icon-site.png";
 
 interface IProps {
   type: "v" | "h" | "icon";

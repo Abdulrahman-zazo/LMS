@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-import forgetpage from "../../../assets/forgetpage.png";
 import { Button, Form, Input } from "antd";
 
 import Logo from "../../../components/Ui/Logo";

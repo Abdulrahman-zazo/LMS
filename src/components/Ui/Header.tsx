@@ -1,0 +1,150 @@
+import { useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { NavLink, useNavigate } from "react-router-dom";
+import { PanelTopClose, PanelTopOpen } from "lucide-react";
+import Logo from "./Logo";
+
+import { Button } from "antd";
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0 });
+
+  const Navigate = useNavigate();
+  return (
+    <>
+      <div ref={ref} className="h-[1px]" />
+      <header
+        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-in-out 
+        ${
+          !inView
+            ? "bg-white shadow-sm py-2 rounded-b-xl"
+            : "bg-white shadow px-4 sm:px-8 py-4"
+        }`}
+        dir="rtl"
+      >
+        <div className="max-w-[1440px] mx-auto flex justify-between items-center px-4 sm:px-8">
+          {/* Logo */}
+          <div className={!inView ? "mx-4 sm:mx-8" : "mx-4"}>
+            <Logo type="h" width={!inView ? 125 : 150} />
+          </div>
+
+          {/* Desktop Nav */}
+          <nav className="hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-gray-700">
+            <NavLink to="/" className="hover:text-primary  active:text-primary">
+              الصفحة الرئيسية
+            </NavLink>
+            <NavLink
+              to="/about-us"
+              className="hover:text-primary  active:text-primary"
+            >
+              من نحن
+            </NavLink>
+            <NavLink
+              to="/courses"
+              className="hover:text-primary  active:text-primary"
+            >
+              الدورات
+            </NavLink>
+            <NavLink
+              to="/curricula"
+              className="hover:text-primary  active:text-primary"
+            >
+              المناهج
+            </NavLink>
+            <NavLink
+              to="#faq"
+              className="hover:text-primary  active:text-primary"
+            >
+              الأسئلة الشائعة
+            </NavLink>
+          </nav>
+
+          {/* Auth Buttons */}
+          <div className="hidden md:hidden lg:flex gap-3">
+            <Button
+              type="default"
+              className="text-sm text-primary "
+              onClick={() => Navigate("/auth/login")}
+            >
+              تسجيل الدخول
+            </Button>
+            <Button
+              type="primary"
+              className="bg-primary text-white px-4 py-1.5 rounded text-sm hover:bg-primary-dark"
+              onClick={() => Navigate("/auth/get-started")}
+            >
+              إنشاء حساب
+            </Button>
+          </div>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            className="lg:hidden text-2xl text-gray-700"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? (
+              <Button type="text">
+                <PanelTopClose size={16} />
+              </Button>
+            ) : (
+              <Button type="text">
+                <PanelTopOpen size={16} />
+              </Button>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="lg:hidden mt-3 bg-white rounded-md shadow px-4 py-3 space-y-2">
+            <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">
+              <NavLink
+                to="/"
+                className="hover:text-primary  active:text-primary"
+              >
+                الصفحة الرئيسية
+              </NavLink>
+              <NavLink
+                to="/about-us"
+                className="hover:text-primary  active:text-primary"
+              >
+                من نحن
+              </NavLink>
+              <NavLink
+                to="/courses"
+                className="hover:text-primary  active:text-primary"
+              >
+                الدورات
+              </NavLink>
+              <NavLink
+                to="/curricula"
+                className="hover:text-primary  active:text-primary"
+              >
+                المناهج
+              </NavLink>
+              <NavLink
+                to="#faq"
+                className="hover:text-primary  active:text-primary"
+              >
+                الأسئلة الشائعة
+              </NavLink>
+            </nav>
+            <div className="flex flex-col gap-2 pt-4 ">
+              <Button className="text-sm text-primary " type="default">
+                تسجيل الدخول
+              </Button>
+              <Button
+                type="primary"
+                className="bg-primary text-white px-4 py-1.5 rounded text-sm hover:bg-primary-dark"
+              >
+                إنشاء حساب
+              </Button>
+            </div>
+          </div>
+        )}
+      </header>
+    </>
+  );
+};
+
+export default Header;
