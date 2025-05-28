@@ -7,5 +7,6 @@ export const configDesign = {
     colorTextBase: "#1C1C1C",
     borderRadius: 4,
     fontFamily: "Alexandria",
+    boxShadow: "0 9px 20px 8px rgba(0, 0, 0, 0.05)",
   },
 };

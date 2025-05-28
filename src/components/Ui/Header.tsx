@@ -14,22 +14,21 @@ const Header = () => {
     <>
       <div ref={ref} className="h-[1px]" />
       <header
-        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-in-out 
-        ${
-          !inView
-            ? "bg-white shadow-sm py-2 rounded-b-xl"
-            : "bg-white shadow px-4 sm:px-8 py-4"
-        }`}
+        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-in-out  px-4 sm:px-8 py-4
+        ${!inView ? "bg-white shadow-sm  rounded-b-xl" : "bg-white  "}
+        `}
         dir="rtl"
       >
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-4 sm:px-8">
           {/* Logo */}
-          <div className={!inView ? "mx-4 sm:mx-8" : "mx-4"}>
-            <Logo type="h" width={!inView ? 125 : 150} />
+          <div className={"mx-4"}>
+            <Logo type="h" width={150} />
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-gray-700">
+          <nav
+            className={`hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-paragraph text-sm `}
+          >
             <NavLink to="/" className="hover:text-primary  active:text-primary">
               الصفحة الرئيسية
             </NavLink>
@@ -63,7 +62,7 @@ const Header = () => {
           <div className="hidden md:hidden lg:flex gap-3">
             <Button
               type="default"
-              className="text-sm text-primary "
+              className={`text-sm text-primary `}
               onClick={() => Navigate("/auth/login")}
             >
               تسجيل الدخول

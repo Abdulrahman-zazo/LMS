@@ -1,9 +1,11 @@
+import CoursePage from "./CourseDetails";
+
 interface IProps {}
 
 const CoursessPage = ({}: IProps) => {
   return (
     <div>
-      <h1>Coursess</h1>
+      <CoursePage />
     </div>
   );
 };
