@@ -10,7 +10,7 @@ import Logo from "./Logo";
 
 const HeroWorldMap = () => {
   return (
-    <div className="bg-white max-[800px]:hidden ">
+    <div className="bg-white max-[800px]:hidden  max-w-[1440px] mx-auto">
       {/* النص العلوي */}
       <div className="flex items-center pt-4 flex-col max-w-[1440px]">
         <motion.h2

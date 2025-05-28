@@ -1,0 +1,145 @@
+import { motion } from "framer-motion";
+import {
+  HomewithBack,
+  Certifications,
+  SendMonitor,
+  IconBook,
+  IconComputer,
+  IconBeaker,
+  IconMonitorChart,
+} from "../Icons";
+import ImageHome from "../../assets/home.webp";
+
+const HeroHome = () => {
+  return (
+    <div>
+      <div
+        className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden max-[1240px]:w-[90%]   max-w-[1240px] mx-auto mt-28 mb-12"
+        dir="rtl"
+      >
+        <motion.div
+          className="absolute -left-8 bottom-8 opacity-20 min-[500px]:hidden"
+          // Animation props for IconBook
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 0.2 }}
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+        >
+          <IconBook className="w-14 h-14 md:w-28 md:h-28 text-bg-icon transform -rotate-4" />
+        </motion.div>
+
+        <motion.div
+          className="absolute right-8 top-10 opacity-20 min-[500px]:hidden"
+          // Animation props for IconComputer
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 0.2 }}
+          transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+        >
+          <IconComputer className="w-12 h-12 md:w-20 md:h-20 text-bg-icon transform rotate-6" />
+        </motion.div>
+
+        <motion.div
+          className="absolute -right-5 bottom-10 opacity-20 min-[500px]:hidden"
+          // Animation props for IconBeaker
+          initial={{ x: 20, opacity: 0 }}
+          animate={{ x: 0, opacity: 0.2 }}
+          transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+        >
+          <IconBeaker className="w-14 h-14 md:w-24 md:h-24 text-bg-icon transform -rotate-12" />
+        </motion.div>
+
+        <motion.div
+          className="absolute left-8 top-10 opacity-15 min-[500px]:hidden"
+          // Animation props for IconMonitorChart (example)
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.15 }}
+          transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
+        >
+          <IconMonitorChart className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
+        </motion.div>
+        <div className=" flex flex-col gap-6 md:gap-2 md:flex-row justify-around text-center md:text-right  items-center mx-auto ">
+          {/* Content */}
+
+          <div className="relative z-10 ">
+            <motion.h1
+              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl max-w-xl mx-auto font-semibold mt-8 mb-2 sm:mb-6 leading-14 sm:leading-16"
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              حيث يلتقي التعلم <br />
+              بالإمكانات
+            </motion.h1>
+            <motion.p
+              className=" text-md sm:text-md md:text-xl mb-4 md-8 max-w-xl mx-auto"
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            >
+              اكتشف قدراتك مع منصة H-Platform!
+            </motion.p>
+            <motion.p
+              className="text-md sm:text-md md:text-lg mb-8 max-w-lg md:max-w-xl mx-auto leading-7 max-[500px]:hidden "
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            >
+              في عالم يتغير بسرعة، لم يعد التعلم وحده كافيًا بل يجب أن تتميّز.
+              منصة H-Platform ليست مجرد أداة تعليمية؛ إنها الجسر الذي يربط بين
+              أحلامك والواقع.
+            </motion.p>
+
+            <motion.button
+              className="bg-white text-primary font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-sm"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.4, ease: "backOut" }} // backOut gives a nice little pop
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              احصل على جلسة مجانية الآن!
+            </motion.button>
+          </div>
+          <div className="max-[800px]:hidden">
+            <motion.div
+              className="absolute left-[35%] bottom-30 "
+              // Animation props for IconMonitorChart (example)
+              initial={{ scale: 1, opacity: 0.4 }}
+              animate={{ scale: 1, opacity: 100 }}
+              transition={{ duration: 0.4, delay: 0.5, ease: "easeIn" }}
+            >
+              <HomewithBack className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
+            </motion.div>
+            <motion.div
+              className="absolute left-[35%] top-5 z-10"
+              // Animation props for IconMonitorChart (example)
+              initial={{ scale: 0.5, opacity: 50 }}
+              animate={{
+                x: [0, 10, 0, -10, 0],
+                y: [0, 10, 20, 10, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "linear",
+              }}
+            >
+              <Certifications className="w-12 h-12 md:w-32 md:h-32 text-purple-300" />
+            </motion.div>
+            <motion.div className="flex justify-center items-center mx-auto">
+              <img src={ImageHome} alt="h-platform home" width={500} />
+            </motion.div>
+            <motion.div
+              className="absolute left-[10%] bottom-20 "
+              initial={{ scale: 1, opacity: 0.4 }}
+              animate={{ scale: 1, opacity: 100 }}
+              transition={{ duration: 0.4, delay: 0.5, ease: "easeIn" }}
+            >
+              <SendMonitor className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HeroHome;
