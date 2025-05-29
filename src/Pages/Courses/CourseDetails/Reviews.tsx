@@ -1,13 +1,13 @@
 // src/components/Reviews.tsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface Comment {
   id: number;
   author: string;
   avatar: string;
   timeAgo: string;
-  text: string;
+  comment_text: string;
 }
 
 const comments: Comment[] = [
@@ -16,44 +16,39 @@ const comments: Comment[] = [
     author: "Sarah Johnson",
     avatar: "https://randomuser.me/api/portraits/women/1.jpg", // Placeholder avatar
     timeAgo: "2 days ago",
-    text: "This course exceeded my expectations! The instructor's teaching style is engaging and the content is well-structured. I particularly enjoyed the practical exercises.",
-  },
-  {
-    id: 2,
-    author: "Michael Chen",
-    avatar: "https://randomuser.me/api/portraits/men/2.jpg", // Placeholder avatar
-    timeAgo: "2 days ago",
-    text: "Great course content! However, I think some advanced topics could be covered in more detail. Overall, it's still a valuable resource for beginners.",
+    comment_text:
+      "لقد فاقت هذه الدورة توقعاتي! أسلوب التدريس للمدرس شيق، والمحتوى منظم بشكل جيد. استمتعتُ بشكل خاص بالتمارين العملية.",
   },
   {
     id: 3,
     author: "Emily White",
     avatar: "https://randomuser.me/api/portraits/women/3.jpg", // Placeholder avatar
     timeAgo: "3 days ago",
-    text: "Really enjoyed this course. Very clear explanations and practical examples. Highly recommend for anyone starting with web development.",
+    comment_text: "والمحتوى منظم بشكل جيد. استمتعت بشكل خاص بالتمارين العملية.",
   },
   {
     id: 4,
-    author: "David Lee",
-    avatar: "https://randomuser.me/api/portraits/men/4.jpg", // Placeholder avatar
+    author: "David Lee", // صاحب التعليق
+    avatar: "https://randomuser.me/api/portraits/men/4.jpg", //صورتو
     timeAgo: "4 days ago",
-    text: "The course material is solid, but I wished there were more exercises to practice the concepts. Still, a good foundation.",
+    comment_text:
+      " أسلوب التدريس للمدرس شيق، والمحتوى منظم بشكل جيد. استمتعتُ بشكل خاص بالتمارين العملية.",
   },
 ];
 
-export const Reviews: React.FC = () => {
+export const Reviews = () => {
   const [showAllComments, setShowAllComments] = useState(false);
 
-  const displayedComments = showAllComments ? comments : comments.slice(0, 2);
+  const displayedComments = showAllComments ? comments : comments.slice(0, 1);
 
   return (
     <div>
       <div className="flex justify-center mb-4">
         <button
           onClick={() => setShowAllComments(!showAllComments)}
-          className="text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+          className="text-primary hover:text-primary/50 font-medium text-xs sm:text-sm"
         >
-          {showAllComments ? "Show Less Comments" : "Load All Comments"}
+          {showAllComments ? "عرض أقل" : "عرض المزيد"}
         </button>
       </div>
 
@@ -68,19 +63,24 @@ export const Reviews: React.FC = () => {
             <div className="flex-1">
               <div className="flex justify-between items-center mb-1">
                 <p className="font-medium text-gray-900">{comment.author}</p>
-                <p className="text-sm text-gray-500">{comment.timeAgo}</p>
+                <p className="text-[8px] sm:text-xs text-gray-500">
+                  {comment.timeAgo}
+                </p>
               </div>
-              <p className="text-gray-700 leading-relaxed">{comment.text}</p>
+              <p className="text-gray-700 text-sm leading-relaxed">
+                {comment.comment_text}
+              </p>
             </div>
           </div>
         ))}
       </div>
 
       <div className="mt-8 pt-6 border-t border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-          Add a Comment
+        <h3 className="text-xs font-semibold text-gray-900 mb-4">
+          إضافة تعليق
         </h3>
         <div className="flex space-x-4">
+          {/* من معلومات اليوزر  */}
           <img
             className="h-10 w-10 rounded-full"
             src="https://randomuser.me/api/portraits/men/5.jpg" // Placeholder for current user's avatar
@@ -88,12 +88,12 @@ export const Reviews: React.FC = () => {
           />
           <div className="flex-1">
             <textarea
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 resize-y"
-              rows={3}
-              placeholder="Share your thoughts..."
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary/50 resize-y placeholder:text-xs placeholder:font-light placeholder:text-neutral-400"
+              rows={2}
+              placeholder="اترك تعليقاً لمساعدة الآخرين في معرفة رأيك..."
             ></textarea>
-            <button className="mt-3 float-right bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-              Post Comment
+            <button className="mt-3 float-right bg-primary w-full text-white text-sm py-2 px-6 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50">
+              أرسل
             </button>
           </div>
         </div>

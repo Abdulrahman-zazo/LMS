@@ -5,6 +5,7 @@ import Image3 from "../../assets/4256760_59bd_3.png";
 import Image4 from "../../assets/4276090_9133.png";
 import { Button } from "antd";
 import { ArrowRightCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const courses = [
   {
@@ -58,6 +59,7 @@ const courses = [
 ];
 
 const CoursesComponent = () => {
+  const Navigate = useNavigate();
   return (
     <section className="bg-bg-purple  px-4 sm:px-8 py-16 " dir="rtl">
       <div className=" mx-auto w-[90%] max-w-[1440px] ">
@@ -112,6 +114,7 @@ const CoursesComponent = () => {
                 </p>
                 <Button
                   type="primary"
+                  onClick={() => Navigate(`/protected/courses/${course.id}`)}
                   className="mt-4 w-full self-start text-sm text-primary border border-primary px-4 py-1 rounded hover:bg-primary hover:text-white transition"
                 >
                   التفاصيل

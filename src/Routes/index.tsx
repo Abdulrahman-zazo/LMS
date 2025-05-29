@@ -2,8 +2,8 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import HomePage from "../Pages/Home";
-import Dashboard from "../Pages";
-import { LoginPage } from "../Pages/Auth/Login";
+import Landing from "../Pages";
+import Login from "../Pages/Auth/Login";
 import { AuthRoute } from "../components/AuthRoute";
 import ForgetPassword from "../Pages/Auth/Forget-Password";
 import ComplaintsPage from "../Pages/Complaints";
@@ -18,7 +18,7 @@ import Registration from "../Pages/Auth/Registration";
 export const router = createBrowserRouter([
   // 1- user can veiw this page
   {
-    element: <AuthRoute />,
+    element: <Landing />,
     path: "/",
     children: [
       { index: true, element: <HomePage /> },
@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
       { path: "/courses", element: <CoursessPage /> },
       { path: "/curricula", element: <CurriculaPage /> },
       { path: "/about-us", element: <AboutPage /> },
-      { path: "/auth/login", element: <LoginPage /> },
+      { path: "/auth/login", element: <Login /> },
       { path: "/auth/forget-password", element: <ForgetPassword /> },
       { path: "/auth/get-started", element: <Registration /> },
     ],
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
     path: "/protected",
     children: [
       {
-        element: <Dashboard />,
+        element: <AuthRoute />,
         children: [
           { path: "courses/:id", element: <CourseDetailsPage /> },
           { path: "complaints", element: <ComplaintsPage /> },

@@ -8,10 +8,10 @@ const AboutusSection = () => {
     <section dir="rtl">
       <div className="max-w-[1440px] px-4 sm:px-6 py-16 mx-auto">
         <div className="mx-auto w-[80%]">
-          <div className="flex  flex-col md:flex-row  gap-14 items-center ">
-            <div className="w-2/3 sm:w-1/2">
+          <div className="flex  flex-col md:flex-row justify-around mx-auto  gap-14 items-center ">
+            <div className="w-2/3 sm:w-1/2 mx-6">
               <div className="flex flex-col items-center mb-4   md:items-start text-center md:text-right ">
-                <img src={Image2} alt="Mission" className="h-16 w-16 my-2" />
+                <img src={Image2} alt="Mission" className="h-12 w-12 my-2" />
                 <h3 className="font-semibold w-[100%] text-md md:text-lg my-2">
                   رسالتنا
                 </h3>
@@ -21,7 +21,7 @@ const AboutusSection = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center mb-4 md:items-start text-center md:text-right ">
-                <img src={Image3} alt="Mission" className="h-16 w-16 my-2" />
+                <img src={Image3} alt="Mission" className="h-12 w-12 my-2" />
                 <h3 className="font-semibold text-md md:text-lg my-2">هدفنا</h3>
                 <p className="text-sm text-paragraph md:text-md ">
                   في H-Platform، نعمل على جعل التعليم تجربة فريدة ومؤثرة من خلال
@@ -30,7 +30,7 @@ const AboutusSection = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center mb-4 md:items-start text-center md:text-right ">
-                <img src={Image4} alt="Mission" className="h-16 w-16 my-2" />
+                <img src={Image4} alt="Mission" className="h-12 w-12 my-2" />
                 <h3 className="font-semibold text-md md:text-lg my-2">
                   رؤيتنا
                 </h3>
@@ -42,7 +42,11 @@ const AboutusSection = () => {
               </div>
             </div>
             <div className="flex items-center justify-center mx-auto">
-              <img src={Image1} alt="About us" className="w-[400px]" />
+              <img
+                src={Image1}
+                alt="About us"
+                className="w-[350px] object-cover overflow-hidden"
+              />
             </div>
           </div>
         </div>

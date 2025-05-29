@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { motion, AnimatePresence } from "framer-motion";
+
+import ScrollToHash from "../ScrollToHash";
 
 const faqs = [
   {
@@ -31,37 +34,53 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="bg-bg-purple " dir="rtl">
-      <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
-          الأسئلة <span className="text-primary">الشائعة</span>
-        </h2>
+    <div className="bg-bg-purple " dir="rtl">
+      <ScrollToHash />
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
-            >
-              <button
-                onClick={() => toggle(index)}
-                className="w-full text-right px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium text-text hover:bg-gray-50 transition"
+      <section id="faq">
+        <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
+            الأسئلة <span className="text-primary">الشائعة</span>
+          </h2>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
               >
-                <span>{faq.question}</span>
-                <span className="text-xl text-primary">
-                  {openIndex === index ? <HiChevronUp /> : <HiChevronDown />}
-                </span>
-              </button>
-              {openIndex === index && (
-                <div className="px-4 pb-4 text-sm text-paragraph leading-relaxed animate-fade">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
-          ))}
+                <button
+                  onClick={() => toggle(index)}
+                  className="w-full text-right px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
+                >
+                  <span>{faq.question}</span>
+                  <span className="text-xl text-primary">
+                    {openIndex === index ? <HiChevronUp /> : <HiChevronDown />}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {openIndex === index && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 text-sm text-paragraph leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { PanelTopClose, PanelTopOpen } from "lucide-react";
 import Logo from "./Logo";
 
@@ -21,9 +21,9 @@ const Header = () => {
       >
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-4 sm:px-8">
           {/* Logo */}
-          <div className={"mx-4"}>
+          <Link to="/" className={"mx-4"}>
             <Logo type="h" width={150} />
-          </div>
+          </Link>
 
           {/* Desktop Nav */}
           <nav
@@ -51,7 +51,7 @@ const Header = () => {
               المناهج
             </NavLink>
             <NavLink
-              to="#faq"
+              to="/#faq"
               className="hover:text-primary  active:text-primary"
             >
               الأسئلة الشائعة
@@ -77,7 +77,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Hamburger Button */}
-          <button
+          <div
             className="lg:hidden text-2xl text-gray-700"
             onClick={() => setMenuOpen(!menuOpen)}
           >
@@ -90,7 +90,7 @@ const Header = () => {
                 <PanelTopOpen size={16} />
               </Button>
             )}
-          </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -122,7 +122,7 @@ const Header = () => {
                 المناهج
               </NavLink>
               <NavLink
-                to="#faq"
+                to="/#faq"
                 className="hover:text-primary  active:text-primary"
               >
                 الأسئلة الشائعة

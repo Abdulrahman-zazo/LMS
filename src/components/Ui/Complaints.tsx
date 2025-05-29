@@ -1,10 +1,15 @@
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const ComplaintsSections = () => {
+  const Navigate = useNavigate();
   return (
-    <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16" dir="rtl">
+    <section
+      className="max-w-[1440px] rounded-2xl mx-auto px-4 sm:px-8 py-16"
+      dir="rtl"
+    >
       {/* Title */}
-      <div className="w-1/2 mx-auto flex flex-col items-center">
+      <div className="w-1/2 mx-auto flex flex-col items-center rounded-2xl">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6">
           الشكاوى والمقترحات
         </h2>
@@ -15,6 +20,9 @@ const ComplaintsSections = () => {
         </p>
 
         <Button
+          onClick={() => {
+            Navigate("/protected/complaints");
+          }}
           type="primary"
           size="large"
           className="bg-primary  text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
