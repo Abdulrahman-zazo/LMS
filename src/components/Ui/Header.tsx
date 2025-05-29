@@ -19,10 +19,10 @@ const Header = () => {
         `}
         dir="rtl"
       >
-        <div className="max-w-[1440px] mx-auto flex justify-between items-center px-4 sm:px-8">
+        <div className="max-w-[1440px] mx-auto flex justify-between items-center px-0 sm:px-8">
           {/* Logo */}
           <Link to="/" className={"mx-4"}>
-            <Logo type="h" width={150} />
+            <Logo type="h" props={{ className: "w-32 h-auto" }} />
           </Link>
 
           {/* Desktop Nav */}
@@ -77,16 +77,13 @@ const Header = () => {
           </div>
 
           {/* Mobile Hamburger Button */}
-          <div
-            className="lg:hidden text-2xl text-gray-700"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
+          <div className="lg:hidden text-2xl text-gray-700">
             {menuOpen ? (
-              <Button type="text">
+              <Button type="text" onClick={() => setMenuOpen(!menuOpen)}>
                 <PanelTopClose size={16} />
               </Button>
             ) : (
-              <Button type="text">
+              <Button type="text" onClick={() => setMenuOpen(!menuOpen)}>
                 <PanelTopOpen size={16} />
               </Button>
             )}
@@ -129,11 +126,16 @@ const Header = () => {
               </NavLink>
             </nav>
             <div className="flex flex-col gap-2 pt-4 ">
-              <Button className="text-sm text-primary " type="default">
+              <Button
+                className="text-sm text-primary "
+                type="default"
+                onClick={() => Navigate("/auth/login")}
+              >
                 تسجيل الدخول
               </Button>
               <Button
                 type="primary"
+                onClick={() => Navigate("/auth/get-started")}
                 className="bg-primary text-white px-4 py-1.5 rounded text-sm hover:bg-primary-dark"
               >
                 إنشاء حساب

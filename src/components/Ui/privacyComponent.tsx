@@ -6,16 +6,16 @@ const PrivacyComponent = () => {
       </h1>
 
       <div className="border [border-image:linear-gradient(to_right,transparent,theme(colors.gray.200/.8),transparent)1] mt-6"></div>
-      <p className="font-semibold mt-12">مقدمة:</p>
-      <span className="text-sm text-paragraph   py-4 block leading-8">
+      <p className="font-semibold mt-8 sm:mt-12 ">مقدمة:</p>
+      <span className="text-sm text-paragraph   py-4 block leading-5 sm:leading-6">
         نحن ملتزمون بحماية خصوصيتك وضمان أمان معلوماتك الشخصية. توضح هذه السياسة
         كيف نقوم بجمع واستخدام ومشاركة المعلومات عند استخدامك لمنصتنا التعليمية.
       </span>
 
-      <ol className="m-4 list-decimal">
+      <ol className=" sm:m-4  list-decimal">
         <li>
           <p className="font-semibold my-4">المعلومات التي نقوم بجمعها:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>
               المعلومات الشخصية: عند التسجيل، قد نطلب منك تقديم معلومات شخصية
               مثل الاسم، البريد الإلكتروني، وكلمة المرور.
@@ -34,7 +34,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">كيفية استخدام المعلومات:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>
               تقديم الخدمات: نستخدم بياناتك لإنشاء حسابك، تتبع تقدمك التعليمي،
               وتقديم الدعم الفني.
@@ -51,7 +51,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">مشاركة المعلومات:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>
               مزودو الخدمة: قد نشارك بياناتك مع مزودين موثوقين يساعدوننا في
               تشغيل المنصة، مثل خدمات الاستضافة السحابية.
@@ -65,7 +65,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">أمان البيانات:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>
               نتخذ تدابير مناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به
               أو الكشف أو التعديل أو الحذف.
@@ -75,7 +75,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">حقوقك:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>طلب الاطلاع على بياناتك الشخصية.</li>
             <li>طلب تصحيح أي معلومات غير دقيقة.</li>
             <li>طلب حذف بياناتك من نظامنا.</li>
@@ -85,7 +85,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">تعديلات على سياسة الخصوصية:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph leading-8">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
             <li>
               نحتفظ بحق تعديل هذه السياسة من وقت لآخر. سيتم نشر أي تغييرات على
               هذه الصفحة.
@@ -95,7 +95,7 @@ const PrivacyComponent = () => {
 
         <li>
           <p className="font-semibold my-4">التواصل معنا:</p>
-          <ol className="list-disc m-4 text-sm text-paragraph">
+          <ol className="list-disc  sm:m-4  text-sm text-paragraph">
             <li>
               إذا كان لديك أي استفسارات بخصوص سياسة الخصوصية، يمكنك التواصل معنا
               <a

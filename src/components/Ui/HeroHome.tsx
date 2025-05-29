@@ -14,7 +14,7 @@ const HeroHome = () => {
   return (
     <div>
       <div
-        className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden max-[1240px]:w-[90%]   max-w-[1240px] mx-auto mt-28 mb-12"
+        className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden max-[1240px]:w-[90%]   max-w-[1240px] mx-auto mt-20 sm:mt-28 mb-2 sm:mb-8"
         dir="rtl"
       >
         <motion.div

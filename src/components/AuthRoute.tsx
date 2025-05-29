@@ -1,10 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-
 import { cookieService } from "../Cookies/CookiesServices";
 import Header from "./Ui/Header";
 import Footer from "./Ui/Footer";
-import ComplaintsSections from "./Ui/Complaints";
-
+import ScrollToTop from "./ScrollToTop";
 export const AuthRoute = () => {
   const token = cookieService.get("auth_token");
 
@@ -12,9 +10,9 @@ export const AuthRoute = () => {
     <Navigate to="/auth/login" replace />
   ) : (
     <>
+      <ScrollToTop />
       <Header />
       <Outlet />
-      <ComplaintsSections />
       <Footer />
     </>
   );

@@ -23,8 +23,11 @@ const FormComplaints = () => {
     alert("شكرًا لملاحظتك! تم إرسال النموذج بنجاح.");
   };
   return (
-    <section className="bg-white rounded-4xl shadow-md " dir="rtl">
-      <div className="py-6 lg:py-12 px-4 mx-auto max-w-screen-sm">
+    <section
+      className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0  "
+      dir="rtl"
+    >
+      <div className="sm:py-6 lg:py-12 px-4 sm:mx-auto w-full">
         <h2 className="mb-4 text-xl tracking-tight font-extrabold text-center text-text">
           الشكاوى والمقترحات
         </h2>
@@ -101,14 +104,12 @@ const FormComplaints = () => {
             ></textarea>
           </div>
 
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            className="bg-primary w-full mt-4 py-6 px-5 text-sm font-medium text-center text-white rounded-lg hover:bg-primary/80 cursor-pointer"
+          <button
+            type="submit"
+            className="bg-primary w-full mt-4 py-4 sm:py-6 px-2 sm:px-6 text-xs sm:text-sm font-medium text-center text-white rounded-lg hover:bg-primary/80 cursor-pointer"
           >
-            أرسل ملاحظتك الآن وساهم في تحسين تجربتنا التعليمية 📩!
-          </Button>
+            أرسل ملاحظتك الآن وساهم في تحسين تجربتنا التعليمية
+          </button>
         </form>
       </div>
     </section>

@@ -62,12 +62,14 @@ export const Reviews = () => {
             />
             <div className="flex-1">
               <div className="flex justify-between items-center mb-1">
-                <p className="font-medium text-gray-900">{comment.author}</p>
-                <p className="text-[8px] sm:text-xs text-gray-500">
+                <p className=" text-md sm:text-lg font-medium text-gray-900">
+                  {comment.author}
+                </p>
+                <p className="text-[10px] sm:text-sm text-gray-500">
                   {comment.timeAgo}
                 </p>
               </div>
-              <p className="text-gray-700 text-sm leading-relaxed">
+              <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
                 {comment.comment_text}
               </p>
             </div>
@@ -88,7 +90,7 @@ export const Reviews = () => {
           />
           <div className="flex-1">
             <textarea
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary/50 resize-y placeholder:text-xs placeholder:font-light placeholder:text-neutral-400"
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary/50 resize-y placeholder:text-[10px] placeholder:sm:text-xs placeholder:font-light placeholder:text-neutral-400"
               rows={2}
               placeholder="اترك تعليقاً لمساعدة الآخرين في معرفة رأيك..."
             ></textarea>

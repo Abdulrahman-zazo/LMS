@@ -5,7 +5,7 @@ import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 
 const CurriculaPage = () => {
   return (
-    <div className=" min-h-screen py-10 " dir="rtl">
+    <div className=" min-h-screen  " dir="rtl">
       <HeroHeader
         buttonText=" انضم إلينا اليوم وكن جزءًا من مستقبل التعلم"
         title="المناهج التعليمية في منصة H-Platform"

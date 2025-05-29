@@ -14,7 +14,7 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="bg-primary p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden max-w-[90%] mx-auto mt-24">
+    <div className="bg-primary p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden max-w-[90%] mx-auto mt-20 sm:mt-24">
       {/* Background Icons - will add animation later */}
       <motion.div
         className="absolute -left-8 bottom-8 opacity-20"

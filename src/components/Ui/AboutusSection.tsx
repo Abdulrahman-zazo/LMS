@@ -6,8 +6,8 @@ import Image4 from "../../assets/Icon/Vision.png";
 const AboutusSection = () => {
   return (
     <section dir="rtl">
-      <div className="max-w-[1440px] px-4 sm:px-6 py-16 mx-auto">
-        <div className="mx-auto w-[80%]">
+      <div className="max-w-[1440px] px-2 sm:px-6 py-8 sm:py-16 mx-auto">
+        <div className="mx-auto w-[90%] sm:w-[80%]">
           <div className="flex  flex-col md:flex-row justify-around mx-auto  gap-14 items-center ">
             <div className="w-2/3 sm:w-1/2 mx-6">
               <div className="flex flex-col items-center mb-4   md:items-start text-center md:text-right ">

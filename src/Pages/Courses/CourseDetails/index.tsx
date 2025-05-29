@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { HeaderCourse } from "../../../components/HederCourse";
 import ImageCourse from "../../../assets/4039100_2cfe_3.png";
 import { CourseInfo } from "./CourseInfo";
+import ComplaintsSections from "../../../components/Ui/Complaints";
 
 const CoursePage = () => {
   const Location = useLocation();
@@ -48,7 +49,7 @@ const CoursePage = () => {
       />
       <div className="flex justify-center my-8" dir="rtl">
         {/* Main content area */}
-        <div className="bg-white rounded-lg overflow-hidden w-[90%] lg:flex">
+        <div className="bg-white rounded-lg overflow-hidden  sm:w-[90%] lg:flex">
           {/* Left Section (Image and Course Description) */}
           <div className="lg:w-1/2 p-6">
             <img
@@ -66,7 +67,7 @@ const CoursePage = () => {
                     activeTab === "info"
                       ? "border-primary text-primary"
                       : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm`}
                 >
                   معلومات الكورس
                 </button>
@@ -76,7 +77,7 @@ const CoursePage = () => {
                     activeTab === "reviews"
                       ? "border-primary text-primary"
                       : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm`}
                 >
                   التعليقات والأراء ({coursess.comments.length})
                 </button>
@@ -94,7 +95,7 @@ const CoursePage = () => {
           </div>
 
           {/* Right Section (What You'll Learn, Material Includes, Requirements) */}
-          <div className="lg:w-1/2 border border-gray-200 p-8 m-6 rounded-2xl">
+          <div className="lg:w-1/2 sm:border border-gray-200 p-0 sm:p-8 m-6 rounded-2xl">
             <h3 className="text-sm md:text-md  font-semibold text-text mb-4">
               المعلومات التي سنتعرف عليها
             </h3>
@@ -128,6 +129,7 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
+      <ComplaintsSections />
     </div>
   );
 };

@@ -166,21 +166,21 @@ const Curricula = () => {
   };
 
   return (
-    <div className="bg-bg-purple  py-10 " dir="rtl">
+    <div className="bg-bg-purple  py-6 sm:py-10 " dir="rtl">
       <div className="container mx-auto p-6  max-w-[90%]">
-        <p className=" text-lg  text-text  text-center sm:hidden">
+        <p className=" text-md  text-text  text-center sm:hidden">
           اختر منهاجك ومرحلتك الدراسية:
         </p>
-        <div className="flex  md:flex-row   md:space-x-4  items-center mt-4 mb-8">
+        <div className="flex  md:flex-row space-x-2   md:space-x-4  items-center mt-4 mb-8">
           <p className="text-lg  text-text  text-center max-[640px]:hidden ">
             اختر منهاجك ومرحلتك الدراسية:
           </p>
           {/* قائمة اختيار المنهاج */}
-          <div className="relative flex-1">
+          <div className="relative flex-1 text-sm sm:text-md">
             <label htmlFor="curriculum-select" className="sr-only">
               اختر المنهاج
             </label>
-            <div className="relative rounded-md shadow-sm">
+            <div className="relative text-sm sm:text-md rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 {selectedCurriculumId && (
                   <img
@@ -198,15 +198,19 @@ const Curricula = () => {
               </div>
               <select
                 id="curriculum-select"
-                className="block bg-white w-full pl-12 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
+                className="block text-sm sm:text-md bg-white w-full pl-12 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
                 value={selectedCurriculumId || ""}
                 onChange={handleCurriculumChange}
               >
-                <option value="" disabled>
+                <option value="" disabled className="text-xs sm:text-md w-full">
                   اختر المنهاج
                 </option>
                 {curricula.map((curriculum) => (
-                  <option key={curriculum.id} value={curriculum.id}>
+                  <option
+                    key={curriculum.id}
+                    value={curriculum.id}
+                    className="text-xs sm:text-md w-full"
+                  >
                     {curriculum.name}
                   </option>
                 ))}
@@ -231,23 +235,27 @@ const Curricula = () => {
           </div>
 
           {/* قائمة اختيار المرحلة */}
-          <div className="relative flex-1">
+          <div className="relative flex-1 text-sm sm:text-md">
             <label htmlFor="stage-select" className="sr-only">
               اختر المرحلة
             </label>
             <div className="relative rounded-md shadow-sm">
               <select
                 id="stage-select"
-                className="block bg-white w-full pl-3 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
+                className="block bg-white w-full pl-3 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none "
                 value={selectedStageId || ""}
                 onChange={handleStageChange}
                 disabled={!selectedCurriculumId || stages.length === 0} // تعطيل إذا لم يتم اختيار منهاج أو لا توجد مراحل
               >
-                <option value="" disabled>
+                <option value="" disabled className="text-xs sm:text-md w-full">
                   {stages.length === 0 ? "لا توجد مراحل" : "اختر المرحلة"}
                 </option>
                 {stages.map((stage) => (
-                  <option key={stage.id} value={stage.id}>
+                  <option
+                    key={stage.id}
+                    value={stage.id}
+                    className="text-xs sm:text-md w-full"
+                  >
                     {stage.name}
                   </option>
                 ))}

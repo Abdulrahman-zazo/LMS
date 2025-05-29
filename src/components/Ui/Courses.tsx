@@ -61,7 +61,7 @@ const courses = [
 const CoursesComponent = () => {
   const Navigate = useNavigate();
   return (
-    <section className="bg-bg-purple  px-4 sm:px-8 py-16 " dir="rtl">
+    <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 " dir="rtl">
       <div className=" mx-auto w-[90%] max-w-[1440px] ">
         {/* Header */}
         <div className="text-right mb-10">
@@ -69,7 +69,7 @@ const CoursesComponent = () => {
             طالب، محترف، أم معلّم؟ <br />
             <span className="text-primary ">نحن معك دائماً 💡!</span>
           </h2>
-          <p className="text-paragraph max-w-2xl ">
+          <p className="text-sm sm:text-md text-paragraph max-w-2xl ">
             مهما كان دورك أو هدفك، صممت منصة H-Platform خصيصًا لتناسبك وتدعم
             مسيرتك.
           </p>
