@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Registration() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div
+      className="min-h-screen flex items-center justify-center bg-white px-4"
+      dir="rtl"
+    >
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800">Create Account</h2>

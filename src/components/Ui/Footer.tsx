@@ -1,7 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { FaFacebookF, FaTwitter, FaEnvelope, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const { t } = useTranslation("translation");
   return (
     <footer
       className="bg-primary text-white py-10 px-4 sm:px-16 text-sm"

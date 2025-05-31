@@ -12,7 +12,7 @@ const HomePage = () => {
     <div lang="ar" dir="rtl">
       <HeroHome />
       <WhyDifferentSection />
-      <CoursesComponent />
+      <CoursesComponent max={6} />
       <HowItWorksSection />
       <FaqSection />
       <GetStarted />

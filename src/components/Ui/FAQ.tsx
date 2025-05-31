@@ -3,28 +3,7 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
 import ScrollToHash from "../ScrollToHash";
-
-const faqs = [
-  {
-    question: "ما هي منصة H-Platform؟",
-    answer:
-      "هي منصة تعليمية إلكترونية تساعدك على تعلّم وتدريب المهارات الرقمية بطريقة مبسطة.",
-  },
-  {
-    question: "هل الدورات مجانية أم مدفوعة؟",
-    answer:
-      "تتوفر لدينا دورات مجانية وأخرى مدفوعة، ويمكنك اختيار ما يناسبك من بينها.",
-  },
-  {
-    question: "هل أحصل على شهادة بعد إنهاء الدورة؟",
-    answer: "نعم، يتم إصدار شهادة إلكترونية عند اجتياز الدورة بنجاح.",
-  },
-  {
-    question: "كيف أتواصل مع المدرب؟",
-    answer:
-      "يوجد قسم مخصص للتواصل داخل كل دورة، ويمكنك طرح أسئلتك هناك مباشرة.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
@@ -32,7 +11,29 @@ const FaqSection = () => {
   const toggle = (index: number) => {
     setOpenIndex(index === openIndex ? 0 : index);
   };
-
+  const { t } = useTranslation("translation");
+  const faqs = [
+    {
+      question: t("FAQ.questions1"),
+      answer: t("FAQ.content1"),
+    },
+    {
+      question: t("FAQ.questions2"),
+      answer: t("FAQ.content2"),
+    },
+    {
+      question: t("FAQ.questions3"),
+      answer: t("FAQ.content3"),
+    },
+    {
+      question: t("FAQ.questions4"),
+      answer: t("FAQ.content4"),
+    },
+    {
+      question: t("FAQ.questions5"),
+      answer: t("FAQ.content5"),
+    },
+  ];
   return (
     <div className="bg-bg-purple " dir="rtl">
       <ScrollToHash />
@@ -40,7 +41,7 @@ const FaqSection = () => {
       <section id="faq">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
-            الأسئلة <span className="text-primary">الشائعة</span>
+            {t("FAQ.title")}!
           </h2>
 
           <div className="space-y-4">

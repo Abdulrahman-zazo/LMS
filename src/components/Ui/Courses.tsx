@@ -7,6 +7,9 @@ import { Button } from "antd";
 import { ArrowRightCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
+interface Icourse {
+  max?: number;
+}
 const courses = [
   {
     id: 1,
@@ -56,9 +59,25 @@ const courses = [
     image: Image4,
     teacher: "Wasem Saleh",
   },
+  {
+    id: 7,
+    title: "Teach HTML and CSS to Kids",
+    description:
+      "Build visually engaging websites with a curriculum that is 70% more content than traditional curriculums.",
+    image: Image3,
+    teacher: "Wasem Saleh",
+  },
+  {
+    id: 8,
+    title: "Teach HTML and CSS to Kids",
+    description:
+      "Build visually engaging websites with a curriculum that is 70% more content than traditional curriculums.",
+    image: Image1,
+    teacher: "Wasem Saleh",
+  },
 ];
 
-const CoursesComponent = () => {
+const CoursesComponent = ({ max }: Icourse) => {
   const Navigate = useNavigate();
   return (
     <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 " dir="rtl">
@@ -93,7 +112,7 @@ const CoursesComponent = () => {
 
         {/* Course Cards */}
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {courses.map((course) => (
+          {courses?.slice(0, max).map((course) => (
             <div
               key={course.id}
               className="bg-white rounded-xl overflow-hidden flex flex-col "
@@ -126,7 +145,12 @@ const CoursesComponent = () => {
 
         {/* View All Button */}
         <div className="text-center">
-          <Button type="default" className="text-primary text-sm " size="large">
+          <Button
+            onClick={() => Navigate(`/courses`)}
+            type="default"
+            className="text-primary text-sm "
+            size="large"
+          >
             <ArrowRightCircle />
             عرض كل الدورات
           </Button>
