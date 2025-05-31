@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { IconBeaker, IconBook, IconComputer, IconMonitorChart } from "./Icons";
+import { useTranslation } from "react-i18next";
 interface HeaderCousrseProps {
   title: string;
   description: string;
@@ -14,11 +15,13 @@ export const HeaderCourse: React.FC<HeaderCousrseProps> = ({
   type,
   hours,
 }) => {
+  const { t } = useTranslation("translation");
+
   return (
     <div className="bg-primary p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden max-w-[100%] mx-auto mt-20 sm:mt-24">
       {/* Background Icons - will add animation later */}
       <motion.div
-        className="hidden absolute left-25 bottom-16 opacity-100"
+        className="hidden sm:block absolute left-25 bottom-16 opacity-100"
         // Animation props for IconBook
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -28,7 +31,7 @@ export const HeaderCourse: React.FC<HeaderCousrseProps> = ({
       </motion.div>
 
       <motion.div
-        className="hidden absolute -left-5 bottom-15 opacity-20"
+        className="hidden sm:block absolute -left-5 bottom-15 opacity-20"
         // Animation props for IconBeaker
         initial={{ x: 20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -38,7 +41,7 @@ export const HeaderCourse: React.FC<HeaderCousrseProps> = ({
       </motion.div>
 
       <motion.div
-        className=" hidden absolute left-10 top-10 opacity-15"
+        className=" hidden sm:block absolute left-10 top-10 opacity-15"
         // Animation props for IconMonitorChart (example)
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -123,7 +126,7 @@ export const HeaderCourse: React.FC<HeaderCousrseProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          احجز جلسة مجانية الآن 🚀!
+          {t("buttons.eroll")}
         </motion.button>
       </div>
     </div>

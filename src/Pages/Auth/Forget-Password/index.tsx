@@ -95,9 +95,12 @@
 // export default ForgetPassword;
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function ForgetPassword() {
+  const { t } = useTranslation("translation");
+
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -121,11 +124,13 @@ export default function ForgetPassword() {
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">Reset Password</h2>
+          <h2 className="text-2xl font-bold text-gray-800">
+            {t("auth.forget_password.forget_title")}
+          </h2>
           <p className="text-sm text-gray-500 mt-2">
-            {step === 1 && "Enter your email to reset password."}
-            {step === 2 && "Enter the code sent to your email."}
-            {step === 3 && "Enter your new password below."}
+            {step === 1 && t("auth.forget_password.forget_text")}
+            {step === 2 && t("auth.forget_password.code")}
+            {step === 3 && t("auth.forget_password.new_password_text")}
           </p>
         </div>
 
@@ -133,7 +138,7 @@ export default function ForgetPassword() {
           {step === 1 && (
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-1">
-                Email address
+                {t("auth.forget_password.email")}
               </label>
               <input
                 type="email"
@@ -148,7 +153,7 @@ export default function ForgetPassword() {
           {step === 2 && (
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-1">
-                Verification Code
+                {t("auth.forget_password.Verification")}
               </label>
               <input
                 type="text"
@@ -164,7 +169,7 @@ export default function ForgetPassword() {
             <>
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">
-                  New Password
+                  {t("auth.forget_password.new_password")}
                 </label>
                 <input
                   type="password"
@@ -177,7 +182,7 @@ export default function ForgetPassword() {
 
               <div>
                 <label className="text-sm font-medium text-gray-700 block mb-1">
-                  Confirm Password
+                  {t("auth.forget_password.new_password2")}
                 </label>
                 <input
                   type="password"
@@ -195,18 +200,20 @@ export default function ForgetPassword() {
             onClick={handleNext}
             className="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition"
           >
-            {step === 3 ? "Confirm Reset" : "Next"}
+            {step === 3
+              ? t("auth.forget_password.confirm")
+              : t("auth.forget_password.next")}
           </button>
         </form>
 
         {step < 3 && (
           <p className="text-sm text-center text-gray-600">
-            Remembered your password?{" "}
+            {t("auth.forget_password.Remembered")}
             <Link
               to="/auth/login"
-              className="text-primary font-semibold hover:underline"
+              className="text-primary mx-1 font-semibold hover:underline"
             >
-              Login here.
+              {t("auth.forget_password.Login")}
             </Link>
           </p>
         )}

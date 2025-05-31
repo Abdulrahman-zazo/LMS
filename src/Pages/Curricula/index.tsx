@@ -1,16 +1,17 @@
+import { useTranslation } from "react-i18next";
 import Curricula from "../../components/Curricula";
 import { HeroHeader } from "../../components/HeroHeader";
 import GetStarted from "../../components/Ui/GetStarted";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 
 const CurriculaPage = () => {
+  const { t } = useTranslation("translation");
   return (
-    <div className=" min-h-screen  " dir="rtl">
+    <div className=" min-h-screen " dir="rtl">
       <HeroHeader
-        buttonText=" انضم إلينا اليوم وكن جزءًا من مستقبل التعلم"
-        title="المناهج التعليمية في منصة H-Platform"
-        description="توفر منصة H-Platform مناهج تعليمية متكاملة في مواد أساسية  كاللغة العربية، الإنجليزية، الرياضيات، والحساب الذهني، مصممة لتلائم جميع المستويات.
-      اختر المنهج الذي يناسبك، ودعنا نأخذ بيدك نحو التميز الأكاديمي والتفوق الحقيقي."
+        buttonText={t("curricula-header.title3")}
+        title={t("curricula-header.title1")}
+        description={t("curricula-header.title2")}
       />
       <Curricula />
       <WhyDifferentSection />

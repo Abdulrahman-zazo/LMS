@@ -9,8 +9,11 @@ import defaultCountry from "../assets/Earth Planet.png";
 import ImageSubject01 from "../assets/Subject01.png";
 import ImageSubject02 from "../assets/Subject02.png";
 import ImageSubject03 from "../assets/Subject04.png";
+import { useTranslation } from "react-i18next";
 
 const Curricula = () => {
+  const { t } = useTranslation("translation");
+
   // حالات لتخزين البيانات المختارة وعرضها
   const [curricula, setCurricula] = useState<Curriculum[]>([]); // جميع المناهج المتاحة
   const [selectedCurriculumId, setSelectedCurriculumId] = useState<
@@ -169,16 +172,16 @@ const Curricula = () => {
     <div className="bg-bg-purple  py-6 sm:py-10 " dir="rtl">
       <div className="container mx-auto p-6  max-w-[90%]">
         <p className=" text-md  text-text  text-center sm:hidden">
-          اختر منهاجك ومرحلتك الدراسية:
+          {t("curricula.select")}
         </p>
         <div className="flex  md:flex-row space-x-2   md:space-x-4  items-center mt-4 mb-8">
           <p className="text-lg  text-text  text-center max-[640px]:hidden ">
-            اختر منهاجك ومرحلتك الدراسية:
+            {t("curricula.select")}
           </p>
           {/* قائمة اختيار المنهاج */}
           <div className="relative flex-1 text-sm sm:text-md">
             <label htmlFor="curriculum-select" className="sr-only">
-              اختر المنهاج
+              {t("curricula.curricula_select")}
             </label>
             <div className="relative text-sm sm:text-md rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -203,7 +206,7 @@ const Curricula = () => {
                 onChange={handleCurriculumChange}
               >
                 <option value="" disabled className="text-xs sm:text-md w-full">
-                  اختر المنهاج
+                  {t("curricula.curricula_select")}
                 </option>
                 {curricula.map((curriculum) => (
                   <option
@@ -237,7 +240,7 @@ const Curricula = () => {
           {/* قائمة اختيار المرحلة */}
           <div className="relative flex-1 text-sm sm:text-md">
             <label htmlFor="stage-select" className="sr-only">
-              اختر المرحلة
+              {t("curricula.curricula_select2")}
             </label>
             <div className="relative rounded-md shadow-sm">
               <select
@@ -302,7 +305,7 @@ const Curricula = () => {
                     {subject.name}
                   </h3>
                   <button className="bg-primary hover:shadow-sm cursor-pointer text-white font-semibold text-sm py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-                    احجز جلسة الآن
+                    {t("curricula.button")}
                   </button>
                 </div>
               </div>
@@ -311,13 +314,13 @@ const Curricula = () => {
         ) : (
           <div className="text-center text-gray-500 py-8">
             {selectedCurriculumId === null ? (
-              <p>الرجاء اختيار منهاج ومرحلة لعرض المواد.</p>
+              <p> {t("curricula.empty")}</p>
             ) : stages.length === 0 ? (
               <div>
-                <p>لا توجد مراحل متاحة لهذا المنهاج.</p>
+                <p> {t("curricula.empty1")}</p>
               </div>
             ) : (
-              <p>لا توجد مواد متاحة لهذه المرحلة.</p>
+              <p> {t("curricula.empty2")}</p>
             )}
           </div>
         )}

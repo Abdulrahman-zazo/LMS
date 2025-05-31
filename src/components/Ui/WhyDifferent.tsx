@@ -1,19 +1,20 @@
+import { useTranslation } from "react-i18next";
 import Image1 from "../../assets/Icon/Online Support.png";
 import Image2 from "../../assets/Icon/Popular Man.png";
 import Image3 from "../../assets/Icon/Puzzle.png";
 
 const WhyDifferentSection = () => {
+  const { t } = useTranslation("translation");
   return (
     <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-12">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center mx-auto w-[90%]">
           <div className=" text-right ">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
-              لماذا نحن <span className="text-primary">مختلفون؟</span>
+              {t("why.why_we")}{" "}
+              <span className="text-primary">{t("why.Differenet")}</span>
             </h2>
-            <p className="text-paragraph">
-              نحن نعيد تعريف التعليم الإلكتروني بطريقة مبتكرة ومميزة
-            </p>
+            <p className="text-paragraph">{t("why.subtitle")}</p>
           </div>
 
           <div className="bg-bg-purple-light px-4 py-8 flex flex-col items-start rounded-xl text-right  hover:shadow-sm transition">
@@ -26,11 +27,10 @@ const WhyDifferentSection = () => {
               />
             </div>
             <h3 className="font-semibold text-[14px] lg:text-lg  mb-2">
-              تعلّم مهارات جديدة
+              {t("why.key3")}
             </h3>
             <p className="text-[8px] md:text-sm text-paragraph">
-              مع نخبة من المدرسين المحترفين الذين يحوّلون المواضيع المعقدة إلى
-              مفاهيم بسيطة وممتعة.
+              {t("why.value3")}
             </p>
           </div>
 
@@ -44,11 +44,10 @@ const WhyDifferentSection = () => {
               />
             </div>
             <h3 className="font-semibold text-[14px] lg:text-lg mb-2">
-              مدربون خبراء
+              {t("why.key2")}
             </h3>
             <p className="text-[8px] md:text-sm text-paragraph">
-              مدرّبونا هم شركاء نجاحك! يجمعون بين المعرفة العميقة والقدرة على
-              إيصال المعلومة بأسلوب محفّز وتفاعلي.
+              {t("why.value2")}
             </p>
           </div>
 
@@ -63,11 +62,10 @@ const WhyDifferentSection = () => {
             </div>
 
             <h3 className="font-semibold text-[14px] lg:text-lg mb-2">
-              دعم فوري بلا انتظار
+              {t("why.key1")}
             </h3>
             <p className="text-[8px] md:text-sm text-paragraph">
-              تواصل مباشر عبر واتساب مع المدرّبين، واحصل على الحلول في الوقت
-              الحقيقي!
+              {t("why.value3")}
             </p>
           </div>
         </div>

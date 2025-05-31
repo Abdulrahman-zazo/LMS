@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import Image1 from "../../assets/aboutus.webp";
 import Image2 from "../../assets/Icon/Message.png";
 import Image3 from "../../assets/Icon/Mission.png";
 import Image4 from "../../assets/Icon/Vision.png";
 
 const AboutusSection = () => {
+  const { t } = useTranslation("translation");
+
   return (
     <section dir="rtl">
       <div className="max-w-[1440px] px-2 sm:px-6 py-8 sm:py-16 mx-auto">
@@ -13,31 +16,28 @@ const AboutusSection = () => {
               <div className="flex flex-col items-center mb-4   md:items-start text-center md:text-right ">
                 <img src={Image2} alt="Mission" className="h-12 w-12 my-2" />
                 <h3 className="font-semibold w-[100%] text-md md:text-lg my-2">
-                  رسالتنا
+                  {t("about.title1")}
                 </h3>
                 <p className="text-sm text-paragraph md:text-md ">
-                  توفير تعليم ميسّر يناسب وقتك، ومحتوى جذّاب يُشعل فضولك،
-                  ومسارات تعلم شخصية مصممة خصيصًا لك.
+                  {t("about.description1")}
                 </p>
               </div>
               <div className="flex flex-col items-center mb-4 md:items-start text-center md:text-right ">
                 <img src={Image3} alt="Mission" className="h-12 w-12 my-2" />
-                <h3 className="font-semibold text-md md:text-lg my-2">هدفنا</h3>
+                <h3 className="font-semibold text-md md:text-lg my-2">
+                  {t("about.title2")}
+                </h3>
                 <p className="text-sm text-paragraph md:text-md ">
-                  في H-Platform، نعمل على جعل التعليم تجربة فريدة ومؤثرة من خلال
-                  تقديم حلول تعليمية مبتكرة، ممتعة، ومتاحة للجميع — بغض النظر عن
-                  العمر أو الخلفية أو الموقع الجغرافي.
+                  {t("about.description2")}
                 </p>
               </div>
               <div className="flex flex-col items-center mb-4 md:items-start text-center md:text-right ">
                 <img src={Image4} alt="Mission" className="h-12 w-12 my-2" />
                 <h3 className="font-semibold text-md md:text-lg my-2">
-                  رؤيتنا
+                  {t("about.title3")}
                 </h3>
                 <p className="text-sm w-full text-paragraph md:text-md ">
-                  تنبني مجتمعًا عالميًا من المتعلمين المتصلين بالمعرفة والنمو،
-                  حيث تتحول أحدث التقنيات إلى تجربة تعليمية تغيّر الحياة، وتفتح
-                  الأبواب نحو المستقبل.
+                  {t("about.description3")}
                 </p>
               </div>
             </div>

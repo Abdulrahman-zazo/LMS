@@ -1,24 +1,24 @@
 import { useTranslation } from "react-i18next";
 import { HeroHeader } from "../../components/HeroHeader";
-import CoursesComponent from "../../components/Ui/Courses";
 import GetStarted from "../../components/Ui/GetStarted";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
+import Offers from "../../components/Offers";
 
-const CoursessPage = () => {
+const OfferPage = () => {
   const { t } = useTranslation("translation");
 
   return (
-    <div>
+    <div dir="rtl">
       <HeroHeader
-        title={t("course-header.title1")}
-        description={t("course-header.title2")}
-        buttonText={t("course-header.title3")}
+        buttonText={t("offer-header.title3")}
+        title={t("offer-header.title1")}
+        description={t("offer-header.title2")}
       />
-      <CoursesComponent />
+      <Offers />
       <WhyDifferentSection />
       <GetStarted />
     </div>
   );
 };
 
-export default CoursessPage;
+export default OfferPage;

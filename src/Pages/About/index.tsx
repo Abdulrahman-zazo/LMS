@@ -1,23 +1,24 @@
+import { useTranslation } from "react-i18next";
 import { HeroHeader } from "../../components/HeroHeader";
 import AboutusSection from "../../components/Ui/AboutusSection";
-import GetStarted from "../../components/Ui/GetStarted";
 import HeroWorldMap from "../../components/Ui/Map";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
+import InstructorCallSection from "../../components/Ui/InstructorCallSection";
 
 const AboutPage = () => {
+  const { t } = useTranslation("translation");
+
   return (
     <div dir="rtl" lang="ar">
       <HeroHeader
-        buttonText=" انضم إلينا اليوم وكن جزءًا من مستقبل التعلم"
-        title=" مع منصة H-Platform
-حيث يبدأ التعلّم، ولا يتوقف أبدًا"
-        description="H-Platform مجتمع يقودك نحو التميز، ويمنحك الأدوات والمعرفة لتتقدّم بثقة في عالم سريع التغيّر
-نصنع تجربة تعلم رقمية متكاملة ترتقي بطموحك من الفكرة إلى الإنجاز."
+        title={t("about-header.title1")}
+        description={t("about-header.title2")}
+        buttonText={t("about-header.title3")}
       />
       <AboutusSection />
       <HeroWorldMap />
       <WhyDifferentSection />
-      <GetStarted />
+      <InstructorCallSection />
     </div>
   );
 };

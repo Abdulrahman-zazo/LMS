@@ -13,9 +13,7 @@ const Footer = () => {
         {/* عمود: شعار ووصف */}
         <div>
           <h3 className="font-bold text-2xl mb-2">H-PLATFORM</h3>
-          <p className="text-sm opacity-90 mb-4">
-            تعلّم بذكاء وابدأ رحلتك الآن
-          </p>
+          <p className="text-sm opacity-90 mb-4">{t("footer.slogan")}</p>
           <div className="flex gap-4 text-white text-base">
             <a
               href="#"
@@ -47,26 +45,29 @@ const Footer = () => {
         {/* عمود: روابط أساسية */}
         <div className="flex flex-col gap-2 text-sm">
           <Link to="/about-us" className="hover:text-bg-icon">
-            من نحن
+            {t("footer.aboutus")}
+          </Link>
+          <Link to="/about-us/#instructor" className="hover:text-bg-icon">
+            انضم إلينا
           </Link>
           <Link to="/courses" className="hover:text-bg-icon">
-            الدورات
+            {t("footer.courses")}
           </Link>
           <Link to="/curricula" className="hover:text-bg-icon">
-            المناهج
+            {t("footer.curricula")}
           </Link>
         </div>
 
         {/* عمود: روابط قانونية ودعم */}
         <div className="flex flex-col gap-2 text-sm">
           <Link to="/" className="hover:text-bg-icon">
-            مركز المساعدة
+            {t("footer.help_center")}
           </Link>
           <Link to="/h-platform-term" className="hover:text-bg-icon">
-            شروط الخدمة
+            {t("footer.term")}
           </Link>
           <Link to="/h-platform-privacy-policy" className="hover:text-bg-icon">
-            سياسة الخصوصية
+            {t("footer.privacy")}
           </Link>
         </div>
       </div>

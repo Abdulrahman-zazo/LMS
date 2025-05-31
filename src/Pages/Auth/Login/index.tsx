@@ -159,22 +159,33 @@
 // };
 
 // src/pages/Login.tsx
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Login() {
+  const { t } = useTranslation("translation");
+
+  const location = useLocation();
+  console.log(location);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4">
+    <div
+      className="min-h-screen flex items-center justify-center bg-white px-4"
+      dir="rtl"
+    >
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">Login</h2>
+          <h2 className="text-2xl font-bold text-gray-800">
+            {t("auth.Login_account.Login_title")}
+          </h2>
           <p className="text-sm text-gray-500 mt-2">
-            Enter your credential to access your account.
+            {t("auth.Login_account.create_text")}
           </p>
         </div>
 
         <button className="w-full flex items-center justify-center border border-gray-300 rounded-md py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
+          {t("auth.Login_account.Google")}
           <svg
-            className="w-5 h-5"
+            className="w-5 h-5 mx-2"
             viewBox="0 0 48 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -203,7 +214,6 @@ export default function Login() {
               </clipPath>
             </defs>
           </svg>
-          Continue with Google
         </button>
 
         <div className="flex items-center gap-2">
@@ -215,7 +225,7 @@ export default function Login() {
         <form className="space-y-4">
           <div>
             <label className="text-sm font-medium text-gray-700 block mb-1">
-              Email address
+              {t("auth.Login_account.email")}
             </label>
             <input
               type="email"
@@ -227,13 +237,13 @@ export default function Login() {
           <div>
             <div className="flex justify-between items-center mb-1">
               <label className="text-sm font-medium text-gray-700">
-                Password
+                {t("auth.Login_account.Password")}
               </label>
               <Link
                 to="/auth/forget-password"
                 className="text-sm text-primary hover:underline"
               >
-                Forgot Password?
+                {t("auth.Login_account.forget")}
               </Link>
             </div>
             <input
@@ -247,17 +257,17 @@ export default function Login() {
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition"
           >
-            Login
+            {t("auth.Login_account.Login")}
           </button>
         </form>
 
         <p className="text-sm text-center text-gray-600">
-          Don’t have an account?{" "}
+          {t("auth.Login_account.noAccount")}
           <Link
             to="/auth/get-started"
-            className="text-primary font-semibold hover:underline"
+            className="text-primary mx-1 font-semibold hover:underline"
           >
-            Register here.
+            {t("auth.Login_account.Register")}
           </Link>
         </p>
       </div>

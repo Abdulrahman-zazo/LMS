@@ -9,8 +9,10 @@ import {
   IconMonitorChart,
 } from "../Icons";
 import ImageHome from "../../assets/home.webp";
+import { useTranslation } from "react-i18next";
 
 const HeroHome = () => {
+  const { t } = useTranslation("translation");
   return (
     <div>
       <div
@@ -66,24 +68,21 @@ const HeroHome = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              حيث يلتقي التعلم <br />
-              بالإمكانات
+              {t("HeroHome.Home_title")}
             </motion.h1>
             <motion.p
               className=" text-md sm:text-md md:text-xl mb-4 md-8 max-w-xl mx-auto"
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             >
-              اكتشف قدراتك مع منصة H-Platform!
+              {t("HeroHome.text1")}
             </motion.p>
             <motion.p
               className="text-md sm:text-md md:text-lg mb-8 max-w-lg md:max-w-xl mx-auto leading-7 max-[500px]:hidden "
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             >
-              في عالم يتغير بسرعة، لم يعد التعلم وحده كافيًا بل يجب أن تتميّز.
-              منصة H-Platform ليست مجرد أداة تعليمية؛ إنها الجسر الذي يربط بين
-              أحلامك والواقع.
+              {t("HeroHome.text2")}
             </motion.p>
 
             <motion.button
@@ -94,7 +93,7 @@ const HeroHome = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              احصل على جلسة مجانية الآن!
+              {t("HeroHome.text3")} !
             </motion.button>
           </div>
           <div className="max-[800px]:hidden">

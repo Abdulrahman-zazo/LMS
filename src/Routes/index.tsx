@@ -14,6 +14,7 @@ import PrivacyPolicyPage from "../Pages/PrivacyPolicy";
 import CurriculaPage from "../Pages/Curricula";
 import CourseDetailsPage from "../Pages/Courses/CourseDetails";
 import Registration from "../Pages/Auth/Registration";
+import OfferPage from "../Pages/Offers";
 
 export const router = createBrowserRouter([
   // 1- user can veiw this page
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
       { path: "/h-platform-privacy-policy", element: <PrivacyPolicyPage /> },
       { path: "/courses", element: <CoursessPage /> },
       { path: "/curricula", element: <CurriculaPage /> },
+      { path: "/offers", element: <OfferPage /> },
       { path: "/about-us", element: <AboutPage /> },
       { path: "/auth/login", element: <Login /> },
       { path: "/auth/forget-password", element: <ForgetPassword /> },
@@ -42,6 +44,7 @@ export const router = createBrowserRouter([
         element: <AuthRoute />,
         children: [
           { path: "courses/:id", element: <CourseDetailsPage /> },
+          { path: "offers/courses/:id", element: <CourseDetailsPage /> },
           { path: "complaints", element: <ComplaintsPage /> },
         ],
       },

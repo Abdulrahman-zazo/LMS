@@ -7,8 +7,11 @@ import Imagepin4 from "../../assets/Icon/pin04.png";
 import Imagepin5 from "../../assets/Icon/pin05.png";
 import ImageMap from "../../assets/map.webp";
 import Logo from "./Logo";
+import { useTranslation } from "react-i18next";
 
 const HeroWorldMap = () => {
+  const { t } = useTranslation("translation");
+
   return (
     <div className="bg-white max-[800px]:hidden  max-w-[1440px] mx-auto">
       {/* النص العلوي */}
@@ -20,7 +23,7 @@ const HeroWorldMap = () => {
           className="text-xl md:text-3xl font-bold text-center text-text mb-4 " // ألوان وخطوط Tailwind
           dir="rtl" // لضمان اتجاه النص الصحيح للعربية
         >
-          ابدأ رحلتك التعليمية اليوم
+          {t("map.title1")}
         </motion.h2>
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
@@ -29,7 +32,7 @@ const HeroWorldMap = () => {
           className="text-xl md:text-3xl font-extrabold text-center mb-4 z-10"
           dir="rtl"
         >
-          <span className="text-text">مع</span>{" "}
+          <span className="text-text">{t("map.with")}</span>{" "}
           <span className="text-primary">H-Platform</span>
         </motion.h2>
         <motion.p
@@ -39,7 +42,7 @@ const HeroWorldMap = () => {
           className="text-lg md:text-xl text-gray-600 text-center max-w-2xl mb-12 z-10"
           dir="rtl"
         >
-          المستقبل بين يديك، تعلّم، تطوّر، وحقق أحلامك.
+          {t("map.title2")}
         </motion.p>
       </div>
       <div className="relative flex flex-col items-center justify-center p-20 mb-12 overflow-hidden">
@@ -61,10 +64,10 @@ const HeroWorldMap = () => {
             type: "spring",
             stiffness: 120,
           }}
-          className="relative top-10 rounded-xl shadow-2xl z-30" // تصميم البطاقة
+          className="relative top-10 rounded-xl shadow-2xl z-30 " // تصميم البطاقة
         >
           {/* هنا يمكنك وضع شعار H كصورة أو SVG */}
-          <Logo type="icon" width={150} />
+          <Logo type="icon" props={{ className: "w-40" }} />
         </motion.div>
 
         {/* مؤشرات الدول المتحركة */}

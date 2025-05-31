@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function Registration() {
+  const { t } = useTranslation("translation");
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-white px-4"
@@ -8,16 +11,18 @@ export default function Registration() {
     >
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">Create Account</h2>
+          <h2 className="text-2xl font-bold text-gray-800">
+            {t("auth.create_account.Create_title")}
+          </h2>
           <p className="text-sm text-gray-500 mt-2">
-            Join us by filling the information below.
+            {t("auth.create_account.create_text")}
           </p>
         </div>
 
         <form className="space-y-4">
           <div>
             <label className="text-sm font-medium text-gray-700 block mb-1">
-              Full Name
+              {t("auth.create_account.Name")}
             </label>
             <input
               type="text"
@@ -28,7 +33,7 @@ export default function Registration() {
 
           <div>
             <label className="text-sm font-medium text-gray-700 block mb-1">
-              Email address
+              {t("auth.create_account.Password")}
             </label>
             <input
               type="email"
@@ -36,10 +41,19 @@ export default function Registration() {
               placeholder="email@domain.com"
             />
           </div>
-
           <div>
             <label className="text-sm font-medium text-gray-700 block mb-1">
-              Password
+              {t("auth.create_account.phone")}
+            </label>
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="+963"
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium text-gray-700 block mb-1">
+              {t("auth.create_account.Password")}
             </label>
             <input
               type="password"
@@ -52,17 +66,17 @@ export default function Registration() {
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition"
           >
-            Register
+            {t("auth.create_account.Register")}
           </button>
         </form>
 
         <p className="text-sm text-center text-gray-600">
-          Already have an account?{" "}
+          {t("auth.create_account.Already")}
           <Link
             to="/auth/login"
-            className="text-primary font-semibold hover:underline"
+            className="text-primary mx-1 font-semibold hover:underline"
           >
-            Login here.
+            {t("auth.create_account.Login")}
           </Link>
         </p>
       </div>

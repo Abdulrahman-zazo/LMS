@@ -2,40 +2,39 @@ import Image1 from "../../assets/login.png";
 import Image2 from "../../assets/search.png";
 import Image3 from "../../assets/connections.png";
 import { Button } from "antd";
-
-const steps = [
-  {
-    id: 1,
-    title: "أنشئ ملفك الشخصي",
-    description:
-      "سجل بسهولة باستخدام Google أو Facebook وابدأ ببناء ملفك ومتابعة تقدمك في التدريب.",
-    image: Image1,
-    button: "ابدأ الآن",
-  },
-  {
-    id: 2,
-    title: "استعرض الدورات التدريبية",
-    description:
-      "استعرض الدورات المتاحة واختر الأنسب، وابدأ بالتعلم والتطوير فورًا بسهولة ومرونة.",
-    image: Image2,
-    button: "ابحث عن الدورة المناسبة لك",
-  },
-  {
-    id: 3,
-    title: "احجز مقعدك الآن",
-    description:
-      "تواصل مباشر مع المدربين لحجز مقعدك والانضمام إلى الدورة التي اخترتها.",
-    image: Image3,
-    button: "كوّن اتصالك",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const HowItWorksSection = () => {
+  const { t } = useTranslation("translation");
+
+  const steps = [
+    {
+      id: 1,
+      title: t("how-work.feature2"),
+      description: t("how-work.content2"),
+      button: t("how-work.button2"),
+      image: Image1,
+    },
+    {
+      id: 2,
+      title: t("how-work.feature1"),
+      description: t("how-work.content1"),
+      button: t("how-work.button1"),
+      image: Image2,
+    },
+    {
+      id: 3,
+      title: t("how-work.feature3"),
+      description: t("how-work.content3"),
+      button: t("how-work.button3"),
+      image: Image3,
+    },
+  ];
   return (
     <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16" dir="rtl">
       {/* Title */}
       <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-center mb-12">
-        كيف تعمل منصة <span className="text-primary">H-Platform؟</span>
+        {t("how-work.title")} <span className="text-primary">H-Platform؟</span>
       </h2>
 
       {/* Cards */}
