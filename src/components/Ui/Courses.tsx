@@ -3,10 +3,11 @@ import Image2 from "../../assets/4039100_2cfe_3.png";
 import Image3 from "../../assets/4256760_59bd_3.png";
 import Image4 from "../../assets/4276090_9133.png";
 import { Button } from "antd";
-import { ArrowRightCircle } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import CourseCard from "./courseCard";
 import { useTranslation } from "react-i18next";
+import { useGetAllCoursesQuery } from "../../app/features/Courses/CoursesApi";
+import HandelError from "../HandelError";
+import SkeletonCustom from "../Skeleton";
 
 interface Icourse {
   max?: number;
@@ -79,8 +80,16 @@ const courses = [
 ];
 
 const CoursesComponent = ({ max }: Icourse) => {
-  const Navigate = useNavigate();
   const { t } = useTranslation("translation");
+
+  const { data, isLoading, isError, error } = useGetAllCoursesQuery({});
+  console.log(data, isLoading, isError, error);
+  if (isLoading) {
+    return <SkeletonCustom type="card" />;
+  }
+  if (isError) {
+    return <HandelError />;
+  }
 
   return (
     <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 " dir="rtl">
@@ -111,7 +120,7 @@ const CoursesComponent = ({ max }: Icourse) => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-0">
           {courses?.slice(0, max).map((course) => (
             <CourseCard
               description={course.description}
@@ -122,19 +131,6 @@ const CoursesComponent = ({ max }: Icourse) => {
               link="/protected/courses"
             />
           ))}
-        </div>
-
-        {/* View All Button */}
-        <div className="text-center">
-          <Button
-            onClick={() => Navigate(`/courses`)}
-            type="default"
-            className="text-primary text-sm "
-            size="large"
-          >
-            <ArrowRightCircle />
-            {t("Courses.more")}
-          </Button>
         </div>
       </div>
     </section>

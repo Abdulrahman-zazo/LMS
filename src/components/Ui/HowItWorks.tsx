@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Image1 from "../../assets/login.png";
 import Image2 from "../../assets/search.png";
 import Image3 from "../../assets/connections.png";
@@ -5,61 +6,125 @@ import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 
 const HowItWorksSection = () => {
-  const { t } = useTranslation("translation");
+  const { t, ready } = useTranslation("translation");
+  const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>({
+    1: false,
+    2: false,
+    3: false,
+  });
+  interface Isteps {
+    id: number;
+    title: string;
+    description: string;
+    button: string;
+    image: string;
+  }
+  const steps: Isteps[] = ready
+    ? [
+        {
+          id: 1,
+          title: t("how-work.feature2"),
+          description: t("how-work.content2"),
+          button: t("how-work.button2"),
+          image: Image1,
+        },
+        {
+          id: 2,
+          title: t("how-work.feature1"),
+          description: t("how-work.content1"),
+          button: t("how-work.button1"),
+          image: Image2,
+        },
+        {
+          id: 3,
+          title: t("how-work.feature3"),
+          description: t("how-work.content3"),
+          button: t("how-work.button3"),
+          image: Image3,
+        },
+      ]
+    : Array(3).fill({});
 
-  const steps = [
-    {
-      id: 1,
-      title: t("how-work.feature2"),
-      description: t("how-work.content2"),
-      button: t("how-work.button2"),
-      image: Image1,
-    },
-    {
-      id: 2,
-      title: t("how-work.feature1"),
-      description: t("how-work.content1"),
-      button: t("how-work.button1"),
-      image: Image2,
-    },
-    {
-      id: 3,
-      title: t("how-work.feature3"),
-      description: t("how-work.content3"),
-      button: t("how-work.button3"),
-      image: Image3,
-    },
-  ];
   return (
     <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16" dir="rtl">
       {/* Title */}
       <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-center mb-12">
-        {t("how-work.title")} <span className="text-primary">H-Platform؟</span>
+        {ready ? (
+          <>
+            {t("how-work.title")}
+            <span className="text-primary">H-Platform؟</span>
+          </>
+        ) : (
+          <div className="w-1/2 h-8 mx-auto rounded bg-neutral-300 animate-pulse"></div>
+        )}
       </h2>
 
       {/* Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 w-[90%] mx-auto">
-        {steps.map((step) => (
-          <div
-            key={step.id}
-            className="border rounded-xl p-6 text-center  hover:shadow-sm transition"
-          >
-            <img
-              src={step.image}
-              alt={step.title}
-              className="h-56 mx-auto mb-6 object-contain"
-            />
-            <h3 className="text-lg font-semibold mb-4">{step.title}</h3>
-            <p className="text-paragraph text-sm mb-4">{step.description}</p>
-            <Button
-              type="primary"
-              size="large"
-              className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
+        {steps.map((step: Isteps) => {
+          const { id, button, description, image, title } = step;
+          return (
+            <div
+              key={id}
+              className="border rounded-xl p-6 text-center hover:shadow-sm transition"
             >
-              {step.button}
-            </Button>
-          </div>
-        ))}
+              {/* Image or Skeleton */}
+              {ready ? (
+                imageLoaded[id] ? (
+                  <img
+                    src={image}
+                    alt={title}
+                    className="h-56 mx-auto mb-6 object-contain"
+                  />
+                ) : (
+                  <>
+                    <div className="h-56 bg-neutral-200 rounded mb-6 animate-pulse" />
+                    <img
+                      src={image}
+                      alt={title}
+                      onLoad={() =>
+                        setImageLoaded((prev) => ({ ...prev, [id]: true }))
+                      }
+                      className="hidden"
+                    />
+                  </>
+                )
+              ) : (
+                <div className="h-56 bg-neutral-200 rounded mb-6 animate-pulse" />
+              )}
+
+              {/* Title */}
+              {ready ? (
+                <h3 className="text-lg font-semibold mb-4">{title}</h3>
+              ) : (
+                <div className="h-4 w-2/3 mx-auto bg-neutral-300 mb-4 rounded animate-pulse" />
+              )}
+
+              {/* Description */}
+              {ready ? (
+                <p className="text-paragraph text-sm mb-4">{description}</p>
+              ) : (
+                <div className="space-y-2 mb-4">
+                  <div className="h-3 w-full bg-neutral-200 rounded animate-pulse" />
+                  <div className="h-3 w-5/6 bg-neutral-200 rounded animate-pulse" />
+                </div>
+              )}
+
+              {/* Button */}
+              {ready ? (
+                <Button
+                  type="primary"
+                  size="large"
+                  className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
+                >
+                  {button}
+                </Button>
+              ) : (
+                <div className="h-10 w-full bg-neutral-300 rounded animate-pulse my-4"></div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

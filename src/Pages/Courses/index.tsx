@@ -5,11 +5,12 @@ import GetStarted from "../../components/Ui/GetStarted";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 
 const CoursessPage = () => {
-  const { t } = useTranslation("translation");
+  const { t, ready } = useTranslation("translation");
 
   return (
     <div>
       <HeroHeader
+        ready={ready}
         title={t("course-header.title1")}
         description={t("course-header.title2")}
         buttonText={t("course-header.title3")}

@@ -25,7 +25,7 @@ const Header = () => {
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-0 sm:px-8">
           {/* Logo */}
           <Link to="/" className={"mx-4"}>
-            <Logo type="h" props={{ className: "w-32 h-auto" }} />
+            <Logo type="h" className="w-32 h-auto" />
           </Link>
 
           {/* Desktop Nav */}

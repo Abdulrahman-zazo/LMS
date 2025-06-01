@@ -5,11 +5,12 @@ import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 import Offers from "../../components/Offers";
 
 const OfferPage = () => {
-  const { t } = useTranslation("translation");
+  const { t, ready } = useTranslation("translation");
 
   return (
     <div dir="rtl">
       <HeroHeader
+        ready={ready}
         buttonText={t("offer-header.title3")}
         title={t("offer-header.title1")}
         description={t("offer-header.title2")}

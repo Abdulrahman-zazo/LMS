@@ -1,47 +1,54 @@
 import { useState } from "react";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
-
 import ScrollToHash from "../ScrollToHash";
 import { useTranslation } from "react-i18next";
 
 const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
+  const { t, ready } = useTranslation("translation");
 
   const toggle = (index: number) => {
-    setOpenIndex(index === openIndex ? 0 : index);
+    setOpenIndex(index === openIndex ? -1 : index);
   };
-  const { t } = useTranslation("translation");
-  const faqs = [
-    {
-      question: t("FAQ.questions1"),
-      answer: t("FAQ.content1"),
-    },
-    {
-      question: t("FAQ.questions2"),
-      answer: t("FAQ.content2"),
-    },
-    {
-      question: t("FAQ.questions3"),
-      answer: t("FAQ.content3"),
-    },
-    {
-      question: t("FAQ.questions4"),
-      answer: t("FAQ.content4"),
-    },
-    {
-      question: t("FAQ.questions5"),
-      answer: t("FAQ.content5"),
-    },
-  ];
+
+  const faqs = ready
+    ? [
+        {
+          question: t("FAQ.questions1"),
+          answer: t("FAQ.content1"),
+        },
+        {
+          question: t("FAQ.questions2"),
+          answer: t("FAQ.content2"),
+        },
+        {
+          question: t("FAQ.questions3"),
+          answer: t("FAQ.content3"),
+        },
+        {
+          question: t("FAQ.questions4"),
+          answer: t("FAQ.content4"),
+        },
+        {
+          question: t("FAQ.questions5"),
+          answer: t("FAQ.content5"),
+        },
+      ]
+    : Array(5).fill({ question: "", answer: "" });
+
   return (
-    <div className="bg-bg-purple " dir="rtl">
+    <div className="bg-bg-purple" dir="rtl">
       <ScrollToHash />
 
       <section id="faq">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
-            {t("FAQ.title")}!
+            {ready ? (
+              t("FAQ.title") + "!"
+            ) : (
+              <div className="w-1/2 h-8 bg-neutral-200 mx-auto rounded animate-pulse" />
+            )}
           </h2>
 
           <div className="space-y-4">
@@ -51,17 +58,31 @@ const FaqSection = () => {
                 className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
               >
                 <button
-                  onClick={() => toggle(index)}
+                  onClick={() => ready && toggle(index)}
+                  disabled={!ready}
                   className="w-full text-right px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
                 >
-                  <span>{faq.question}</span>
-                  <span className="text-xl text-primary">
-                    {openIndex === index ? <HiChevronUp /> : <HiChevronDown />}
-                  </span>
+                  {ready ? (
+                    <>
+                      <span>{faq.question}</span>
+                      <span className="text-xl text-primary">
+                        {openIndex === index ? (
+                          <HiChevronUp />
+                        ) : (
+                          <HiChevronDown />
+                        )}
+                      </span>
+                    </>
+                  ) : (
+                    <div className="w-full flex justify-between items-center animate-pulse">
+                      <div className="h-4 bg-neutral-300 w-3/4 rounded"></div>
+                      <div className="h-5 w-5 bg-neutral-200 rounded-full" />
+                    </div>
+                  )}
                 </button>
 
                 <AnimatePresence initial={false}>
-                  {openIndex === index && (
+                  {ready && openIndex === index && (
                     <motion.div
                       key="content"
                       initial={{ height: 0, opacity: 0 }}
