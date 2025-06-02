@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { PanelTopClose, PanelTopOpen } from "lucide-react";
+import { X, Menu } from "react-feather";
 import Logo from "./Logo";
 
-import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 import UserMenu from "../userMenu";
+import { cookieService } from "../../Cookies/CookiesServices";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { ref, inView } = useInView({ threshold: 0 });
-  const { t } = useTranslation("translation");
-
+  const { t, ready } = useTranslation("translation");
+  const token = cookieService.get("auth_token");
   const Navigate = useNavigate();
   return (
     <>
@@ -29,81 +29,10 @@ const Header = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav
-            className={`hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-paragraph text-sm `}
-          >
-            <NavLink to="/" className="hover:text-primary  active:text-primary">
-              {t("Header.Home")}
-            </NavLink>
-            <NavLink
-              to="/about-us"
-              className="hover:text-primary  active:text-primary"
+          {ready ? (
+            <nav
+              className={`hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-paragraph text-sm `}
             >
-              {t("Header.About")}
-            </NavLink>
-            <NavLink
-              to="/courses"
-              className="hover:text-primary  active:text-primary"
-            >
-              {t("Header.Courses")}
-            </NavLink>
-            <NavLink
-              to="/curricula"
-              className="hover:text-primary  active:text-primary"
-            >
-              {t("Header.Curricula")}
-            </NavLink>
-            <NavLink
-              to="/offers"
-              className="hover:text-primary  active:text-primary"
-            >
-              {t("Header.offer")}
-            </NavLink>
-            <NavLink
-              to="/#faq"
-              className="hover:text-primary  active:text-primary"
-            >
-              {t("Header.FAQ")}
-            </NavLink>
-          </nav>
-
-          {/* Auth Buttons */}
-          {/* <div className="hidden md:hidden lg:flex gap-3">
-            <Button
-              type="default"
-              className={`text-sm text-primary `}
-              onClick={() => Navigate("/auth/login")}
-            >
-              {t("Header.login")}
-            </Button>
-            <Button
-              type="primary"
-              className="bg-primary text-white px-4 py-1.5 rounded text-sm hover:bg-primary-dark"
-              onClick={() => Navigate("/auth/get-started")}
-            >
-              {t("Header.Register")}
-            </Button>
-          </div> */}
-          <UserMenu />
-
-          {/* Mobile Hamburger Button */}
-          <div className="lg:hidden text-2xl text-gray-700">
-            {menuOpen ? (
-              <Button type="text" onClick={() => setMenuOpen(!menuOpen)}>
-                <PanelTopClose size={16} />
-              </Button>
-            ) : (
-              <Button type="text" onClick={() => setMenuOpen(!menuOpen)}>
-                <PanelTopOpen size={16} />
-              </Button>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="lg:hidden mt-3 bg-white rounded-md shadow px-4 py-3 space-y-2">
-            <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">
               <NavLink
                 to="/"
                 className="hover:text-primary  active:text-primary"
@@ -141,22 +70,152 @@ const Header = () => {
                 {t("Header.FAQ")}
               </NavLink>
             </nav>
-            <div className="flex flex-col gap-2 pt-4 ">
-              <Button
-                className="text-sm text-primary "
-                type="default"
+          ) : (
+            <nav
+              className={`hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-paragraph text-sm `}
+            >
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+
+              <div className="h-4 w-12 rounded-md bg-neutral-200 animate-pulse" />
+            </nav>
+          )}
+
+          {/* Auth buttons */}
+          {!token ? (
+            <div className="hidden md:hidden lg:flex gap-3">
+              <button
+                title="Login"
+                className="text-sm text-primary hover:text-primary/80 cursor-pointer "
                 onClick={() => Navigate("/auth/login")}
               >
                 {t("Header.login")}
-              </Button>
-              <Button
-                type="primary"
+              </button>
+              <button
+                title="Register"
+                className="bg-primary text-white px-4 py-1.5 rounded text-sm  hover:bg-primary/80  cursor-pointer"
                 onClick={() => Navigate("/auth/get-started")}
-                className="bg-primary text-white px-4 py-1.5 rounded text-sm hover:bg-primary-dark"
               >
                 {t("Header.Register")}
-              </Button>
+              </button>
             </div>
+          ) : (
+            <div className="hidden lg:inline">
+              <UserMenu />
+            </div>
+          )}
+
+          {/* Mobile Hamburger button */}
+          <div className="lg:hidden text-2xl text-gray-700 flex items-center ">
+            {token && <UserMenu />}
+            {menuOpen ? (
+              <button
+                title="open header menu"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-2  cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            ) : (
+              <button
+                title="close header menu"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="p-2 cursor-pointer"
+              >
+                <Menu size={20} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="lg:hidden mt-3 bg-white rounded-md shadow px-4 py-3 space-y-2">
+            {ready ? (
+              <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">
+                <NavLink
+                  to="/"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.Home")}
+                </NavLink>
+                <NavLink
+                  to="/about-us"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.About")}
+                </NavLink>
+                <NavLink
+                  to="/courses"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.Courses")}
+                </NavLink>
+                <NavLink
+                  to="/curricula"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.Curricula")}
+                </NavLink>
+                <NavLink
+                  to="/offers"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.offer")}
+                </NavLink>
+                <NavLink
+                  to="/#faq"
+                  className="hover:text-primary  active:text-primary"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {t("Header.FAQ")}
+                </NavLink>
+              </nav>
+            ) : (
+              <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+
+                <div className="h-4 bg-neutral-200 animate-pulse" />
+              </nav>
+            )}
+            {!token && (
+              <div className="flex flex-col gap-2 pt-4 ">
+                <button
+                  title="Login Button"
+                  className="text-sm text-primary  hover:text-primary/80  cursor-pointer "
+                  onClick={() => Navigate("/auth/login")}
+                >
+                  {t("Header.login")}
+                </button>
+                <button
+                  title="Register Button"
+                  onClick={() => Navigate("/auth/get-started")}
+                  className="bg-primary text-white px-4 py-1.5 rounded text-sm  hover:bg-primary/80  cursor-pointer"
+                >
+                  {t("Header.Register")}
+                </button>
+              </div>
+            )}
           </div>
         )}
       </header>

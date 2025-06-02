@@ -1,5 +1,6 @@
+import { Facebook, Twitter, Youtube } from "react-feather";
 import { useTranslation } from "react-i18next";
-import { FaFacebookF, FaTwitter, FaEnvelope, FaYoutube } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -19,25 +20,20 @@ const Footer = () => {
               href="#"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
-              <FaFacebookF />
+              <Facebook />
             </a>
             <a
               href="#"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
-              <FaTwitter />
+              <Twitter />
             </a>
+
             <a
               href="#"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
-              <FaEnvelope />
-            </a>
-            <a
-              href="#"
-              className="bg-bg-icon p-2 rounded-full hover:text-primary"
-            >
-              <FaYoutube />
+              <Youtube />
             </a>
           </div>
         </div>

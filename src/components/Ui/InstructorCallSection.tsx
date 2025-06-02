@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import ScrollToHash from "../ScrollToHash";
 import { useTranslation } from "react-i18next";
 
@@ -16,20 +15,18 @@ export default function InstructorCallSection() {
           {/* Title */}
           <div className="w-[90%] mx-auto flex flex-col items-center">
             <h2 className="text-md sm:text-2xl lg:text-3xl font-bold text-center mb-4 sm:mb-6">
-              هل أنت مدرّس أو مدرّب؟ 🎓
+              {t("Instructor.title1")}
             </h2>
             <p className="text-sm sm:text-md text-paragraph text-center my-2 sm:max-w-[40%] ">
-              شارك معرفتك مع آلاف المتعلمين! إذا كنت ترغب بتقديم دورات أو محتوى
-              تدريبي على منصتنا، يسعدنا التعاون معك.
+              {t("Instructor.title2")}
             </p>
 
-            <Button
-              type="primary"
-              size="large"
-              className="bg-primary  text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
+            <button
+              title="Instructor.title"
+              className="bg-primary  text-white text-sm shadow-sm px-8 py-4 my-4 rounded-lg hover:bg-primary/80 transition"
             >
-              تواصل معنا
-            </Button>
+              {t("Instructor.title3")}
+            </button>
           </div>
         </section>
       ) : (

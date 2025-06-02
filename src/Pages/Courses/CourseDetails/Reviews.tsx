@@ -1,59 +1,44 @@
 // src/components/Reviews.tsx
-
+// import { formatDistanceToNow } from "date-fns";
+// import { ar } from "date-fns/locale";
 import { useState } from "react";
+import type { IComments } from "../../../types";
+import { useTranslation } from "react-i18next";
 
-interface Comment {
-  id: number;
-  author: string;
-  avatar: string;
-  timeAgo: string;
-  comment_text: string;
+// const getTimeAgo = (dateString: string) => {
+//   return formatDistanceToNow(new Date(dateString), {
+//     addSuffix: true,
+//     locale: ar,
+//   });
+// };
+interface ReviewsProps {
+  comments: IComments[];
 }
 
-const comments: Comment[] = [
-  {
-    id: 1,
-    author: "Sarah Johnson",
-    avatar: "https://randomuser.me/api/portraits/women/1.jpg", // Placeholder avatar
-    timeAgo: "2 days ago",
-    comment_text:
-      "لقد فاقت هذه الدورة توقعاتي! أسلوب التدريس للمدرس شيق، والمحتوى منظم بشكل جيد. استمتعتُ بشكل خاص بالتمارين العملية.",
-  },
-  {
-    id: 3,
-    author: "Emily White",
-    avatar: "https://randomuser.me/api/portraits/women/3.jpg", // Placeholder avatar
-    timeAgo: "3 days ago",
-    comment_text: "والمحتوى منظم بشكل جيد. استمتعت بشكل خاص بالتمارين العملية.",
-  },
-  {
-    id: 4,
-    author: "David Lee", // صاحب التعليق
-    avatar: "https://randomuser.me/api/portraits/men/4.jpg", //صورتو
-    timeAgo: "4 days ago",
-    comment_text:
-      " أسلوب التدريس للمدرس شيق، والمحتوى منظم بشكل جيد. استمتعتُ بشكل خاص بالتمارين العملية.",
-  },
-];
+export const Reviews = ({ comments }: ReviewsProps) => {
+  const { t } = useTranslation("translation");
 
-export const Reviews = () => {
   const [showAllComments, setShowAllComments] = useState(false);
 
   const displayedComments = showAllComments ? comments : comments.slice(0, 1);
 
   return (
     <div>
-      <div className="flex justify-center mb-4">
-        <button
-          onClick={() => setShowAllComments(!showAllComments)}
-          className="text-primary hover:text-primary/50 font-medium text-xs sm:text-sm"
-        >
-          {showAllComments ? "عرض أقل" : "عرض المزيد"}
-        </button>
-      </div>
-
+      {displayedComments.length > 1 && (
+        <div className="flex justify-center mb-4">
+          <button
+            title="Courses_card.showAll"
+            onClick={() => setShowAllComments(!showAllComments)}
+            className="text-primary hover:text-primary/50 font-medium text-xs sm:text-sm"
+          >
+            {showAllComments
+              ? t("Courses_card.showless")
+              : t("Courses_card.showAll")}
+          </button>
+        </div>
+      )}
       <div className="space-y-6">
-        {displayedComments.map((comment) => (
+        {displayedComments.map((comment: IComments) => (
           <div key={comment.id} className="flex space-x-4">
             <img
               className="h-10 w-10 rounded-full"
@@ -66,7 +51,7 @@ export const Reviews = () => {
                   {comment.author}
                 </p>
                 <p className="text-[10px] sm:text-sm text-gray-500">
-                  {comment.timeAgo}
+                  {/* {getTimeAgo(comment.time)} */}
                 </p>
               </div>
               <p className="text-gray-700 text-xs sm:text-sm leading-relaxed">
@@ -79,7 +64,7 @@ export const Reviews = () => {
 
       <div className="mt-8 pt-6 border-t border-gray-200">
         <h3 className="text-xs font-semibold text-gray-900 mb-4">
-          إضافة تعليق
+          {t("Courses_card.add_comments")}
         </h3>
         <div className="flex space-x-4">
           {/* من معلومات اليوزر  */}
@@ -92,10 +77,10 @@ export const Reviews = () => {
             <textarea
               className="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary/50 resize-y placeholder:text-[10px] placeholder:sm:text-xs placeholder:font-light placeholder:text-neutral-400"
               rows={2}
-              placeholder="اترك تعليقاً لمساعدة الآخرين في معرفة رأيك..."
+              placeholder={t("Courses_card.comments_placeholder")}
             ></textarea>
             <button className="mt-3 float-right bg-primary w-full text-white text-sm py-2 px-6 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50">
-              أرسل
+              {t("Courses_card.send")}
             </button>
           </div>
         </div>

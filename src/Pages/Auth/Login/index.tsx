@@ -233,6 +233,7 @@ export default function Login() {
           </div>
 
           <button
+            title="login btn"
             type="submit"
             className="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition"
           >

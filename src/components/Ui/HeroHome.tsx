@@ -65,7 +65,7 @@ const HeroHome = () => {
             {ready ? (
               <>
                 <motion.h1
-                  className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl max-w-xl mx-auto font-semibold mt-8 mb-2 sm:mb-6 leading-14 sm:leading-16"
+                  className="text-3xl sm:text-3xl md:text-4xl lg:text-4xl max-w-xl mx-auto font-semibold mt-8 mb-2 sm:mb-6 leading-14 sm:leading-16"
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -75,22 +75,23 @@ const HeroHome = () => {
                 <motion.p
                   className="text-md sm:text-md md:text-xl mb-4 md-8 max-w-xl mx-auto"
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   {t("HeroHome.text1")}
                 </motion.p>
                 <motion.p
                   className="text-md sm:text-md md:text-lg mb-8 max-w-lg md:max-w-xl mx-auto leading-7 max-[500px]:hidden"
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   {t("HeroHome.text2")}
                 </motion.p>
                 <motion.button
+                  title="HeroHome btn"
                   className="bg-white text-primary font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-sm"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.4, ease: "backOut" }}
+                  transition={{ duration: 0.5, ease: "backOut" }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -119,7 +120,7 @@ const HeroHome = () => {
                   className="absolute left-[35%] bottom-20"
                   initial={{ scale: 1, opacity: 0.4 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.5, ease: "easeIn" }}
+                  transition={{ duration: 0.4, ease: "easeIn" }}
                 >
                   <HomewithBack className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
                 </motion.div>
@@ -146,13 +147,13 @@ const HeroHome = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="mx-auto"
+                  className="mx-auto h-auto"
                 />
                 <motion.div
                   className="absolute left-[12%] bottom-20"
                   initial={{ scale: 1, opacity: 0.4 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.5, ease: "easeIn" }}
+                  transition={{ duration: 0.4, ease: "easeIn" }}
                 >
                   <SendMonitor className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
                 </motion.div>

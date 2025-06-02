@@ -1,108 +1,85 @@
+import { useTranslation } from "react-i18next";
+
 const PrivacyComponent = () => {
+  const { t } = useTranslation("translation");
   return (
     <div className="w-5/6 m-auto my-10  text-right " dir="rtl">
-      <h1 className="mb-6 text-center text-xl font-bold md:text-2xl">
-        سياسة الخصوصية
+      <h1 className="mb-6 text-center text-text text-xl font-bold md:text-2xl">
+        {t("privacy.text")}
       </h1>
 
-      <div className="border [border-image:linear-gradient(to_right,transparent,theme(colors.gray.200/.8),transparent)1] mt-6"></div>
-      <p className="font-semibold mt-8 sm:mt-12 ">مقدمة:</p>
+      <div className="border [border-image:linear-gradient(to_right,transparent,theme(colors.slate.300/.8),transparent)1] mt-6" />
+      <p className="font-semibold mt-8 sm:mt-12 "> {t("privacy.title")}</p>
       <span className="text-sm text-paragraph   py-4 block leading-5 sm:leading-6">
-        نحن ملتزمون بحماية خصوصيتك وضمان أمان معلوماتك الشخصية. توضح هذه السياسة
-        كيف نقوم بجمع واستخدام ومشاركة المعلومات عند استخدامك لمنصتنا التعليمية.
+        {t("privacy.introduction")}
       </span>
 
       <ol className=" sm:m-4  list-decimal">
         <li>
-          <p className="font-semibold my-4">المعلومات التي نقوم بجمعها:</p>
-          <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>
-              المعلومات الشخصية: عند التسجيل، قد نطلب منك تقديم معلومات شخصية
-              مثل الاسم، البريد الإلكتروني، وكلمة المرور.
-            </li>
-            <li>
-              بيانات الاستخدام: نقوم بجمع معلومات حول طريقة استخدامك للمنصة مثل
-              الدورات التي التحقت بها، التقدّم الذي أحرزته، والأنشطة التعليمية
-              التي قمت بها.
-            </li>
-            <li>
-              بيانات الجهاز: قد نقوم بجمع معلومات عن الجهاز الذي تستخدمه للدخول
-              إلى المنصة، مثل نوع الجهاز ونظام التشغيل.
-            </li>
+          <p className="font-semibold my-4">
+            {" "}
+            {t("privacy.collected_information")}
+          </p>
+          <ol className="list-disc sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
+            <li>{t("privacy.personal_information")}</li>
+            <li>{t("privacy.usage_data")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">كيفية استخدام المعلومات:</p>
+          <p className="font-semibold my-4">
+            {t("privacy.usage_of_information")}
+          </p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>
-              تقديم الخدمات: نستخدم بياناتك لإنشاء حسابك، تتبع تقدمك التعليمي،
-              وتقديم الدعم الفني.
-            </li>
-            <li>
-              تحسين المنصة: نحلل بيانات الاستخدام لتحسين تجربتك وتطوير خدماتنا.
-            </li>
-            <li>
-              التواصل معك: قد نتواصل معك بشأن تحديثات المنصة أو للرد على
-              استفساراتك.
-            </li>
+            <li>{t("privacy.service_provision")}</li>
+            <li>{t("privacy.platform_improvement")}</li>
+            <li>{t("privacy.communication")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">مشاركة المعلومات:</p>
+          <p className="font-semibold my-4">
+            {t("privacy.information_sharing")}
+          </p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>
-              مزودو الخدمة: قد نشارك بياناتك مع مزودين موثوقين يساعدوننا في
-              تشغيل المنصة، مثل خدمات الاستضافة السحابية.
-            </li>
-            <li>
-              الامتثال للقوانين: قد نُفصح عن بياناتك إذا طُلب منا قانونيًا أو
-              استجابةً لأوامر قضائية.
-            </li>
+            <li>{t("privacy.service_providers")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">أمان البيانات:</p>
+          <p className="font-semibold my-4">{t("privacy.security")}</p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>
-              نتخذ تدابير مناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به
-              أو الكشف أو التعديل أو الحذف.
-            </li>
+            <li>{t("privacy.data_security")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">حقوقك:</p>
+          <p className="font-semibold my-4">{t("privacy.your_rights")}</p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>طلب الاطلاع على بياناتك الشخصية.</li>
-            <li>طلب تصحيح أي معلومات غير دقيقة.</li>
-            <li>طلب حذف بياناتك من نظامنا.</li>
-            <li>الاعتراض على أي قرارات مؤتمتة تُتخذ استنادًا إلى بياناتك.</li>
+            <li>{t("privacy.title1")}</li>
+            <li>{t("privacy.title2")}</li>
+            <li>{t("privacy.title3")}</li>
+            <li>{t("privacy.title4")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">تعديلات على سياسة الخصوصية:</p>
+          <p className="font-semibold my-4">{t("privacy.policy_changes")}</p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph leading-5 sm:leading-6">
-            <li>
-              نحتفظ بحق تعديل هذه السياسة من وقت لآخر. سيتم نشر أي تغييرات على
-              هذه الصفحة.
-            </li>
+            <li>{t("privacy.text1")}</li>
           </ol>
         </li>
 
         <li>
-          <p className="font-semibold my-4">التواصل معنا:</p>
+          <p className="font-semibold my-4"> {t("privacy.contact_us")}</p>
           <ol className="list-disc  sm:m-4  text-sm text-paragraph">
             <li>
-              إذا كان لديك أي استفسارات بخصوص سياسة الخصوصية، يمكنك التواصل معنا
+              {t("privacy.contact")}
               <a
                 className="text-primary mx-2"
                 href="https://wa.me/+963958263253?text=مرحباً، لدي استفسار بخصوص سياسة الخصوصية"
               >
-                عبر الواتساب
+                {t("privacy.whats")}
               </a>
             </li>
           </ol>

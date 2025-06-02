@@ -1,6 +1,7 @@
-// components/UserMenu.tsx
-import { LucideLogOut } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
+import { LogOut } from "react-feather";
 
 interface User {
   name: string;
@@ -10,6 +11,7 @@ interface User {
 
 const UserMenu = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation("translation");
 
   const user: User = {
     name: "John Doe",
@@ -21,7 +23,6 @@ const UserMenu = () => {
     <div
       className="relative inline-block text-left "
       tabIndex={0} // يجعل العنصر قابلًا للتركيز
-      onBlur={() => setOpen(false)}
     >
       <div
         onClick={() => setOpen((prev) => !prev)}
@@ -39,24 +40,35 @@ const UserMenu = () => {
       </div>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 ">
-          <ul className="py-1 text-sm text-gray-700">
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  text-xs">
-              انضم إلينا
-            </li>
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs">
-              الشكاوي والمقترحات
-            </li>
+        <div className="absolute -right-30 sm:right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50 ">
+          <ul className="py-1 text-sm text-gray-700 flex flex-col items-start">
+            <NavLink
+              to="/about-us/#instructor"
+              className="px-4 py-2 hover:bg-gray-100 w-full cursor-pointer  text-xs"
+              onClick={() => setOpen(false)}
+            >
+              {t("userMenu.join")}
+            </NavLink>
+            <NavLink
+              to="/protected/complaints"
+              className="px-4 py-2 hover:bg-gray-100 w-full cursor-pointer text-xs"
+              onClick={() => setOpen(false)}
+            >
+              {t("userMenu.complaints")}
+            </NavLink>
 
-            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-xs">
-              الإعدادات
+            <li
+              className="px-4 py-2 hover:bg-gray-100 w-full cursor-pointer text-xs"
+              onClick={() => setOpen(false)}
+            >
+              {t("userMenu.settings")}
             </li>
             <li className="border-t my-1" />
-            <li className="px-4 py-2 flex items-center justify-between text-xs hover:bg-gray-100 cursor-pointer text-red-600">
+            <li className="px-4 w-full py-2 flex items-center justify-between text-xs hover:bg-gray-100 cursor-pointer text-red-600">
               <span>
-                <LucideLogOut size={16} />
+                <LogOut size={16} />
               </span>
-              <span>تسجيل الخروج</span>
+              <span> {t("userMenu.logout")}</span>
             </li>
           </ul>
         </div>

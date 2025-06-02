@@ -15,7 +15,7 @@ const AboutusSection = () => {
         <div className="mx-auto w-[90%] sm:w-[80%]">
           <div className="flex flex-col md:flex-row justify-around mx-auto gap-14 items-center">
             {ready ? (
-              <div className="w-2/3 sm:w-1/2 mx-6">
+              <div className="w-2/3 h-auto sm:w-1/2 mx-6">
                 {[1, 2, 3].map((item) => {
                   const icon =
                     item === 1 ? Image2 : item === 2 ? Image3 : Image4;
@@ -61,7 +61,7 @@ const AboutusSection = () => {
                 src={Image1}
                 alt="About us"
                 onLoad={() => setImageLoaded(true)}
-                className={`w-[350px] object-cover overflow-hidden transition-opacity duration-500 ${
+                className={`w-[350px] h-auto object-cover overflow-hidden transition-opacity duration-500 ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />

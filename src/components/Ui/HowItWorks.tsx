@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image1 from "../../assets/login.png";
 import Image2 from "../../assets/search.png";
 import Image3 from "../../assets/connections.png";
-import { Button } from "antd";
+
 import { useTranslation } from "react-i18next";
 
 const HowItWorksSection = () => {
@@ -78,7 +78,7 @@ const HowItWorksSection = () => {
                   />
                 ) : (
                   <>
-                    <div className="h-56 bg-neutral-200 rounded mb-6 animate-pulse" />
+                    <div className="h-56 w-auto bg-neutral-200 rounded mb-6 animate-pulse" />
                     <img
                       src={image}
                       alt={title}
@@ -112,13 +112,12 @@ const HowItWorksSection = () => {
 
               {/* Button */}
               {ready ? (
-                <Button
-                  type="primary"
-                  size="large"
-                  className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
+                <button
+                  title={`HeroHome ${button}`}
+                  className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
                 >
                   {button}
-                </Button>
+                </button>
               ) : (
                 <div className="h-10 w-full bg-neutral-300 rounded animate-pulse my-4"></div>
               )}

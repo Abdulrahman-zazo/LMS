@@ -22,7 +22,7 @@ const WhyDifferentSection = () => {
             <div className="bg-bg-purple-light px-4 py-8 flex flex-col items-start rounded-xl text-right  hover:shadow-sm transition">
               <div>
                 <img
-                  className="mb-2"
+                  className="mb-2 h-auto"
                   src={Image3}
                   alt="دعم فوري بلا انتظار"
                   width={50}
@@ -39,7 +39,7 @@ const WhyDifferentSection = () => {
             <div className="bg-bg-green-light px-4 py-8   flex flex-col items-start  rounded-xl text-right  hover:shadow-sm transition">
               <div>
                 <img
-                  className="mb-2"
+                  className="mb-2  h-auto"
                   src={Image2}
                   alt="مدربون خبراء"
                   width={50}
@@ -56,7 +56,7 @@ const WhyDifferentSection = () => {
             <div className="bg-bg-beby-light px-4 py-8   flex flex-col items-start rounded-xl text-right  hover:shadow-sm transition">
               <div>
                 <img
-                  className="mb-2"
+                  className="mb-2  h-auto"
                   src={Image1}
                   alt="تعلّم مهارات جديدة"
                   width={50}

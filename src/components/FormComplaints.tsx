@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -20,8 +19,8 @@ const FormComplaints = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // يمنع إعادة تحميل الصفحة
-    // ✅ هنا تقدر تضيف أي منطق معالجة مثل إرسال البيانات للسيرفر أو عرض رسالة
+    e.preventDefault();
+
     console.log("Form submitted:", formData);
     alert("شكرًا لملاحظتك! تم إرسال النموذج بنجاح.");
   };
@@ -109,6 +108,7 @@ const FormComplaints = () => {
           </div>
 
           <button
+            title="complaints_system"
             type="submit"
             className="bg-primary w-full sm:w-1/2 mt-4 py-4 sm:py-4 px-2 sm:px-6 text-xs sm:text-sm font-medium text-center text-white rounded-lg hover:bg-primary/80 cursor-pointer"
           >

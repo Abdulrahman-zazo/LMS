@@ -1,4 +1,4 @@
-import { Info } from "lucide-react";
+import { Info } from "react-feather";
 import { useTranslation } from "react-i18next";
 
 const OfflineAlert = () => {

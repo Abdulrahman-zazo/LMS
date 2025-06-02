@@ -53,7 +53,7 @@ const HeroWorldMap = () => {
             <img
               src={ImageMap} // استبدل بالمسار الصحيح لصورة الخريطة
               alt="World Map"
-              className="absolute  w-full  object-cover opacity-40 z-0" // تعديل الشفافية حسب الحاجة
+              className="absolute  w-full  h-auto  object-cover opacity-40 z-0" // تعديل الشفافية حسب الحاجة
             />
 
             {/* شعار H-Platform المركزي */}
@@ -81,7 +81,7 @@ const HeroWorldMap = () => {
               className="absolute top-[60%] left-[15%] md:top-[55%] md:left-[15%] z-20 flex items-center"
             >
               {/* <img src={USFlag} alt="USA Flag" className="w-6 h-4 mr-2" /> */}
-              <img src={Imagepin4} alt="a" width={100} />
+              <img src={Imagepin4} alt="a" width={100} className="h-auto" />
             </motion.div>
 
             {/* British */}
@@ -92,7 +92,7 @@ const HeroWorldMap = () => {
               className="absolute top-[40%] left-[25%] md:top-[35%] md:left-[30%] z-20 flex items-center"
             >
               {/* أيقونة علم بريطانيا */}
-              <img src={Imagepin5} alt="a" width={100} />
+              <img src={Imagepin5} alt="a" width={100} className="h-auto" />
             </motion.div>
 
             {/* Germany */}
@@ -103,7 +103,7 @@ const HeroWorldMap = () => {
               className="absolute top-[10%] left-[48%] md:top-[10%] md:left-[45%] transform -translate-x-1/2 z-20 flex items-center"
             >
               {/* أيقونة علم ألمانيا */}
-              <img src={Imagepin1} alt="a" width={120} />
+              <img src={Imagepin1} alt="a" width={120} className="h-auto" />
             </motion.div>
 
             {/* KSA */}
@@ -114,7 +114,7 @@ const HeroWorldMap = () => {
               className="absolute top-[40%] right-[25%] md:top-[35%] md:right-[30%] z-20 flex items-center"
             >
               {/* أيقونة علم السعودية */}
-              <img src={Imagepin3} alt="a" width={100} />
+              <img src={Imagepin3} alt="a" width={100} className="h-auto" />
             </motion.div>
 
             {/* UEA (UAE) */}
@@ -125,7 +125,7 @@ const HeroWorldMap = () => {
               className="absolute top-[60%] right-[15%] md:top-[55%] md:right-[20%] z-20 flex items-center  "
             >
               {/* أيقونة علم الإمارات */}
-              <img src={Imagepin2} alt="a" width={100} />
+              <img src={Imagepin2} alt="a" width={100} className="h-auto" />
             </motion.div>
 
             {/* يمكنك إضافة تأثيرات حركة إضافية لمؤشرات الدول مثل حركة طفيفة مستمرة */}

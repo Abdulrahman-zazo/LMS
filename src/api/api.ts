@@ -15,7 +15,7 @@ export const USER_INFO = "/api/UserInformation";
 
 /* --------------Courses---------------- */
 export const GET_ALL_COURSES = "/api/UserAllCourse";
-export const GET_COURSE_BY_ID = "/api/login";
+export const GET_COURSE_BY_ID = "/api/getCourseById";
 
 /* -------------- Comments ------------*/
 export const ADD_COMMINTS = "/api/AddComment";

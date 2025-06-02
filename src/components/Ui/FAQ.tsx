@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollToHash from "../ScrollToHash";
 import { useTranslation } from "react-i18next";
+import { ChevronDown, ChevronUp } from "react-feather";
 
 const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
@@ -58,6 +58,7 @@ const FaqSection = () => {
                 className="border border-gray-200 rounded-lg overflow-hidden shadow-sm"
               >
                 <button
+                  title="fqa btn-details"
                   onClick={() => ready && toggle(index)}
                   disabled={!ready}
                   className="w-full text-right px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
@@ -66,11 +67,7 @@ const FaqSection = () => {
                     <>
                       <span>{faq.question}</span>
                       <span className="text-xl text-primary">
-                        {openIndex === index ? (
-                          <HiChevronUp />
-                        ) : (
-                          <HiChevronDown />
-                        )}
+                        {openIndex === index ? <ChevronUp /> : <ChevronDown />}
                       </span>
                     </>
                   ) : (

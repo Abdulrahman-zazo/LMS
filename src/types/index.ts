@@ -34,6 +34,7 @@ export interface IComments {
   author: string; // صاحب التعليق
   avatar: string;
   user_id?: number;
+  time: string;
   is_visible: number;
 }
 export interface ICourse {
@@ -50,4 +51,5 @@ export interface ICourse {
   requirements: string;
   is_active: number;
   comments: IComments[];
+  summary: string;
 }

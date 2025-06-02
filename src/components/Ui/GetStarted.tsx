@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 
 const GetStarted = () => {
@@ -20,13 +19,12 @@ const GetStarted = () => {
               {t("Get_started.title2")}
             </p>
 
-            <Button
-              type="primary"
-              size="large"
-              className="bg-primary  text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary-500 transition"
+            <button
+              title="Get_started btn"
+              className="bg-primary  text-white text-sm px-8 py-4 my-4 rounded hover:bg-primary/80 transition"
             >
               {t("Get_started.title3")}🚀!
-            </Button>
+            </button>
           </div>
         </section>
       ) : (

@@ -1,9 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { GET_ALL_COURSES, GET_COURSE_BY_ID } from "../../../api/api";
 
-interface ICoursesdata {
-  course_id: number;
-}
 export const CoursesApi = createApi({
   reducerPath: "CoursesApi",
   tagTypes: ["Courses"],
@@ -15,15 +12,14 @@ export const CoursesApi = createApi({
       }),
       providesTags: ["Courses"],
     }),
-    getCourseById: builder.mutation({
-      query: ({ course_id }: ICoursesdata) => ({
+    getCourseById: builder.query({
+      query: (course_id: number) => ({
         url: GET_COURSE_BY_ID,
         method: "POST",
         body: { course_id },
       }),
-      invalidatesTags: ["Courses"],
     }),
   }),
 });
 
-export const { useGetCourseByIdMutation, useGetAllCoursesQuery } = CoursesApi;
+export const { useGetCourseByIdQuery, useGetAllCoursesQuery } = CoursesApi;

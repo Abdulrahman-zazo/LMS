@@ -4,31 +4,56 @@ interface IProps {
   Haveavatar?: boolean;
 }
 
-const TableSkeleton = ({ rows = 5, cols = 4 }) => {
+const TableSkeleton = () => {
   return (
-    <div className="w-full overflow-x-auto mt-6">
-      <table className="min-w-full border border-neutral-200 rounded-md">
-        <thead>
-          <tr>
-            {Array.from({ length: cols }).map((_, i) => (
-              <th key={i} className="p-4 border-b border-neutral-200 text-left">
-                <div className="w-24 h-4 bg-neutral-200 rounded animate-pulse" />
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {Array.from({ length: rows }).map((_, rowIndex) => (
-            <tr key={rowIndex}>
-              {Array.from({ length: cols }).map((_, colIndex) => (
-                <td key={colIndex} className="p-4 border-b border-neutral-100">
-                  <div className="w-4/5 h-4 bg-neutral-200 rounded animate-pulse" />
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="animate-pulse space-y-6">
+      {/* Header skeleton */}
+      <div className="h-8 bg-gray-300 rounded w-1/3"></div>
+      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+
+      <div className="flex justify-center my-8" dir="rtl">
+        <div className="bg-white rounded-lg overflow-hidden sm:w-[90%] lg:flex">
+          {/* Left Section Skeleton */}
+          <div className="lg:w-1/2 p-6 space-y-4">
+            <div className="w-full h-56 bg-gray-200 rounded-md"></div>
+
+            <div className="flex gap-4">
+              <div className="h-6 w-32 bg-gray-200 rounded"></div>
+              <div className="h-6 w-36 bg-gray-200 rounded"></div>
+            </div>
+
+            <div className="space-y-2 mt-4">
+              <div className="h-4 bg-gray-200 rounded w-full"></div>
+              <div className="h-4 bg-gray-200 rounded w-4/5"></div>
+              <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          </div>
+
+          {/* Right Section Skeleton */}
+          <div className="lg:w-1/2 sm:border border-gray-200 p-8 m-6 rounded-2xl space-y-4">
+            <div className="h-5 bg-gray-300 rounded w-1/3"></div>
+
+            <ul className="space-y-2">
+              <li className="h-4 bg-gray-200 rounded w-4/5"></li>
+              <li className="h-4 bg-gray-200 rounded w-3/4"></li>
+              <li className="h-4 bg-gray-200 rounded w-2/3"></li>
+            </ul>
+
+            <div className="h-5 bg-gray-300 rounded w-1/3 mt-4"></div>
+            <ul className="space-y-2">
+              <li className="h-4 bg-gray-200 rounded w-1/2"></li>
+              <li className="h-4 bg-gray-200 rounded w-3/4"></li>
+            </ul>
+
+            <div className="h-5 bg-gray-300 rounded w-1/3 mt-4"></div>
+            <ul className="space-y-2">
+              <li className="h-4 bg-gray-200 rounded w-3/5"></li>
+            </ul>
+
+            <div className="h-10 bg-gray-300 rounded w-full mt-4"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -66,15 +91,14 @@ const SkeletonCustom = ({ type, row = 2, Haveavatar = false }: IProps) => {
 
       {type === "list" && (
         <div className="w-full">
-          <TableSkeleton cols={4} rows={8} />
+          <TableSkeleton />
         </div>
       )}
 
       {type === "h-card" && (
-        <div className="w-full animate-pulse">
+        <div className="w-[90%] mx-auto my-12 animate-pulse">
           <div className="mb-4">
-            <div className="w-24 h-4 bg-neutral-200 rounded mb-2" />
-            <div className="flex items-center gap-4 w-1/5">
+            <div className="flex items-center justify-center mx-auto gap-4 w-1/5">
               <div className="w-full h-8 bg-neutral-200 rounded" />
               <div className="w-full h-8 bg-neutral-200 rounded" />
             </div>
@@ -88,11 +112,10 @@ const SkeletonCustom = ({ type, row = 2, Haveavatar = false }: IProps) => {
                 {Haveavatar && (
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-neutral-300 rounded-full" />
-                    <div className="flex-1 h-4 bg-neutral-200 rounded" />
                   </div>
                 )}
                 {Array.from({ length: row }).map((_, i) => (
-                  <div key={i} className="h-4 bg-neutral-200 rounded w-full" />
+                  <div key={i} className="h-10 bg-neutral-200 rounded w-full" />
                 ))}
               </div>
             ))}

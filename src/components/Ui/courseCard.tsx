@@ -1,4 +1,3 @@
-import { Button } from "antd";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -26,13 +25,13 @@ const CourseCard = (course: Icourse) => {
       <div className="p-4 flex flex-col flex-1">
         <h3 className="font-bold text-lg mb-2">{course.title}</h3>
         <p className="text-sm text-gray-500 flex-1">{course.description}</p>
-        <Button
-          type="primary"
+        <button
+          title="buttons btn-details"
           onClick={() => Navigate(`${course.link}/${course.id}`)}
-          className="mt-4 w-full self-start text-sm text-primary border border-primary px-4 py-1 rounded hover:bg-primary hover:text-white transition"
+          className="mt-4 w-full self-start text-sm bg-primary text-white border border-primary px-4 py-2 shadow-md rounded hover:bg-primary/80 hover:text-white transition"
         >
           {t("buttons.btn-details")}
-        </Button>
+        </button>
       </div>
     </div>
   );

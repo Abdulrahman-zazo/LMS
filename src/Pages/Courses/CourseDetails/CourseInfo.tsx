@@ -1,12 +1,15 @@
+import { useTranslation } from "react-i18next";
+
 // src/components/CourseInfo.tsx
 interface IDescription {
   description: string;
 }
 export const CourseInfo = ({ description }: IDescription) => {
+  const { t } = useTranslation("translation");
   return (
     <div>
       <h2 className=" text-md sm:text-xl font-medium text-text mb-4">
-        وصف الكورس
+        {t("Courses_card.description")}
       </h2>
       <p className="text-paragraph text-xs sm:text-md md:text-md leading-relaxed sm:mb-4">
         {description}
