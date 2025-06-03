@@ -20,6 +20,8 @@ interface IRegisterData {
   phone?: string;
   email: string;
   password?: string;
+  sub?: string;
+  picture?: string;
 }
 
 interface IUserVerifyEmail {
@@ -63,10 +65,10 @@ export const userApi = createApi({
       invalidatesTags: ["auth"],
     }),
     registerByGoogle: builder.mutation({
-      query: ({ email, name, phone }: IRegisterData) => ({
+      query: ({ email, name, phone, picture, sub }: IRegisterData) => ({
         url: REGISTER,
         method: "POST",
-        body: { email, name, phone },
+        body: { email, name, phone, image: picture, sub },
       }),
       invalidatesTags: ["auth"],
     }),

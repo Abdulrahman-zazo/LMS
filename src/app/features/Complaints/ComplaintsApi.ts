@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { decryptToken } from "../../../Cookies/CryptoServices/crypto";
 import { ADD_COMPLAINT } from "../../../api/api";
 
-interface IComplaintsdata {
+export interface IComplaintsdata {
   text: string;
   phone: string;
   email: string;

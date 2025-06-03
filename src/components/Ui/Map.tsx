@@ -22,7 +22,7 @@ const HeroWorldMap = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-xl md:text-3xl font-bold text-center text-text mb-4 " // ألوان وخطوط Tailwind
+              className="text-lg sm:text-2xl lg:text-3xl font-semibold  text-center text-text mb-4 " // ألوان وخطوط Tailwind
               dir="rtl" // لضمان اتجاه النص الصحيح للعربية
             >
               {t("map.title1")}
@@ -31,7 +31,7 @@ const HeroWorldMap = () => {
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-xl md:text-3xl font-extrabold text-center mb-4 z-10"
+              className="text-lg sm:text-2xl lg:text-3xl font-semibold  text-center mb-4 z-10"
               dir="rtl"
             >
               <span className="text-text">{t("map.with")}</span>{" "}
@@ -41,7 +41,7 @@ const HeroWorldMap = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-lg md:text-xl text-gray-600 text-center max-w-2xl mb-12 z-10"
+              className="text-base md:text-lg text-gray-600 text-center max-w-2xl mb-12 z-10"
               dir="rtl"
             >
               {t("map.title2")}
@@ -51,6 +51,7 @@ const HeroWorldMap = () => {
             {/* الخلفية - خريطة العالم */}
 
             <img
+              loading="lazy"
               src={ImageMap} // استبدل بالمسار الصحيح لصورة الخريطة
               alt="World Map"
               className="absolute  w-full  h-auto  object-cover opacity-40 z-0" // تعديل الشفافية حسب الحاجة
@@ -81,6 +82,7 @@ const HeroWorldMap = () => {
               className="absolute top-[60%] left-[15%] md:top-[55%] md:left-[15%] z-20 flex items-center"
             >
               {/* <img src={USFlag} alt="USA Flag" className="w-6 h-4 mr-2" /> */}
+              loading="lazy"
               <img src={Imagepin4} alt="a" width={100} className="h-auto" />
             </motion.div>
 
@@ -92,6 +94,7 @@ const HeroWorldMap = () => {
               className="absolute top-[40%] left-[25%] md:top-[35%] md:left-[30%] z-20 flex items-center"
             >
               {/* أيقونة علم بريطانيا */}
+              loading="lazy"
               <img src={Imagepin5} alt="a" width={100} className="h-auto" />
             </motion.div>
 
@@ -103,6 +106,7 @@ const HeroWorldMap = () => {
               className="absolute top-[10%] left-[48%] md:top-[10%] md:left-[45%] transform -translate-x-1/2 z-20 flex items-center"
             >
               {/* أيقونة علم ألمانيا */}
+              loading="lazy"
               <img src={Imagepin1} alt="a" width={120} className="h-auto" />
             </motion.div>
 
@@ -114,6 +118,7 @@ const HeroWorldMap = () => {
               className="absolute top-[40%] right-[25%] md:top-[35%] md:right-[30%] z-20 flex items-center"
             >
               {/* أيقونة علم السعودية */}
+              loading="lazy"
               <img src={Imagepin3} alt="a" width={100} className="h-auto" />
             </motion.div>
 
@@ -125,6 +130,7 @@ const HeroWorldMap = () => {
               className="absolute top-[60%] right-[15%] md:top-[55%] md:right-[20%] z-20 flex items-center  "
             >
               {/* أيقونة علم الإمارات */}
+              loading="lazy"
               <img src={Imagepin2} alt="a" width={100} className="h-auto" />
             </motion.div>
 

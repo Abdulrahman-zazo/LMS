@@ -20,6 +20,7 @@ const HeroHome = () => {
         className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden w-[90%] max-w-[1240px] mx-auto mt-20 sm:mt-28 mb-2 sm:mb-8"
         dir="rtl"
       >
+        <link rel="preload" as="image" href={ImageHome} />
         {/* Background Icons */}
         {!ready ? null : (
           <>
@@ -65,7 +66,7 @@ const HeroHome = () => {
             {ready ? (
               <>
                 <motion.h1
-                  className="text-3xl sm:text-3xl md:text-4xl lg:text-4xl max-w-xl mx-auto font-semibold mt-8 mb-2 sm:mb-6 leading-14 sm:leading-16"
+                  className="text-xl sm:text-3xl md:text-4xl lg:text-4xl max-w-xl mx-auto font-semibold mt-8 mb-2 sm:mb-6 leading-14 sm:leading-16"
                   initial={{ opacity: 0, y: -30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
@@ -73,14 +74,14 @@ const HeroHome = () => {
                   {t("HeroHome.Home_title")}
                 </motion.h1>
                 <motion.p
-                  className="text-md sm:text-md md:text-xl mb-4 md-8 max-w-xl mx-auto"
+                  className="text-base sm:text-lg md:text-xl  mb-4 md-8 max-w-xl mx-auto"
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   {t("HeroHome.text1")}
                 </motion.p>
                 <motion.p
-                  className="text-md sm:text-md md:text-lg mb-8 max-w-lg md:max-w-xl mx-auto leading-7 max-[500px]:hidden"
+                  className="text-sm sm:text-base md:text-lg font-medium mb-8 max-w-lg md:max-w-xl mx-auto leading-7 max-[500px]:hidden"
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 >
@@ -88,7 +89,7 @@ const HeroHome = () => {
                 </motion.p>
                 <motion.button
                   title="HeroHome btn"
-                  className="bg-white text-primary font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-sm"
+                  className="bg-white text-primary font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-sm sm:text-base"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, ease: "backOut" }}
@@ -141,6 +142,7 @@ const HeroHome = () => {
                   <Certifications className="w-12 h-12 md:w-32 md:h-32 text-purple-300" />
                 </motion.div>
                 <motion.img
+                  loading="eager"
                   src={ImageHome}
                   alt="h-platform home"
                   width={500}

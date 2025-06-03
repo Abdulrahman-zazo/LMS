@@ -1,10 +1,21 @@
 import { useTranslation } from "react-i18next";
 import { HeroHeader } from "../../components/HeroHeader";
-import CoursesComponent from "../../components/Ui/Courses";
-import GetStarted from "../../components/Ui/GetStarted";
-import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 import { cookieService } from "../../Cookies/CookiesServices";
-import ComplaintsSections from "../../components/Ui/Complaints";
+import React, { Suspense } from "react";
+import { Loaders } from "../../components/Loader";
+
+const WhyDifferentSection = React.lazy(
+  () => import("../../components/Ui/WhyDifferent")
+);
+const CoursesComponent = React.lazy(
+  () => import("../../components/Ui/Courses")
+);
+
+const GetStarted = React.lazy(() => import("../../components/Ui/GetStarted"));
+
+const ComplaintsSections = React.lazy(
+  () => import("../../components/Ui/Complaints")
+);
 
 const CoursessPage = () => {
   const { t, ready } = useTranslation("translation");
@@ -12,15 +23,17 @@ const CoursessPage = () => {
   const token = cookieService.get("auth_token");
   return (
     <div>
-      <HeroHeader
-        ready={ready}
-        title={t("course-header.title1")}
-        description={t("course-header.title2")}
-        buttonText={t("course-header.title3")}
-      />
-      <CoursesComponent />
-      <WhyDifferentSection />
-      {!token ? <GetStarted /> : <ComplaintsSections />}
+      <Suspense fallback={<Loaders />}>
+        <HeroHeader
+          ready={ready}
+          title={t("course-header.title1")}
+          description={t("course-header.title2")}
+          buttonText={t("course-header.title3")}
+        />
+        <CoursesComponent />
+        <WhyDifferentSection />
+        {!token ? <GetStarted /> : <ComplaintsSections />}
+      </Suspense>
     </div>
   );
 };

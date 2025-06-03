@@ -34,7 +34,7 @@ const Offers = () => {
       <section>
         <div className="max-w-[100%] sm:max-w-[90%]  mx-auto px-4 sm:px-6 py-16">
           {data?.data.length > 0 && (
-            <h2 className="text-xl sm:text-3xl text-text font-bold text-center mb-10">
+            <h2 className="text-xl sm:text-2xl text-text font-semibold text-center mb-10">
               {t("offer.title")}
             </h2>
           )}
@@ -51,14 +51,16 @@ const Offers = () => {
                     className="w-full text-right flex justify-between items-center px-4 py-4 text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
                   >
                     <div className="">
-                      <h3 className="text-md font-semibold my-2">
+                      <h3 className="text-base sm:text-lg font-semibold my-2">
                         {offer.name}
                       </h3>
-                      <p className="text-xs">{offer.description}</p>
+                      <p className="text-sm sm:text-base">
+                        {offer.description}
+                      </p>
                     </div>
                     <button
                       title="offer button"
-                      className="text-white bg-primary font-medium md:font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px]  sm:text-sm"
+                      className="text-white bg-primary px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px]  text-sm sm:text-base"
                     >
                       {t("offer.button")}
                     </button>
@@ -75,8 +77,8 @@ const Offers = () => {
                         className="overflow-hidden"
                       >
                         {offer.courses.length > 0 && (
-                          <div className="px-4 pb-4 text-sm text-paragraph leading-relaxed">
-                            <p className="mx-2 my-4 text-paragraph text-sm">
+                          <div className="px-4 pb-4 text-sm sm:text-base text-paragraph leading-relaxed">
+                            <p className="mx-2 my-4 text-paragraph/80 text-sm sm:text-base">
                               {t("offer.lable")}
                             </p>
                             <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -105,7 +107,7 @@ const Offers = () => {
               ))
             ) : (
               <div>
-                <p className="text-sm text-neutral-500 text-center">
+                <p className="text-sm  sm:text-base text-neutral-500 text-center">
                   {t("offer.NoOffer")}
                 </p>
               </div>

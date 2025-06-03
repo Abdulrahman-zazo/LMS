@@ -75,19 +75,19 @@ const Curricula = () => {
   return (
     <div className="bg-bg-purple py-6 sm:py-10" dir="rtl">
       <div className="container mx-auto p-6 max-w-[90%]">
-        <p className="text-md text-text text-center sm:hidden">
+        <p className="text-sm  sm:text-base text-text text-center sm:hidden">
           {t("curricula.select")}
         </p>
         <div className="flex md:flex-row space-x-2 md:space-x-4 items-center mt-4 mb-8">
-          <p className="text-lg text-text text-center max-[640px]:hidden">
+          <p className="text-sm  sm:text-base text-text text-center max-[640px]:hidden">
             {t("curricula.select")}
           </p>
 
-          <div className="relative flex-1 text-sm sm:text-md">
+          <div className="relative flex-1 text-sm sm:text-base">
             <label htmlFor="curriculum-select" className="sr-only">
               {t("curricula.curricula_select")}
             </label>
-            <div className="relative text-sm sm:text-md rounded-md shadow-sm">
+            <div className="relative text-sm sm:text-base rounded-md shadow-sm">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 {selectedCurriculumId && (
                   <img
@@ -103,6 +103,7 @@ const Curricula = () => {
                     onError={(e) => {
                       e.currentTarget.src = defaultCountry;
                     }}
+                    loading="lazy"
                   />
                 )}
               </div>
@@ -112,14 +113,18 @@ const Curricula = () => {
                 value={selectedCurriculumId || ""}
                 onChange={handleCurriculumChange}
               >
-                <option value="" disabled className="text-xs sm:text-md w-full">
+                <option
+                  value=""
+                  disabled
+                  className="text-sm sm:text-base w-full"
+                >
                   {t("curricula.curricula_select")}
                 </option>
                 {curricula.map((curriculum: Curriculum) => (
                   <option
                     key={curriculum.id}
                     value={curriculum.id}
-                    className="text-xs sm:text-md w-full"
+                    className="text-sm sm:text-base w-full"
                   >
                     {curriculum.name}
                   </option>
@@ -144,7 +149,7 @@ const Curricula = () => {
             </div>
           </div>
 
-          <div className="relative flex-1 text-sm sm:text-md">
+          <div className="relative flex-1 text-sm sm:text-base">
             <label htmlFor="stage-select" className="sr-only">
               {t("curricula.curricula_select2")}
             </label>
@@ -156,7 +161,11 @@ const Curricula = () => {
                 onChange={handleStageChange}
                 disabled={!selectedCurriculumId || stages.length === 0}
               >
-                <option value="" disabled className="text-xs sm:text-md w-full">
+                <option
+                  value=""
+                  disabled
+                  className="text-sm sm:text-base w-full"
+                >
                   {stages.length === 0
                     ? t("error.Nostage")
                     : t("error.selectStage")}
@@ -165,7 +174,7 @@ const Curricula = () => {
                   <option
                     key={stage.id}
                     value={stage.id}
-                    className="text-xs sm:text-md w-full"
+                    className="text-sm sm:text-base w-full"
                   >
                     {stage.name}
                   </option>
@@ -208,12 +217,12 @@ const Curricula = () => {
                   }}
                 />
                 <div className="p-4 flex justify-between items-center">
-                  <h3 className="text-md font-semibold text-gray-800 text-center">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-800 text-center">
                     {subject.name}
                   </h3>
                   <button
                     title="curricula"
-                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-semibold text-sm py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-semibold text-sm  py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                   >
                     {t("curricula.button")}
                   </button>
@@ -222,7 +231,7 @@ const Curricula = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center text-gray-500 py-8">
+          <div className="text-center text-sm sm:text-base text-gray-500 py-8">
             {selectedCurriculumId === null ? (
               <p>{t("curricula.empty")}</p>
             ) : stages.length === 0 ? (

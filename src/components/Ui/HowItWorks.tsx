@@ -50,7 +50,7 @@ const HowItWorksSection = () => {
   return (
     <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16" dir="rtl">
       {/* Title */}
-      <h2 className="text-xl sm:text-2xl lg:text-4xl font-bold text-center mb-12">
+      <h2 className="text-lg sm:text-xl lg:text-3xl font-semibold text-center mb-12">
         {ready ? (
           <>
             {t("how-work.title")}
@@ -68,14 +68,15 @@ const HowItWorksSection = () => {
           return (
             <div
               key={id}
-              className="border rounded-xl p-6 text-center hover:shadow-sm transition"
+              className="border border-neutral-400 rounded-xl p-6 text-center hover:shadow-lg transition"
             >
               {ready ? (
                 imageLoaded[id] ? (
                   <img
+                    loading="lazy"
                     src={image}
                     alt={title}
-                    className="h-56 mx-auto mb-6 object-contain"
+                    className="h-56 w-auto mx-auto mb-6 object-contain"
                   />
                 ) : (
                   <>
@@ -96,14 +97,18 @@ const HowItWorksSection = () => {
 
               {/* Title */}
               {ready ? (
-                <h3 className="text-lg font-semibold mb-4">{title}</h3>
+                <h3 className=" text-lg sm:text-xl font-semibold mb-4">
+                  {title}
+                </h3>
               ) : (
                 <div className="h-4 w-2/3 mx-auto bg-neutral-300 mb-4 rounded animate-pulse" />
               )}
 
               {/* Description */}
               {ready ? (
-                <p className="text-paragraph text-sm mb-4">{description}</p>
+                <p className="text-paragraph text-sm sm:text-base mb-4">
+                  {description}
+                </p>
               ) : (
                 <div className="space-y-2 mb-4">
                   <div className="h-3 w-full bg-neutral-200 rounded animate-pulse" />
@@ -116,7 +121,7 @@ const HowItWorksSection = () => {
                 <button
                   onClick={() => Navigate("/auth/login")}
                   title={`HeroHome ${button}`}
-                  className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
+                  className="bg-primary w-full text-white text-sm sm:text-base px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
                 >
                   {button}
                 </button>

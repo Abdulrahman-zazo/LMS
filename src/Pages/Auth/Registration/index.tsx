@@ -91,8 +91,7 @@ export default function Registration() {
     const toastId = toast.loading("جاري إرسال الرمز مرة أخرى...");
 
     try {
-      const result = await forgetPassword(email);
-      console.log(result);
+      await forgetPassword(email);
       toast.success("تم إرسال الرمز مرة أخرى", { id: toastId });
     } catch (err) {
       const error = err as { data?: { msg?: string } };
@@ -110,17 +109,17 @@ export default function Registration() {
           duration: 5000,
           removeDelay: 1000,
           style: {
-            fontSize: 14,
+            fontSize: "14px",
           },
         }}
       />
 
-      <div className="max-w-md w-full space-y-6">
+      <div className="max-w-md w-full space-y-6 mt-10">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className=" text-xl sm:text-2xl font-semibold text-neutral-800">
             {t("auth.create_account.Create_title")}
           </h2>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm sm:text-base text-neutral-500 mt-2">
             {t("auth.create_account.create_text")}
           </p>
         </div>
@@ -128,37 +127,36 @@ export default function Registration() {
         {step === 1 && (
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1">
+              <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
                 {t("auth.create_account.Name")}
               </label>
               <input
                 name="name"
                 type="text"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="John Doe"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1">
+              <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
                 {t("auth.create_account.email")}
               </label>
               <input
                 name="email"
                 type="email"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="email@domain.com"
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1">
+              <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
                 {t("auth.create_account.phone")}
               </label>
 
               <div dir="ltr">
                 <PhoneInput
-                  country={"sy"} // Syria by default
-                  inputClass="!w-full !text-sm"
+                  inputClass="!w-full !text-sm sm:text-base"
                   containerClass="!w-full"
                   inputProps={{
                     name: "phone",
@@ -169,13 +167,13 @@ export default function Registration() {
               </div>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-700 block mb-1">
+              <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
                 {t("auth.create_account.Password")}
               </label>
               <input
                 name="password"
                 type="password"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="********"
               />
             </div>
@@ -183,7 +181,7 @@ export default function Registration() {
               title="login btn"
               disabled={isLoading}
               type="submit"
-              className={`w-full text-sm  text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition ${
+              className={`w-full text-sm sm:text-base  text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition ${
                 isLoading
                   ? "bg-primary/50 cursor-not-allowed"
                   : "bg-primary cursor-pointer hover:bg-primary/80"
@@ -204,7 +202,7 @@ export default function Registration() {
         )}
         {step === 2 && (
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1">
+            <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
               {t("auth.forget_password.Verification")}
             </label>
 
@@ -212,7 +210,7 @@ export default function Registration() {
               type="text"
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="Enter the 6-digit code"
             />
 
@@ -220,7 +218,7 @@ export default function Registration() {
               title="login btn"
               disabled={isLoadingVerifyEmail}
               type="submit"
-              className={`w-full text-sm text-white py-2 mt-4 rounded-md font-semibold transition ${
+              className={`w-full text-sm sm:text-base text-white py-2 mt-4 rounded-md font-semibold transition ${
                 isLoadingVerifyEmail
                   ? "bg-primary/50 cursor-not-allowed"
                   : "bg-primary hover:bg-primary/80 cursor-pointer"
@@ -239,7 +237,7 @@ export default function Registration() {
               )}
             </button>
 
-            <div className="mt-4 text-center text-sm text-gray-600">
+            <div className="mt-4 text-center text-sm sm:text-base text-neutral-600">
               <button
                 type="button"
                 onClick={handleResendCode}
@@ -253,12 +251,9 @@ export default function Registration() {
             </div>
           </div>
         )}
-        <p className="text-sm text-center text-gray-600">
+        <p className="text-sm sm:text-base text-center text-neutral-600">
           {t("auth.create_account.Already")}
-          <Link
-            to="/auth/login"
-            className="text-primary mx-1 font-semibold hover:underline"
-          >
+          <Link to="/auth/login" className="text-primary mx-1  hover:underline">
             {t("auth.create_account.Login")}
           </Link>
         </p>

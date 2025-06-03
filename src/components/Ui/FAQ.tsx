@@ -43,9 +43,9 @@ const FaqSection = () => {
 
       <section id="faq">
         <div className="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
+          <h2 className="text-xl sm:text-3xl lg:text-3xl font-semibold text-center mb-10">
             {ready ? (
-              t("FAQ.title") + "!"
+              t("FAQ.title")
             ) : (
               <div className="w-1/2 h-8 bg-neutral-200 mx-auto rounded animate-pulse" />
             )}
@@ -88,7 +88,7 @@ const FaqSection = () => {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-4 text-sm text-paragraph leading-relaxed">
+                      <div className="px-4 pb-4 text-sm sm:text-base text-paragraph leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

@@ -13,10 +13,10 @@ const ComplaintsSections = () => {
         >
           {/* Title */}
           <div className="w-[90%]mx-auto flex flex-col items-center rounded-2xl">
-            <h2 className="text-md sm:text-2xl lg:text-3xl font-bold text-center mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-semibold text-center mb-4 sm:mb-6">
               {t("complaints.title1")}
             </h2>
-            <p className="text-sm sm:text-md text-paragraph text-center max-w-[60%] ">
+            <p className="text-sm lg:text-base text-paragraph text-center sm:max-w-[60%] ">
               {t("complaints.title2")}
             </p>
 
@@ -25,7 +25,7 @@ const ComplaintsSections = () => {
               onClick={() => {
                 Navigate("/protected/complaints");
               }}
-              className="bg-primary  text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
+              className="bg-primary text-sm sm:text-base text-white px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
             >
               {t("complaints.title3")}💻!
             </button>

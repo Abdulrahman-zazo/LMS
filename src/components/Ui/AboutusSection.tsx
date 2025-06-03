@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import Image1 from "../../assets/aboutus.webp";
 import Image2 from "../../assets/Icon/Message.png";
 import Image3 from "../../assets/Icon/Mission.png";
 import Image4 from "../../assets/Icon/Vision.png";
-import { useState } from "react";
 
 const AboutusSection = () => {
   const { t, ready } = useTranslation("translation");
@@ -11,6 +11,8 @@ const AboutusSection = () => {
 
   return (
     <section dir="rtl">
+      <link rel="preload" as="image" href={Image1} />
+
       <div className="max-w-[1440px] px-2 sm:px-6 py-8 sm:py-16 mx-auto">
         <div className="mx-auto w-[90%] sm:w-[80%]">
           <div className="flex flex-col md:flex-row justify-around mx-auto gap-14 items-center">
@@ -26,11 +28,16 @@ const AboutusSection = () => {
                       key={item}
                       className="flex flex-col items-center mb-4 md:items-start text-center md:text-right"
                     >
-                      <img src={icon} alt="Icon" className="h-12 w-12 my-2" />
-                      <h3 className="font-semibold text-md md:text-lg my-2 w-full">
+                      <img
+                        src={icon}
+                        alt="Icon"
+                        className="h-12 w-12 my-2"
+                        loading="lazy"
+                      />
+                      <h3 className="font-semibold text-lg md:text-xl my-2 w-full">
                         {title}
                       </h3>
-                      <p className="text-sm text-paragraph md:text-md w-full">
+                      <p className="text-sm text-paragraph md:text-base w-full">
                         {description}
                       </p>
                     </div>
@@ -58,6 +65,7 @@ const AboutusSection = () => {
                 <div className="absolute w-full h-full bg-neutral-200 rounded animate-pulse" />
               )}
               <img
+                rel="preload"
                 src={Image1}
                 alt="About us"
                 onLoad={() => setImageLoaded(true)}

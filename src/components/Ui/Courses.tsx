@@ -30,34 +30,34 @@ const CoursesComponent = ({ max }: IcourseMax) => {
     <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 " dir="rtl">
       <div className=" mx-auto w-[90%] max-w-[1440px] ">
         {/* Header */}
-        <div className="text-right mb-10">
-          <h2 className=" text-2xl sm:text-3xl md:text-4xl font-bold mb-4 leading-14">
+        <div className="text-right mb-4 sm:mb-10">
+          <h2 className=" text-2xl sm:text-2xl lg:text-4xl font-semibold sm:mb-4 leading-10 sm:leading-14">
             {t("Courses.title")}
             <br />
             <span className="text-primary ">{t("Courses.slogan")} </span>
           </h2>
-          <p className="text-sm sm:text-md text-paragraph max-w-2xl ">
+          <p className="text-sm sm:text-base text-paragraph max-w-2xl ">
             {t("Courses.description")}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-3  mb-10">
+        <div className="flex flex-wrap gap-3 mb-6  sm:mb-10">
           <button
             title="All courses"
-            className="bg-primary text-white px-5 py-2 rounded-full text-sm hover:bg-primary-dark"
+            className="bg-primary text-white px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-primary-dark"
           >
             {t("Courses.button1")}
           </button>
           <button
             title="Recorded courses"
-            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm hover:bg-gray-200"
+            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-gray-200"
           >
             {t("Courses.button2")}
           </button>
           <button
             title="Online courses"
-            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm hover:bg-gray-200"
+            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-gray-200"
           >
             {t("Courses.button3")}
           </button>

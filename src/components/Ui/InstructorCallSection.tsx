@@ -14,16 +14,16 @@ export default function InstructorCallSection() {
         >
           {/* Title */}
           <div className="w-[90%] mx-auto flex flex-col items-center">
-            <h2 className="text-md sm:text-2xl lg:text-3xl font-bold text-center mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-semibold  text-center mb-4 sm:mb-6">
               {t("Instructor.title1")}
             </h2>
-            <p className="text-sm sm:text-md text-paragraph text-center my-2 sm:max-w-[40%] ">
+            <p className="text-sm sm:text-base text-paragraph text-center my-2 sm:max-w-[40%] ">
               {t("Instructor.title2")}
             </p>
 
             <button
               title="Instructor.title"
-              className="bg-primary  text-white text-sm shadow-sm px-8 py-4 my-4 rounded-lg hover:bg-primary/80 transition"
+              className="bg-primary  text-white text-sm sm:text-base shadow-sm px-8 py-4 my-4 rounded-lg hover:bg-primary/80 transition"
             >
               {t("Instructor.title3")}
             </button>

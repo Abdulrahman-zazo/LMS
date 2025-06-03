@@ -7,7 +7,7 @@ export const languageSlice = createSlice({
   initialState: localStorage.getItem("i18nextLng") || "en",
   reducers: {
     // Store language and change
-    changeLangAction: (state, action: PayloadAction<string>) => {
+    changeLangAction: (_, action: PayloadAction<string>) => {
       i18n.changeLanguage(action.payload);
       localStorage.setItem("i18nextLng", action.payload);
       return action.payload;

@@ -16,7 +16,6 @@ export default function Login() {
   const [registerByGoogle] = useRegisterByGoogleMutation();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,12 +28,9 @@ export default function Login() {
       toast.error("يرجى إدخال البريد وكلمة المرور بشكل صحيح");
       return;
     }
-
     const email = emailEntry;
     const password = passwordEntry;
-
     const toastId = toast.loading("جاري تسجيل الدخول...");
-
     try {
       const result = await login({ email, password }).unwrap();
 
@@ -67,25 +63,25 @@ export default function Login() {
           duration: 5000,
           removeDelay: 1000,
           style: {
-            fontSize: 14,
+            fontSize: "14px",
           },
         }}
       />
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-xl  sm:text-2xl font-semibold text-text">
             {t("auth.Login_account.Login_title")}
           </h2>
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm sm:text-base text-neutral-500 mt-2">
             {t("auth.Login_account.create_text")}
           </p>
         </div>
 
-        <div className="w-full flex items-center justify-center rounded-md py-2 text-sm font-medium text-gray-700 transition">
+        <div className="w-full flex items-center justify-center rounded-md py-2 text-sm sm:text-base font-medium text-neutral-700 transition">
           <GoogleLogin
             onSuccess={async (credentialResponse) => {
               const credential = credentialResponse.credential;
-              console.log(jwtDecode(`${credential}`));
+
               if (!credential) return;
               const toastId = toast.loading("جاري تسجيل الدخول...");
               const decoded = jwtDecode(credential) as {
@@ -103,7 +99,11 @@ export default function Login() {
                   email: decoded?.email,
                   name: decoded?.name,
                   phone: decoded?.phone,
+                  sub: decoded?.sub,
+                  picture: decoded?.picture,
                 }).unwrap();
+
+                console.log(result);
 
                 toast.success("تم التسجيل بنجاح!", { id: toastId });
                 encryptToken(result.authorization.token);
@@ -124,32 +124,32 @@ export default function Login() {
         </div>
 
         <div className="flex items-center gap-2">
-          <hr className="flex-grow border-gray-300" />
-          <span className="text-sm text-gray-400">Or</span>
-          <hr className="flex-grow border-gray-300" />
+          <hr className="flex-grow border-neutral-300" />
+          <span className="text-sm sm:text-base text-neutral-400">Or</span>
+          <hr className="flex-grow border-neutral-300" />
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label className="text-sm font-medium text-gray-700 block mb-1">
+            <label className="text-sm sm:text-base font-medium text-neutral-700 block mb-2">
               {t("auth.Login_account.email")}
             </label>
             <input
               name="email"
               type="email"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="email@domain.com"
             />
           </div>
 
           <div>
-            <div className="flex justify-between items-center mb-1">
-              <label className="text-sm font-medium text-gray-700">
+            <div className="flex justify-between items-center mb-2">
+              <label className="text-sm sm:text-base font-medium text-neutral-700">
                 {t("auth.Login_account.Password")}
               </label>
               <Link
                 to="/auth/forget-password"
-                className="text-sm text-primary hover:underline"
+                className="text-sm sm:text-base text-primary hover:underline"
               >
                 {t("auth.Login_account.forget")}
               </Link>
@@ -157,7 +157,7 @@ export default function Login() {
             <input
               name="password"
               type="password"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="Password"
             />
           </div>
@@ -166,7 +166,7 @@ export default function Login() {
             title="login btn"
             disabled={isLoading}
             type="submit"
-            className={`w-full text-sm  text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition ${
+            className={`w-full text-sm sm:text-base  text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition ${
               isLoading
                 ? "bg-primary/50 cursor-not-allowed"
                 : "bg-primary cursor-pointer hover:bg-primary/80"
@@ -185,11 +185,11 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="text-sm text-center text-gray-600">
+        <p className="text-sm sm:text-base text-center text-neutral-600">
           {t("auth.Login_account.noAccount")}
           <Link
             to="/auth/get-started"
-            className="text-primary mx-1 font-semibold hover:underline"
+            className="text-primary mx-1  hover:underline"
           >
             {t("auth.Login_account.Register")}
           </Link>

@@ -132,7 +132,7 @@ const Header = () => {
 
           {/* Mobile Hamburger button */}
           <div className="lg:hidden text-2xl text-gray-700 flex items-center gap-2 ">
-            {token && isLoading ? (
+            {isLoading ? (
               <div className="">
                 <div className="flex items-center gap-4 ">
                   <div className="space-y-1 flex flex-col items-end">
@@ -143,12 +143,14 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <div className="">
-                <UserMenu
-                  name={data?.data.name}
-                  email={data?.data.email}
-                  avatar={data?.data.image}
-                />
+              <div>
+                {token && (
+                  <UserMenu
+                    name={data?.data.name}
+                    email={data?.data.email}
+                    avatar={data?.data.image}
+                  />
+                )}
               </div>
             )}
             {menuOpen ? (
@@ -175,7 +177,7 @@ const Header = () => {
         {menuOpen && (
           <div className="lg:hidden mt-3 bg-white rounded-md shadow px-4 py-3 space-y-2">
             {ready ? (
-              <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">
+              <nav className="flex flex-col text-xs font-medium text-gray-700 space-y-2 ">
                 <NavLink
                   to="/"
                   className="hover:text-primary  active:text-primary"
@@ -238,15 +240,21 @@ const Header = () => {
               <div className="flex flex-col gap-2 pt-4 ">
                 <button
                   title="Login Button"
-                  className="text-sm text-primary  hover:text-primary/80  cursor-pointer "
-                  onClick={() => Navigate("/auth/login")}
+                  className="text-xs text-primary  hover:text-primary/80  cursor-pointer "
+                  onClick={() => {
+                    Navigate("/auth/login");
+                    setMenuOpen(!menuOpen);
+                  }}
                 >
                   {t("Header.login")}
                 </button>
                 <button
                   title="Register Button"
-                  onClick={() => Navigate("/auth/get-started")}
-                  className="bg-primary text-white px-4 py-1.5 rounded text-sm  hover:bg-primary/80  cursor-pointer"
+                  onClick={() => {
+                    Navigate("/auth/get-started");
+                    setMenuOpen(!menuOpen);
+                  }}
+                  className="bg-primary text-white px-4 py-1.5 rounded text-xs  hover:bg-primary/80  cursor-pointer"
                 >
                   {t("Header.Register")}
                 </button>

@@ -16,7 +16,7 @@ const CoursePage = () => {
   const path = useParams();
   const { id } = path;
   const { data, isLoading, isError } = useGetCourseByIdQuery(Number(id));
-  console.log(data);
+
   if (isLoading) {
     return <SkeletonCustom type="list" />;
   }
@@ -39,6 +39,7 @@ const CoursePage = () => {
           {/* Left Section (Image and Course Description) */}
           <div className="lg:w-1/2 p-6">
             <img
+              loading="lazy"
               src={ImageCourse} // Replace with your actual image path
               alt="Boy learning web development"
               className="w-full h-auto object-cover rounded-md mb-2"
@@ -77,38 +78,41 @@ const CoursePage = () => {
               {activeTab === "info" ? (
                 <CourseInfo description={data?.data.description} />
               ) : (
-                <Reviews comments={data?.data.comments} />
+                <Reviews
+                  comments={data?.data.comments}
+                  course_id={data?.data.id}
+                />
               )}
             </div>
           </div>
 
           {/* Right Section (What You'll Learn, Material Includes, Requirements) */}
           <div className="lg:w-1/2 sm:border border-gray-200 p-0 sm:p-8 m-6 rounded-2xl">
-            <h3 className="text-sm md:text-md  font-semibold text-text mb-4">
+            <h3 className="text-sm md:text-base  font-semibold text-text mb-4">
               المعلومات التي سنتعرف عليها
             </h3>
-            <ul className="list-disc list-inside text-paragraph text-sm md:text-md space-y-2 mb-6">
+            <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
               <li>{data?.data.contents}</li>
             </ul>
 
-            <h3 className="text-sm md:text-md  font-semibold text-text mb-4">
+            <h3 className="text-sm md:text-base  font-semibold text-text mb-4">
               محتوى الدورة
             </h3>
-            <ul className="list-disc list-inside text-paragraph text-sm md:text-md space-y-2 mb-6">
+            <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
               <li>{data?.data.hours} ساعة.</li>
               {data?.data.material && <li>{data?.data.material}</li>}
             </ul>
 
-            <h3 className="text-sm md:text-md  font-semibold text-text mb-4">
+            <h3 className="text-sm md:text-base  font-semibold text-text mb-4">
               متطلبات الدورة
             </h3>
-            <ul className="list-disc list-inside text-paragraph text-sm md:text-md space-y-2 mb-6">
+            <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
               <li>{data?.data.requirements}</li>
             </ul>
 
             <button
               title="احجز جلسة"
-              className="w-full bg-primary text-white py-3 px-4 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
+              className="w-full bg-primary text-sm md:text-base text-white py-3 px-4 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50"
             >
               احجز جلسة مجانية الآن
             </button>

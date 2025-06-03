@@ -32,7 +32,7 @@ const HandelError = () => {
       <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-start h-screen md:px-8">
         <div className="max-w-lg mx-auto text-gray-600">
           <div className="space-y-3 text-center">
-            <p className="text-gray-800 text-2xl font-semibold sm:text-3xl">
+            <p className="text-gray-800 text-xl font-semibold sm:text-2xl">
               {t("error.noInternet")}
             </p>
             <p className="text-sm">{t("error.noInternet2")}</p>
@@ -45,11 +45,13 @@ const HandelError = () => {
                     {item.icon}
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-gray-800 font-medium">{item.title}</h4>
+                    <h4 className="text-gray-800 font-medium text-base sm:text-lg">
+                      {item.title}
+                    </h4>
 
                     <Link
                       to={item.to}
-                      className="text-sm text-primary duration-150 hover:text-indigo-400 font-medium inline-flex items-center gap-x-1"
+                      className="text-sm sm:text-base text-primary duration-150 hover:text-indigo-400 font-medium inline-flex items-center gap-x-1"
                     >
                       {item.desc}
                       <svg

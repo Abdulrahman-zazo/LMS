@@ -18,17 +18,22 @@ const CourseCard = (course: Icourse) => {
       className="bg-white rounded-xl overflow-hidden flex flex-col "
     >
       <img
+        loading="lazy"
         src={course.image}
         alt={course.title}
         className="h-40 w-full object-cover"
       />
       <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-bold text-lg mb-2">{course.title}</h3>
-        <p className="text-sm text-gray-500 flex-1">{course.description}</p>
+        <h3 className="font-semibold text-base sm:text-lg mb-2">
+          {course.title}
+        </h3>
+        <p className="text-sm sm:text-base text-neutral-700 flex-1">
+          {course.description}
+        </p>
         <button
           title="buttons btn-details"
           onClick={() => Navigate(`${course.link}/${course.id}`)}
-          className="mt-4 w-full self-start text-sm bg-primary text-white border border-primary px-4 py-2 shadow-md rounded hover:bg-primary/80 hover:text-white transition"
+          className="mt-4 w-full self-start text-sm sm:text-base bg-primary text-white border border-primary px-4 py-2 shadow-md rounded hover:bg-primary/80 hover:text-white transition"
         >
           {t("buttons.btn-details")}
         </button>

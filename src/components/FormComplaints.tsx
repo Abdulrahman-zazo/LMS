@@ -1,49 +1,91 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import {
+  useAddComplaintsMutation,
+  type IComplaintsdata,
+} from "../app/features/Complaints/ComplaintsApi";
+import { cookieService } from "../Cookies/CookiesServices";
+import toast, { Toaster } from "react-hot-toast";
+import { Loader } from "react-feather";
 
 const FormComplaints = () => {
   const { t } = useTranslation("translation");
+  const [addComplaints, { isLoading }] = useAddComplaintsMutation();
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<IComplaintsdata>({
     name: "",
     email: "",
-    number: "",
-    message: "",
+    phone: "",
+    text: "",
+    token: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log("Form submitted:", formData);
-    alert("شكرًا لملاحظتك! تم إرسال النموذج بنجاح.");
+    const token = cookieService.get("auth_token") || "";
+
+    try {
+      await addComplaints({
+        ...formData,
+        token,
+      }).unwrap();
+
+      toast.success(" شكراً لك! ستقوم الإدارة بالرد قريباً .");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        text: "",
+        token: "",
+      });
+    } catch (error) {
+      toast.error(" فشل في إرسال الشكوى. حاول مرة أخرى.");
+      console.error("Error sending complaint:", error);
+    }
   };
+
   return (
     <section
-      className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0  "
+      className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0"
       dir="rtl"
     >
+      <Toaster
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          removeDelay: 1000,
+          style: {
+            fontSize: "14px",
+          },
+        }}
+      />
+
       <div className="sm:py-6 lg:py-12 px-4 sm:mx-auto w-full">
-        <h2 className="mb-4 text-xl tracking-tight font-extrabold text-center text-text">
+        <h2 className="mb-4  text-lg sm:text-2xl lg:text-3xl font-semibold text-center text-text tracking-tight">
           {t("complaints_system.title")}
         </h2>
-        <p className="mb-8 lg:mb-8 font-light text-center text-gray-500 dark:text-paragraph sm:text-xs">
+        <p className="mb-8 lg:mb-8 font-light text-center w-[70%] mx-auto text-gray-500 dark:text-paragraph text-sm  sm:text-base">
           {t("complaints_system.description")}
         </p>
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 flex flex-col items-center "
+          className="space-y-4 flex flex-col items-center"
         >
           <div className="w-full">
             <label
               htmlFor="name"
-              className="block mb-2 text-xs font-medium text-paragraph"
+              className="block mb-2  text-sm  sm:text-base font-medium text-paragraph"
             >
               {t("complaints_system.label1")}
             </label>
@@ -52,14 +94,14 @@ const FormComplaints = () => {
               id="name"
               value={formData.name}
               onChange={handleChange}
-              className="bg-white border border-neutral-200 text-paragraph text-xs rounded-lg block w-full p-2.5"
+              className="bg-white border border-neutral-200 text-paragraph  text-sm  sm:text-base rounded-lg block w-full p-2.5"
               required
             />
           </div>
           <div className="w-full">
             <label
               htmlFor="email"
-              className="block mb-2 text-xs font-medium text-paragraph"
+              className="block mb-2  text-sm  sm:text-base font-medium text-paragraph"
             >
               {t("complaints_system.label2")}
             </label>
@@ -68,51 +110,58 @@ const FormComplaints = () => {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="bg-white border border-neutral-200 text-paragraph text-xs rounded-lg block w-full p-2.5"
+              className="bg-white border border-neutral-200 text-paragraph  text-sm  sm:text-base rounded-lg block w-full p-2.5"
               required
             />
           </div>
-
           <div className="w-full">
             <label
-              htmlFor="number"
+              htmlFor="phone"
               className="block mb-2 text-sm font-medium text-paragraph"
             >
               {t("complaints_system.label3")}
             </label>
             <input
               type="text"
-              id="number"
-              value={formData.number}
+              id="phone"
+              value={formData.phone}
               onChange={handleChange}
               className="bg-white border border-neutral-200 text-paragraph text-sm rounded-lg block w-full p-2.5"
               required
             />
           </div>
-
           <div className="sm:col-span-2 w-full">
             <label
-              htmlFor="message"
+              htmlFor="text"
               className="block mb-2 text-sm font-medium text-paragraph"
             >
               {t("complaints_system.label4")}
             </label>
             <textarea
-              id="message"
+              id="text"
               rows={3}
-              value={formData.message}
+              value={formData.text}
               onChange={handleChange}
               className="bg-white border border-neutral-200 text-paragraph text-sm rounded-lg block w-full p-2.5"
               required
             ></textarea>
           </div>
-
           <button
+            disabled={isLoading}
             title="complaints_system"
             type="submit"
-            className="bg-primary w-full sm:w-1/2 mt-4 py-4 sm:py-4 px-2 sm:px-6 text-xs sm:text-sm font-medium text-center text-white rounded-lg hover:bg-primary/80 cursor-pointer"
+            className="bg-primary w-full sm:w-1/2 mt-4 py-4 sm:py-4 px-2 sm:px-6  text-sm  sm:text-base  font-medium text-center text-white rounded-lg hover:bg-primary/80 cursor-pointer"
           >
-            {t("complaints_system.label5")}
+            {isLoading ? (
+              <span className="flex justify-center">
+                <Loader
+                  size={20}
+                  className="animate-spin animate-duration-[1500ms]"
+                />
+              </span>
+            ) : (
+              t("complaints_system.label5")
+            )}
           </button>
         </form>
       </div>

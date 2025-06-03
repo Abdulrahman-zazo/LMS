@@ -32,6 +32,7 @@ const Logo = ({ type = "v", ...props }: IProps) => {
         />
       )}
       <img
+        loading="eager"
         src={getSrc()}
         alt="Logo H-platform"
         {...props}

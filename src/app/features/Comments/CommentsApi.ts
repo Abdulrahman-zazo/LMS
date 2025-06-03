@@ -2,9 +2,14 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ADD_COMMINTS, DELETE_COMMINTS } from "../../../api/api";
 import { decryptToken } from "../../../Cookies/CryptoServices/crypto";
 
-interface ICommentsdata {
+export interface ICommentsdata {
   course_id: number;
   comment_text: string;
+  token: string;
+  comment_id?: number;
+}
+
+export interface IDeleteComment {
   token: string;
   comment_id: number;
 }
@@ -25,7 +30,7 @@ export const CommentsApi = createApi({
       invalidatesTags: ["Comments"],
     }),
     deleteComments: builder.mutation({
-      query: ({ comment_id, token }: ICommentsdata) => ({
+      query: ({ comment_id, token }: IDeleteComment) => ({
         url: DELETE_COMMINTS,
         method: "POST",
         body: { comment_id },

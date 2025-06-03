@@ -60,7 +60,7 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
         {ready ? (
           <>
             <motion.h1
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-2xl mx-auto font-medium md:font-semibold mb-6"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-3xl max-w-2xl mx-auto font-semibold mb-6"
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -68,14 +68,14 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
               {title}
             </motion.h1>
             <motion.p
-              className="text-xs sm:text-sm md:text-md mb-8 max-w-xl mx-auto max-[500px]:hidden"
+              className="text-sm sm:text-base mb-8 max-w-xl mx-auto max-[500px]:hidden"
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               {description}
             </motion.p>
             <motion.button
-              className="bg-white text-primary font-medium md:font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px] sm:text-sm"
+              className="bg-white text-primary font-medium md:font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px] text-sm sm:text-base"
               onClick={onButtonClick}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
