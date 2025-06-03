@@ -402,25 +402,25 @@ export const Certifications: React.FC<React.SVGProps<SVGSVGElement>> = (
     <path
       d="M62.5202 2.83128C60.9368 1.21311 58.5935 0.614612 56.4085 1.24795L5.45683 15.9698C3.1515 16.6094 1.5175 18.4366 1.07733 20.7546C0.627664 23.1169 2.19833 26.1189 4.25033 27.3729L20.1818 37.1009C21.8158 38.1016 23.9248 37.8514 25.277 36.4961L43.5202 18.2529C44.4385 17.2998 45.9585 17.2998 46.8768 18.2529C47.7952 19.1681 47.7952 20.6596 46.8768 21.6096L28.602 39.8528C27.2467 41.2081 26.9933 43.3108 27.9908 44.9479L37.7252 60.9396C38.8652 62.8364 40.8285 63.9163 42.9818 63.9163C43.2352 63.9163 43.5202 63.9163 43.7735 63.8814C46.2435 63.5679 48.2068 61.8864 48.9352 59.5114L64.0402 8.94295C64.7052 6.78961 64.1035 4.44628 62.5202 2.83128"
       stroke="white"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <path
       d="M2.66602 46.6665L9.66602 39.6665"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M14.666 50.6665L21.666 43.6665"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
     <path
       d="M17.666 62.6665L24.666 55.6665"
       stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
   </svg>
 );

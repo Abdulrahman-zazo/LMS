@@ -7,9 +7,10 @@ import {
   REGISTER,
   SEND_CODE,
   USER_INFO,
+  USERVERIFYEMAIL,
 } from "../../../api/api";
 
-interface Iuserdata {
+export interface Iuserdata {
   email: string;
   password: string;
 }
@@ -18,7 +19,7 @@ interface IRegisterData {
   name: string;
   phone?: string;
   email: string;
-  password: string;
+  password?: string;
 }
 
 interface IUserVerifyEmail {
@@ -71,14 +72,14 @@ export const userApi = createApi({
     }),
     VerifyEmail: builder.mutation({
       query: ({ email, password, code }: IUserVerifyEmail) => ({
-        url: REGISTER,
+        url: USERVERIFYEMAIL,
         method: "POST",
         body: { email, code, password },
       }),
       invalidatesTags: ["auth"],
     }),
     forgetPassword: builder.mutation({
-      query: ({ email }: IUserVerifyEmail) => ({
+      query: (email: string) => ({
         url: SEND_CODE,
         method: "POST",
         body: { email },

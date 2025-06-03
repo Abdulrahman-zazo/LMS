@@ -4,9 +4,9 @@ export const REGISTER = "/api/register";
 export const LOGOUT = "/api/logout";
 export const REGISTERBYGOOGLE = "/api/registerEmail";
 
-export const SEND_CODE = "/api/ForgetPassword";
+export const SEND_CODE = "/api/SendCode";
 export const NEW_PASSWORD = "/api/getNewPassword";
-export const USERVERIFYEMAIL = "/api/registerEmail";
+export const USERVERIFYEMAIL = "/api/UserVerifyEmail";
 
 /* --------------Profile---------------- */
 export const CHANGE_IMAGE = "/api/ChangeImage";

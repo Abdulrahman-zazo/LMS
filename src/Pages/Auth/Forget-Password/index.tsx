@@ -1,127 +1,82 @@
-// import { Link } from "react-router-dom";
-
-// import { Button, Form, Input } from "antd";
-
-// import Logo from "../../../components/Ui/Logo";
-
-// interface IProps {
-//   email: string;
-// }
-
-// const ForgetPassword = () => {
-//   const date = new Date();
-//   const initialValues: IProps = {
-//     email: "",
-//   };
-
-//   const onFinish = (values: IProps) => {
-//     console.log("Received values of form: ", values);
-//   };
-//   return (
-//     <div className="flex justify-between items-center  max-[800px]:justify-center m-auto h-[100vh]">
-//       <div className="w-1/2 flex flex-col  justify-center  my-4 h-full bg-background max-[800px]:hidden animate-fade-down inset-shadow-sm">
-//         <div className="  mx-8 my-4 ">
-//           <img src={forgetpage} alt="Login" className="w-[90%] 2xl:w-[100%]" />
-
-//           <p className="  text-gray-500 text-[14px] my-2 w-[70%]  ">
-//             Enter the email address associated with your account and we'll send
-//             you a secure link to reset your password.
-//           </p>
-//           <span className="text-neutral-400 font-light text-[12px]">
-//             © {date.getFullYear()} Signature Company. All Rights Reserved.
-//           </span>
-//         </div>
-//       </div>
-
-//       {/* form side */}
-//       <div className="w-2/3  max-[800px]:w-full flex flex-col justify-center items-center  ">
-//         <div className="w-2/3  ">
-//           <div className="max-[800px]:text-center  ">
-//             <div className="mb-8  max-[800px]:hidden ">
-//               <Logo type="h" width={150} />
-//             </div>
-//             <div className=" flex justify-center  min-[800px]:hidden ">
-//               <Logo type="v" width={150} />
-//             </div>
-//             <h1 className="text-text font-bold text-lg md:text-xl xl:text-3xl mb-2 ">
-//               Reset Password
-//             </h1>
-//             <p className=" text-gray-600 text-sm md:text-base xl:text-lg mb-4 ">
-//               Enter your email account to rest your password
-//             </p>
-//           </div>
-//           <Form
-//             size="middle"
-//             layout="vertical"
-//             name="login"
-//             className="w-full"
-//             initialValues={initialValues}
-//             onFinish={onFinish}
-//           >
-//             <Form.Item
-//               label="Email"
-//               name="email"
-//               rules={[
-//                 { required: true, message: "Please input your Username!" },
-//               ]}
-//             >
-//               <Input
-//                 // prefix={<Mail />}
-//                 placeholder="Enter your email address "
-//               />
-//             </Form.Item>
-
-//             <Form.Item>
-//               <Button block type="primary" htmlType="submit">
-//                 Send
-//               </Button>
-//             </Form.Item>
-//           </Form>
-//           <div className="text-gray-600">
-//             Already remember your password?
-//             <Link
-//               to="/auth/login"
-//               className="text-primary hover:text-primary-500 mx-2"
-//             >
-//               Login Here
-//             </Link>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ForgetPassword;
-
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import {
+  useChangePasswordMutation,
+  useForgetPasswordMutation,
+} from "../../../app/features/User/userApi";
+import { Loader } from "react-feather";
 
 export default function ForgetPassword() {
   const { t } = useTranslation("translation");
 
   const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleNext = () => {
+  const [forgetPassword, { isLoading: isLoadingResend }] =
+    useForgetPasswordMutation();
+  const [changePassword, { isLoading: isLoadingChange }] =
+    useChangePasswordMutation();
+  const handleNext = async () => {
     if (step === 1 && email) {
-      // send email to backend (e.g., send verification code)
-      setStep(2);
+      const toastId = toast.loading("جاري إرسال رمز التحقق ...");
+
+      try {
+        const result = await forgetPassword(email);
+        console.log(result);
+        if (result && result.data.status === true) {
+          toast.success(" تم إرسال الرمز بنجاح ", { id: toastId });
+          setTimeout(() => {
+            setStep(2);
+          }, 3000);
+        } else {
+          toast.error("this email not found", {
+            id: toastId,
+          });
+          setStep(1);
+        }
+      } catch (err) {
+        const error = err as { data?: { msg?: string } };
+        toast.error(error.data?.msg || "this email not found", {
+          id: toastId,
+        });
+      }
     } else if (step === 2 && code) {
-      // verify the code
       setStep(3);
     } else if (step === 3 && password && password === confirmPassword) {
-      // send new password to backend
-      alert("تم تغيير كلمة السر بنجاح! 🎉");
+      const toastId = toast.loading("جاري إرسال رمز التحقق ...");
+
+      try {
+        const result = await changePassword({ email, code, password });
+        console.log(result);
+
+        toast.success("تم إرسال الرمز مرة أخرى", { id: toastId });
+        setStep(2);
+      } catch (err) {
+        const error = err as { data?: { msg?: string } };
+
+        toast.error(error.data?.msg || "حدث خطأ أثناء التسجيل", {
+          id: toastId,
+        });
+      }
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
+      <Toaster
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          removeDelay: 1000,
+          style: {
+            fontSize: 14,
+          },
+        }}
+      />
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-800">
@@ -197,12 +152,31 @@ export default function ForgetPassword() {
 
           <button
             type="submit"
+            disabled={isLoadingResend || isLoadingChange}
             onClick={handleNext}
             className="w-full bg-primary text-white py-2 rounded-md font-semibold hover:bg-primary-dark transition"
           >
-            {step === 3
-              ? t("auth.forget_password.confirm")
-              : t("auth.forget_password.next")}
+            {step === 3 ? (
+              isLoadingChange ? (
+                <span className=" flex justify-center ">
+                  <Loader
+                    size={20}
+                    className="animate-spin  animate-duration-[1500ms]"
+                  />
+                </span>
+              ) : (
+                t("auth.forget_password.confirm")
+              )
+            ) : isLoadingResend ? (
+              <span className=" flex justify-center ">
+                <Loader
+                  size={20}
+                  className="animate-spin  animate-duration-[1500ms]"
+                />
+              </span>
+            ) : (
+              t("auth.forget_password.next")
+            )}
           </button>
         </form>
 

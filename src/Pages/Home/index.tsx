@@ -4,17 +4,18 @@ import HowItWorksSection from "../../components/Ui/HowItWorks";
 import FaqSection from "../../components/Ui/FAQ";
 import GetStarted from "../../components/Ui/GetStarted";
 import HeroHome from "../../components/Ui/HeroHome";
-import { encryptToken } from "../../Cookies/CryptoServices/crypto";
 import { useNavigate } from "react-router-dom";
 import { ArrowRightCircle } from "react-feather";
 
 import { useTranslation } from "react-i18next";
+import { cookieService } from "../../Cookies/CookiesServices";
+import ComplaintsSections from "../../components/Ui/Complaints";
 
 const HomePage = () => {
   const Navigate = useNavigate();
   const { t } = useTranslation("translation");
+  const token = cookieService.get("auth_token");
 
-  encryptToken("fake");
   return (
     <div lang="ar" dir="rtl">
       <HeroHome />
@@ -32,9 +33,9 @@ const HomePage = () => {
           </button>
         </div>
       </div>
-      <HowItWorksSection />
+      {!token && <HowItWorksSection />}
       <FaqSection />
-      <GetStarted />
+      {!token ? <GetStarted /> : <ComplaintsSections />}
     </div>
   );
 };

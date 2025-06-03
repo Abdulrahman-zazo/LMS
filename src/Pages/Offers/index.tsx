@@ -3,10 +3,13 @@ import { HeroHeader } from "../../components/HeroHeader";
 import GetStarted from "../../components/Ui/GetStarted";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
 import Offers from "../../components/Offers";
+import { cookieService } from "../../Cookies/CookiesServices";
+import ComplaintsSections from "../../components/Ui/Complaints";
 
 const OfferPage = () => {
   const { t, ready } = useTranslation("translation");
 
+  const token = cookieService.get("auth_token");
   return (
     <div dir="rtl">
       <HeroHeader
@@ -17,7 +20,7 @@ const OfferPage = () => {
       />
       <Offers />
       <WhyDifferentSection />
-      <GetStarted />
+      {!token ? <GetStarted /> : <ComplaintsSections />}
     </div>
   );
 };

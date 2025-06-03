@@ -2,20 +2,18 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   email: string;
-  first_name: string;
-  last_name: string;
-  phone_number: string;
-  image_url: string;
-  permissions: string[];
+  name: string;
+  phone: string;
+  image: string;
+  id: string;
 }
 
 const initialState: AuthState = {
   email: "",
-  first_name: "",
-  last_name: "",
-  phone_number: "",
-  image_url: "",
-  permissions: [],
+  name: "",
+  phone: "",
+  image: "",
+  id: "",
 };
 
 const authSlice = createSlice({
@@ -23,22 +21,14 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     loginAction: (state, action: PayloadAction<AuthState>) => {
-      const {
-        email,
-        first_name,
-        last_name,
-        phone_number,
-        image_url,
-        permissions,
-      } = action.payload;
+      const { email, name, phone, image, id } = action.payload;
       return {
         ...state,
         email,
-        first_name,
-        last_name,
-        image_url,
-        permissions,
-        phone_number,
+        name,
+        phone,
+        image,
+        id,
       };
     },
     logoutAction: () => {

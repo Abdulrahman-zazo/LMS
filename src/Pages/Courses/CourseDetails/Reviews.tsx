@@ -4,6 +4,13 @@
 import { useState } from "react";
 import type { IComments } from "../../../types";
 import { useTranslation } from "react-i18next";
+import { useGetuserInformationQuery } from "../../../app/features/User/userApi";
+import { cookieService } from "../../../Cookies/CookiesServices";
+import toast, { Toaster } from "react-hot-toast";
+import {
+  useAddCommentsMutation,
+  useDeleteCommentsMutation,
+} from "../../../app/features/Comments/CommentsApi";
 
 // const getTimeAgo = (dateString: string) => {
 //   return formatDistanceToNow(new Date(dateString), {
@@ -17,13 +24,26 @@ interface ReviewsProps {
 
 export const Reviews = ({ comments }: ReviewsProps) => {
   const { t } = useTranslation("translation");
+  const token = cookieService.get("auth_token");
+  const [comment, setComment] = useState("");
 
   const [showAllComments, setShowAllComments] = useState(false);
-
+  const { data: user, isLoading } = useGetuserInformationQuery(token as string);
+  // const [] = useAddCommentsMutation();
+  // useDeleteCommentsMutation()
   const displayedComments = showAllComments ? comments : comments.slice(0, 1);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    console.log(comment);
+    // onSubmit(comment);
+    setComment("");
+    toast.success("تم إرسال التعليق");
+  };
   return (
     <div>
+      <Toaster position="top-left" />
       {displayedComments.length > 1 && (
         <div className="flex justify-center mb-4">
           <button
@@ -41,7 +61,7 @@ export const Reviews = ({ comments }: ReviewsProps) => {
         {displayedComments.map((comment: IComments) => (
           <div key={comment.id} className="flex space-x-4">
             <img
-              className="h-10 w-10 rounded-full"
+              className="h-10 w-10  object-cover rounded-full"
               src={comment.avatar}
               alt={`${comment.author}'s avatar`}
             />
@@ -69,20 +89,33 @@ export const Reviews = ({ comments }: ReviewsProps) => {
         <div className="flex space-x-4">
           {/* من معلومات اليوزر  */}
           <img
-            className="h-10 w-10 rounded-full"
-            src="https://randomuser.me/api/portraits/men/5.jpg" // Placeholder for current user's avatar
+            className="h-10 w-10 object-cover rounded-full"
+            src={user?.data.image} // Placeholder for current user's avatar
             alt="Your avatar"
           />
-          <div className="flex-1">
+          <form onSubmit={handleSubmit} className="flex-1">
             <textarea
               className="w-full p-3 border border-gray-300 rounded-md focus:ring-primary focus:border-primary/50 resize-y placeholder:text-[10px] placeholder:sm:text-xs placeholder:font-light placeholder:text-neutral-400"
-              rows={2}
+              rows={3}
               placeholder={t("Courses_card.comments_placeholder")}
-            ></textarea>
-            <button className="mt-3 float-right bg-primary w-full text-white text-sm py-2 px-6 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50">
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              maxLength={200} // مثلاً كل سطر 100 حرف → سطرين = 200 حرف
+              style={{ resize: "none" }} // يمنع المستخدم من التوسعة
+            />
+
+            <button
+              disabled={!comment.trim()}
+              type="submit"
+              className={`mt-3 float-right  w-full text-white text-sm py-2 px-6 rounded-md hover:bg-primary/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 ${
+                !comment.trim()
+                  ? "bg-primary/70 cursor-not-allowed"
+                  : "bg-primary cursor-pointer "
+              }`}
+            >
               {t("Courses_card.send")}
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

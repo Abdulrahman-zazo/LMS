@@ -7,11 +7,15 @@ import Logo from "./Logo";
 import { useTranslation } from "react-i18next";
 import UserMenu from "../userMenu";
 import { cookieService } from "../../Cookies/CookiesServices";
+import { useGetuserInformationQuery } from "../../app/features/User/userApi";
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { ref, inView } = useInView({ threshold: 0 });
   const { t, ready } = useTranslation("translation");
   const token = cookieService.get("auth_token");
+  const { data, isLoading } = useGetuserInformationQuery(token as string);
+
   const Navigate = useNavigate();
   return (
     <>
@@ -106,15 +110,47 @@ const Header = () => {
                 {t("Header.Register")}
               </button>
             </div>
+          ) : isLoading ? (
+            <div className="hidden lg:inline">
+              <div className="flex items-center gap-4 ">
+                <div className="space-y-1 flex flex-col items-end">
+                  <div className="h-3 w-20  bg-neutral-200 animate-pulse" />
+                  <div className="h-2 w-30 bg-neutral-200 animate-pulse" />
+                </div>
+                <div className="h-8 w-8 rounded-full  bg-neutral-200 animate-pulse" />
+              </div>
+            </div>
           ) : (
             <div className="hidden lg:inline">
-              <UserMenu />
+              <UserMenu
+                name={data?.data.name}
+                email={data?.data.email}
+                avatar={data?.data.image}
+              />
             </div>
           )}
 
           {/* Mobile Hamburger button */}
-          <div className="lg:hidden text-2xl text-gray-700 flex items-center ">
-            {token && <UserMenu />}
+          <div className="lg:hidden text-2xl text-gray-700 flex items-center gap-2 ">
+            {token && isLoading ? (
+              <div className="">
+                <div className="flex items-center gap-4 ">
+                  <div className="space-y-1 flex flex-col items-end">
+                    <div className="h-3 w-20  bg-neutral-200 animate-pulse" />
+                    <div className="h-2 w-30 bg-neutral-200 animate-pulse" />
+                  </div>
+                  <div className="h-8 w-8 rounded-full  bg-neutral-200 animate-pulse" />
+                </div>
+              </div>
+            ) : (
+              <div className="">
+                <UserMenu
+                  name={data?.data.name}
+                  email={data?.data.email}
+                  avatar={data?.data.image}
+                />
+              </div>
+            )}
             {menuOpen ? (
               <button
                 title="open header menu"

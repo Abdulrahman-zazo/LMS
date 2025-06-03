@@ -3,10 +3,13 @@ import { HeroHeader } from "../../components/HeroHeader";
 import CoursesComponent from "../../components/Ui/Courses";
 import GetStarted from "../../components/Ui/GetStarted";
 import WhyDifferentSection from "../../components/Ui/WhyDifferent";
+import { cookieService } from "../../Cookies/CookiesServices";
+import ComplaintsSections from "../../components/Ui/Complaints";
 
 const CoursessPage = () => {
   const { t, ready } = useTranslation("translation");
 
+  const token = cookieService.get("auth_token");
   return (
     <div>
       <HeroHeader
@@ -17,7 +20,7 @@ const CoursessPage = () => {
       />
       <CoursesComponent />
       <WhyDifferentSection />
-      <GetStarted />
+      {!token ? <GetStarted /> : <ComplaintsSections />}
     </div>
   );
 };

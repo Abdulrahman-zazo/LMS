@@ -4,9 +4,11 @@ import Image2 from "../../assets/search.png";
 import Image3 from "../../assets/connections.png";
 
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const HowItWorksSection = () => {
   const { t, ready } = useTranslation("translation");
+  const Navigate = useNavigate();
   const [imageLoaded, setImageLoaded] = useState<{ [key: number]: boolean }>({
     1: false,
     2: false,
@@ -68,7 +70,6 @@ const HowItWorksSection = () => {
               key={id}
               className="border rounded-xl p-6 text-center hover:shadow-sm transition"
             >
-              {/* Image or Skeleton */}
               {ready ? (
                 imageLoaded[id] ? (
                   <img
@@ -113,6 +114,7 @@ const HowItWorksSection = () => {
               {/* Button */}
               {ready ? (
                 <button
+                  onClick={() => Navigate("/auth/login")}
                   title={`HeroHome ${button}`}
                   className="bg-primary w-full text-white text-sm px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
                 >

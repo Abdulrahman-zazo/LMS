@@ -19,7 +19,11 @@ class CookiesService {
   }
 
   set(name: string, value: string): void {
-    cookies.set(name, value);
+    cookies.set(name, value, {
+      path: "/",
+      sameSite: "strict",
+      // secure: process.env.NODE_ENV === "production",
+    });
   }
   // Set cookie with options
   // set(name: string, value: string, options?: CookieSetOptions): void {
@@ -35,7 +39,7 @@ class CookiesService {
 
   // Remove cookie
   remove(name: string): void {
-    cookies.remove(name);
+    cookies.remove(name, { path: "/" }); // لازم نفس الـ path يلي استخدمته عند set
   }
 }
 

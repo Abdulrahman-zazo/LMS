@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 export const showMessage = ({
   type,
   content,
-  duration = 2000,
+  duration = 3000,
 }: {
   type: "loading" | "success" | "error";
   content: string;

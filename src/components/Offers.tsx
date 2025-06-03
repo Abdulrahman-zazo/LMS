@@ -1,13 +1,18 @@
 import { useTranslation } from "react-i18next";
-import Image1 from "../assets/4039100_2cfe_3.png";
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CourseCard from "./Ui/courseCard";
 import { useGetAllOfferQuery } from "../app/features/Offer/OfferApi";
 import SkeletonCustom from "./Skeleton";
 import HandelError from "./HandelError";
-
+import type { ICourse } from "../types";
+interface IOffer {
+  id: number;
+  name: string;
+  description: string;
+  cost?: string;
+  courses: ICourse[];
+}
 const Offers = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
@@ -23,90 +28,7 @@ const Offers = () => {
   if (isError) {
     return <HandelError />;
   }
-  console.log(data);
-  // const offersdata = [
-  //   {
-  //     id: 2,
-  //     name: "عرض النادي الصيفي",
-  //     description: "طوّر ذاتك واكسب مهارات مطلوبة في جميع المجالات.",
-  //     cost: "300",
-  //     courses: [],
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "عرض النادي الصيفي",
-  //     description: "طوّر ذاتك واكسب مهارات مطلوبة في جميع المجالات.",
-  //     cost: "100",
-  //     courses: [
-  //       {
-  //         id: 1,
-  //         title: "Teach HTML and CSS to Kids",
-  //         description:
-  //           "Build visually engaging websites with a curriculum that is 70% more content than traditional curriculums.",
-  //         image: Image1,
 
-  //         name: "java",
-
-  //         summary:
-  //           "Build visually engaging websites with a curriculum that has 300% more",
-
-  //         profilevideo: null,
-  //         contents: "functionee",
-  //         hours: "24",
-  //         cost: null,
-  //         type: "online",
-  //         material: null,
-  //         requirements: "engineer",
-  //         is_active: 1,
-  //         comments: [
-  //           {
-  //             id: 2,
-  //             comment_text: "the course is beautifull",
-  //             course_id: 1,
-  //             user_id: 3,
-  //             is_visible: 1,
-  //             author: "aboud",
-  //             avatar: "image/Screenshot_1.png",
-  //             time: "2025-05-31T15:23:59.000000Z",
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         id: 1,
-  //         title: "Teach HTML and CSS to Kids",
-  //         description:
-  //           "Build visually engaging websites with a curriculum that is 70% more content than traditional curriculums.",
-  //         image: Image1,
-
-  //         name: "java",
-
-  //         summary:
-  //           "Build visually engaging websites with a curriculum that has 300% more",
-
-  //         profilevideo: null,
-  //         contents: "functionee",
-  //         hours: "24",
-  //         cost: null,
-  //         type: "online",
-  //         material: null,
-  //         requirements: "engineer",
-  //         is_active: 1,
-  //         comments: [
-  //           {
-  //             id: 2,
-  //             comment_text: "the course is beautifull",
-  //             course_id: 1,
-  //             user_id: 3,
-  //             is_visible: 1,
-  //             author: "aboud",
-  //             avatar: "image/Screenshot_1.png",
-  //             time: "2025-05-31T15:23:59.000000Z",
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   },
-  // ];
   return (
     <div className="bg-white " dir="rtl">
       <section>
@@ -119,7 +41,7 @@ const Offers = () => {
 
           <div className="space-y-4">
             {data?.data.length > 0 ? (
-              data?.data.map((offer, index) => (
+              data?.data.map((offer: IOffer, index: number) => (
                 <div
                   key={offer.id}
                   className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:border  hover:border-paragraph/50  "
