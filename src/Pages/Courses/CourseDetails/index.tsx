@@ -28,11 +28,11 @@ const CoursePage = () => {
   return (
     <div className="container mx-auto p-4">
       <HeaderCourse
-        material={data?.data.material}
-        title={data?.data.name}
-        description={data?.data.summary}
-        type={data?.data.type}
-        hours={data?.data.hours}
+        material={data?.course.material}
+        title={data?.course.name}
+        description={data?.course.summary}
+        type={data?.course.type}
+        hours={data?.course.hours}
       />
       <div className="flex justify-center my-8">
         {/* Main content area */}
@@ -69,7 +69,7 @@ const CoursePage = () => {
                       : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm`}
                 >
-                  {t("Courses.comments")}({data?.data.comments.length})
+                  {t("Courses.comments")}({data?.course.comments.length})
                 </button>
               </nav>
             </div>
@@ -77,11 +77,11 @@ const CoursePage = () => {
             {/* Tab Content */}
             <div className="mt-6">
               {activeTab === "info" ? (
-                <CourseInfo description={data?.data.description} />
+                <CourseInfo description={data?.course.description} />
               ) : (
                 <Reviews
-                  comments={data?.data.comments}
-                  course_id={data?.data.id}
+                  comments={data?.course.comments}
+                  course_id={data?.course.id}
                 />
               )}
             </div>
@@ -93,22 +93,22 @@ const CoursePage = () => {
               {t("Courses.what_we_learn")}
             </h3>
             <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
-              <li>{data?.data.contents}</li>
+              <li>{data?.course.contents}</li>
             </ul>
 
             <h3 className="text-sm md:text-base  font-semibold text-text mb-4">
               {t("Courses.content_course")}
             </h3>
             <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
-              <li>{data?.data.hours} ساعة.</li>
-              {data?.data.material && <li>{data?.data.material}</li>}
+              <li>{data?.course.hours} ساعة.</li>
+              {data?.course.material && <li>{data?.course.material}</li>}
             </ul>
 
             <h3 className="text-sm md:text-base  font-semibold text-text mb-4">
               {t("Courses.requairment")}
             </h3>
             <ul className="list-disc list-inside text-paragraph text-sm md:text-base space-y-2 mb-6">
-              <li>{data?.data.requirements}</li>
+              <li>{data?.course.requirements}</li>
             </ul>
 
             <button
