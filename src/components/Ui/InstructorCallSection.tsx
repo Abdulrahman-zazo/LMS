@@ -10,7 +10,6 @@ export default function InstructorCallSection() {
         <section
           id="instructor"
           className="max-w-[1440px] bg-bg-purple mx-auto px-4 sm:px-8 py-8 sm:py-16"
-          dir="rtl"
         >
           {/* Title */}
           <div className="w-[90%] mx-auto flex flex-col items-center">
@@ -30,10 +29,7 @@ export default function InstructorCallSection() {
           </div>
         </section>
       ) : (
-        <section
-          className="max-w-[1440px] mx-auto px-4 sm:px-8 py-8 sm:py-16"
-          dir="rtl"
-        >
+        <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-8 sm:py-16">
           <div className="w-[90%] mx-auto flex flex-col items-center animate-pulse">
             <div className="h-6 sm:h-8 w-1/2 bg-neutral-200 rounded mb-4"></div>
             <div className="h-4 sm:h-6 w-2/3 bg-neutral-200 rounded mb-6"></div>

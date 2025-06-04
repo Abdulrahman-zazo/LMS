@@ -11,7 +11,7 @@ const TableSkeleton = () => {
       <div className="h-8 bg-gray-300 rounded w-1/3"></div>
       <div className="h-4 bg-gray-200 rounded w-1/2"></div>
 
-      <div className="flex justify-center my-8" dir="rtl">
+      <div className="flex justify-center my-8">
         <div className="bg-white rounded-lg overflow-hidden sm:w-[90%] lg:flex">
           {/* Left Section Skeleton */}
           <div className="lg:w-1/2 p-6 space-y-4">

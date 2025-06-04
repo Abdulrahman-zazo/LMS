@@ -16,13 +16,16 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
   type,
   hours,
 }) => {
-  const { t, ready } = useTranslation("translation");
+  const { t, ready, i18n } = useTranslation("translation");
+  const isRTL = i18n.language === "ar";
 
   return (
     <div className="bg-primary p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden max-w-[100%] mx-auto mt-20 sm:mt-24">
       {/* Animated Icons */}
       <motion.div
-        className="hidden sm:block absolute left-25 bottom-16 opacity-100"
+        className={`hidden sm:block absolute  ${
+          !isRTL ? "right-28" : "left-25"
+        }  bottom-16 opacity-100`}
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: ready ? 1 : 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -31,7 +34,9 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
       </motion.div>
 
       <motion.div
-        className="hidden sm:block absolute -left-5 bottom-15 opacity-20"
+        className={`hidden sm:block absolute ${
+          !isRTL ? "-right-5" : "-left-5"
+        }  bottom-15 opacity-20`}
         initial={{ x: 20, opacity: 0 }}
         animate={{ x: 0, opacity: ready ? 1 : 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -40,7 +45,9 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
       </motion.div>
 
       <motion.div
-        className="hidden sm:block absolute left-10 top-10 opacity-15"
+        className={`hidden sm:block absolute  ${
+          !isRTL ? "right-16" : "left-10"
+        }  top-10 opacity-15`}
         initial={{ scale: 0.5, opacity: 0 }}
         animate={{ scale: 1, opacity: ready ? 1 : 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -86,10 +93,7 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
       </motion.div>
 
       {/* Content */}
-      <div
-        className="relative z-10 flex flex-col items-center sm:items-start"
-        dir="rtl"
-      >
+      <div className="relative z-10 flex flex-col items-center sm:items-start">
         {!ready ? (
           <div className="py-10 w-full">
             <div className="bg-gray-300/50 rounded w-[60%] h-6 sm:h-8 mb-4 animate-pulse" />
@@ -100,7 +104,7 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
         ) : (
           <>
             <motion.h1
-              className="text-xl text-center sm:text-right sm:text-2xl md:text-3xl lg:text-3xl max-w-2xl font-medium md:font-semibold mb-6"
+              className="text-xl text-center  sm:text-2xl md:text-3xl lg:text-3xl max-w-2xl font-medium md:font-semibold mb-6"
               initial={{ opacity: 0, y: -30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
@@ -108,7 +112,7 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
               {title}
             </motion.h1>
             <motion.p
-              className="text-sm leading-6 text-center sm:text-right sm:text-base mb-8 max-w-2xl"
+              className="text-sm leading-6 text-center  sm:text-base mb-8 max-w-2xl"
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >

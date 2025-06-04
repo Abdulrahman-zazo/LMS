@@ -12,7 +12,6 @@ import { encryptToken } from "../../../Cookies/CryptoServices/crypto";
 export default function ForgetPassword() {
   const { t } = useTranslation("translation");
   const navigate = useNavigate();
-
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [email, setEmail] = useState<string>("");
   const [code, setCode] = useState("");
@@ -24,38 +23,38 @@ export default function ForgetPassword() {
     useChangePasswordMutation();
   const handleNext = async () => {
     if (step === 1 && email) {
-      const toastId = toast.loading("جاري إرسال رمز التحقق ...");
+      const toastId = toast.loading(t("message.forget_message.loading"));
 
       try {
         const result = await forgetPassword(email);
-        console.log(result);
-        if (result.data.status === "true") {
-          toast.success(" تم إرسال الرمز بنجاح ", { id: toastId });
+
+        if (result.data.status === true) {
+          toast.success(t("message.forget_message.send"), { id: toastId });
           setTimeout(() => {
             setStep(2);
           }, 3000);
         } else {
-          toast.error("This email not found", {
+          toast.error(t("message.forget_message.error_code"), {
             id: toastId,
           });
           setStep(1);
         }
       } catch (err) {
         const error = err as { data?: { msg?: string } };
-        toast.error(error.data?.msg || "This email not found", {
+        toast.error(error.data?.msg || t("message.forget_message.error_code"), {
           id: toastId,
         });
       }
     } else if (step === 2 && code) {
       setStep(3);
     } else if (step === 3 && password && password === confirmPassword) {
-      const toastId = toast.loading("جاري إرسال رمز التحقق ...");
+      const toastId = toast.loading(t("message.forget_message.code"));
 
       try {
         const result = await changePassword({ email, code, password });
-        console.log(result);
+
         if (result.data.status === true) {
-          toast.success(" تم تغير كلمة المرور بنجاح", { id: toastId });
+          toast.success(t("message.forget_message.success"), { id: toastId });
           encryptToken(result?.data.authorization.token);
           navigate("/");
         } else {

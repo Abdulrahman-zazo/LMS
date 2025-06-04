@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 const PrivacyComponent = () => {
   const { t } = useTranslation("translation");
   return (
-    <div className="w-5/6 m-auto my-10  text-right " dir="rtl">
+    <div className="w-5/6 m-auto my-10   ">
       <h2 className="mb-6 text-center text-text text-lg sm:text-2xl lg:text-3xl font-semibold ">
         {t("privacy.text")}
       </h2>

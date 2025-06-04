@@ -11,10 +11,13 @@ export const encryptToken = (token: string): string => {
 };
 
 // ------ فك تشفير التوكن ------
-export const decryptToken = (encryptedToken: string): string => {
-  const bytes = CryptoJS.AES.decrypt(encryptedToken, SECRET_KEY);
-  return bytes.toString(CryptoJS.enc.Utf8);
+export const decryptToken = (encryptedToken?: string): string => {
+  if (!encryptedToken) return "";
+  try {
+    const bytes = CryptoJS.AES.decrypt(encryptedToken, SECRET_KEY);
+    return bytes.toString(CryptoJS.enc.Utf8);
+  } catch (error) {
+    console.error("خطأ في فك التشفير:", error);
+    return "";
+  }
 };
-// // عند القراءة:
-// const encryptedToken = cookieService.get('auth_token');
-// const decrypted = CryptoJS.AES.decrypt(encryptedToken, SECRET_KEY).toString(CryptoJS.enc.Utf8);

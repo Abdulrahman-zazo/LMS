@@ -23,6 +23,16 @@ const CoursessPage = () => {
   const token = cookieService.get("auth_token");
   return (
     <div>
+      <title>
+        {t("pages.Courses", { defaultValue: "H-Platform - الدورات" })}
+      </title>
+      <meta
+        name="description"
+        content={t("pages.Courses_description", {
+          defaultValue:
+            "H-Platform ليست مجرد منصة تعليمية، بل تجربة ذكية وملهمة تجمع بين التكنولوجيا المتقدمة وخبرة نخبة من المدرّسين لتقدّم لك تعلماً حقيقياً بقيمة عالية.",
+        })}
+      />
       <Suspense fallback={<Loaders />}>
         <HeroHeader
           ready={ready}

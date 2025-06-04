@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import {
@@ -19,6 +19,7 @@ export default function Registration() {
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [register, { isLoading }] = useRegisterMutation();
+  const navigate = useNavigate();
   const [forgetPassword, { isLoading: isLoadingResend }] =
     useForgetPasswordMutation();
   const [VerifyEmail, { isLoading: isLoadingVerifyEmail }] =
@@ -33,15 +34,14 @@ export default function Registration() {
     const phone = formData.get("phone") as string;
 
     if (typeof emailEntry !== "string" || typeof passwordEntry !== "string") {
-      toast.error("يرجى إدخال البريد وكلمة المرور بشكل صحيح");
+      toast.error(t("message.registration.error"));
       return;
     }
-
     const email = emailEntry;
     const password = passwordEntry;
     setEmail(email);
     setPassword(password);
-    const toastId = toast.loading("جاري تسجيل الدخول...");
+    const toastId = toast.loading(t("message.registration.loading"));
 
     try {
       const result = await register({ email, password, name, phone }).unwrap();
@@ -51,10 +51,7 @@ export default function Registration() {
           id: toastId,
         });
       }
-      toast.success(
-        ` تم إرسال رمز التحقق لبريدك الإلكتروني يرجى إدخاله في الحقل أدناه `,
-        { id: toastId }
-      );
+      toast.success(t("message.registration.send"), { id: toastId });
       setStep(2);
     } catch (err) {
       const error = err as { data?: { msg?: string } };
@@ -65,18 +62,18 @@ export default function Registration() {
     }
   };
   const handleVerifyEmail = async () => {
-    const toastId = toast.loading("جاري التحقق من الرمز المدخل...");
+    const toastId = toast.loading(t("message.registration.code"));
 
     try {
       const result = await VerifyEmail({ email, password, code }).unwrap();
-      if (result.authorization) {
-        toast.success("تم التسجيل بنجاح!", { id: toastId });
+      if (result.data.status) {
+        toast.success(t("message.registration.success"), { id: toastId });
         encryptToken(result.authorization.token);
-        // setTimeout(() => {
-        //   navigate(location.state?.from?.pathname || "/");
-        // }, 2000);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
-        toast.error(result.msg || "فشل تسجيل الدخول", {
+        toast.error(result.msg || t("message.registration.error_register"), {
           id: toastId,
         });
       }
@@ -88,11 +85,17 @@ export default function Registration() {
     }
   };
   const handleResendCode = async () => {
-    const toastId = toast.loading("جاري إرسال الرمز مرة أخرى...");
-
+    const toastId = toast.loading(t("message.registration.resend"));
     try {
-      await forgetPassword(email);
-      toast.success("تم إرسال الرمز مرة أخرى", { id: toastId });
+      const result = await forgetPassword(email);
+      console.log(result);
+      if (result.data.status) {
+        toast.success(t("message.registration.done_send"), { id: toastId });
+      } else {
+        toast.error(t("message.forget_message.error_code"), {
+          id: toastId,
+        });
+      }
     } catch (err) {
       const error = err as { data?: { msg?: string } };
 
@@ -113,6 +116,9 @@ export default function Registration() {
           },
         }}
       />
+      <title>
+        {t("pages.Register", { defaultValue: "H-Platform - إنشاء حساب" })}
+      </title>
 
       <div className="max-w-md w-full space-y-6 mt-10">
         <div className="text-center">

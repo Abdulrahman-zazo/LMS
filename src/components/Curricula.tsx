@@ -10,7 +10,7 @@ const Curricula = () => {
   const { t } = useTranslation("translation");
   const { data, isLoading, isError } = useGetAllCurriculumsQuery({});
 
-  const curricula = data?.data ?? [];
+  const curricula = data?.Curriculum ?? [];
   const initialCurriculum = curricula[0];
   const initialPivot = initialCurriculum?.pivot?.[0];
 
@@ -69,11 +69,12 @@ const Curricula = () => {
       setDisplayedSubjects([]);
     }
   };
+
   if (isLoading) return <SkeletonCustom type="card" />;
   if (isError) return <HandelError />;
 
   return (
-    <div className="bg-bg-purple py-6 sm:py-10" dir="rtl">
+    <div className="bg-bg-purple py-6 sm:py-10">
       <div className="container mx-auto p-6 max-w-[90%]">
         <p className="text-sm  sm:text-base text-text text-center sm:hidden">
           {t("curricula.select")}
@@ -94,22 +95,19 @@ const Curricula = () => {
                     src={
                       curricula.find(
                         (c: Curriculum) => c.id === selectedCurriculumId
-                      )?.image
-                        ? `${import.meta.env.VITE_BASE_URL}/${curricula.image}`
-                        : ""
+                      ).image
                     }
                     alt="Curriculum Icon"
-                    className="h-6 w-6 rounded-full object-cover"
+                    className="h-8 w-8 rounded-full object-cover"
                     onError={(e) => {
                       e.currentTarget.src = defaultCountry;
                     }}
-                    loading="lazy"
                   />
                 )}
               </div>
               <select
                 id="curriculum-select"
-                className="block bg-white w-full pl-12 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
+                className="block bg-white w-full pl-12 pr-10 py-3  text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
                 value={selectedCurriculumId || ""}
                 onChange={handleCurriculumChange}
               >
@@ -156,7 +154,7 @@ const Curricula = () => {
             <div className="relative rounded-md shadow-sm">
               <select
                 id="stage-select"
-                className="block bg-white w-full pl-3 pr-10 py-3 text-right text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
+                className="block bg-white w-full pl-3 pr-10 py-3  text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-base cursor-pointer appearance-none"
                 value={selectedStageId || ""}
                 onChange={handleStageChange}
                 disabled={!selectedCurriculumId || stages.length === 0}
@@ -222,7 +220,7 @@ const Curricula = () => {
                   </h3>
                   <button
                     title="curricula"
-                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-semibold text-sm  py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-medium text-sm  py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                   >
                     {t("curricula.button")}
                   </button>

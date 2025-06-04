@@ -38,7 +38,7 @@ const FaqSection = () => {
     : Array(5).fill({ question: "", answer: "" });
 
   return (
-    <div className="bg-bg-purple" dir="rtl">
+    <div className="bg-bg-purple">
       <ScrollToHash />
 
       <section id="faq">
@@ -61,7 +61,7 @@ const FaqSection = () => {
                   title="fqa btn-details"
                   onClick={() => ready && toggle(index)}
                   disabled={!ready}
-                  className="w-full text-right px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
+                  className="w-full px-4 py-4 flex items-center justify-between text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
                 >
                   {ready ? (
                     <>

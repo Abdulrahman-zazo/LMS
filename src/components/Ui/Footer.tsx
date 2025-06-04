@@ -1,15 +1,20 @@
 import { Facebook, Twitter, Youtube } from "react-feather";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
+import { changeLangAction } from "../../app/features/Language/LanguageSlice";
 
 const Footer = () => {
-  const { t } = useTranslation("translation");
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "ar" ? "en" : "ar";
+    dispatch(changeLangAction(newLang));
+  };
   return (
-    <footer
-      className="bg-primary text-white py-10 px-4 sm:px-16 text-sm"
-      dir="rtl"
-    >
+    <footer className="bg-primary text-white py-10 px-4 sm:px-16 text-sm">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* عمود: شعار ووصف */}
         <div>
@@ -48,7 +53,7 @@ const Footer = () => {
             {t("footer.aboutus")}
           </Link>
           <Link to="/about-us/#instructor" className="hover:text-bg-icon">
-            انضم إلينا
+            {t("userMenu.join")}
           </Link>
           <Link to="/courses" className="hover:text-bg-icon">
             {t("footer.courses")}
@@ -69,6 +74,12 @@ const Footer = () => {
           <Link to="/h-platform-privacy-policy" className="hover:text-bg-icon">
             {t("footer.privacy")}
           </Link>
+          <button
+            onClick={toggleLanguage}
+            className="hover:text-bg-icon underline mt-2 text-start"
+          >
+            {i18n.language === "ar" ? "English" : "العربية"}
+          </button>
         </div>
       </div>
 

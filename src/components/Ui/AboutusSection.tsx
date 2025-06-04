@@ -10,14 +10,14 @@ const AboutusSection = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <section dir="rtl">
+    <section>
       <link rel="preload" as="image" href={Image1} />
 
       <div className="max-w-[1440px] px-2 sm:px-6 py-8 sm:py-16 mx-auto">
-        <div className="mx-auto w-[90%] sm:w-[80%]">
-          <div className="flex flex-col md:flex-row justify-around mx-auto gap-14 items-center">
+        <div className="mx-auto w-[100%] sm:w-[80%]">
+          <div className="flex flex-col md:flex-row justify-around mx-auto sm:gap-14  items-center">
             {ready ? (
-              <div className="w-2/3 h-auto sm:w-1/2 mx-6">
+              <div className="w-[80%] h-auto sm:w-1/2 mx-6">
                 {[1, 2, 3].map((item) => {
                   const icon =
                     item === 1 ? Image2 : item === 2 ? Image3 : Image4;
@@ -26,7 +26,7 @@ const AboutusSection = () => {
                   return (
                     <div
                       key={item}
-                      className="flex flex-col items-center mb-4 md:items-start text-center md:text-right"
+                      className="flex flex-col items-center mb-4  sm:text-start sm:items-start   text-center  "
                     >
                       <img
                         src={icon}
@@ -49,7 +49,7 @@ const AboutusSection = () => {
                 {[1, 2, 3].map((_, i) => (
                   <div
                     key={i}
-                    className="flex flex-col items-center md:items-start text-center md:text-right space-y-2"
+                    className="flex flex-col items-center  text-center sm:text-start md:items-start   space-y-2"
                   >
                     <div className="bg-neutral-300 h-12 w-12 rounded-full"></div>
                     <div className="h-4 bg-neutral-300 w-2/3 rounded"></div>
@@ -60,7 +60,7 @@ const AboutusSection = () => {
               </div>
             )}
 
-            <div className="relative flex items-center justify-center mx-auto w-[350px] h-[400px]">
+            <div className="relative flex items-center justify-center mx-auto w-[250px] sm:w-[350px] h-[400px]">
               {!imageLoaded && (
                 <div className="absolute w-full h-full bg-neutral-200 rounded animate-pulse" />
               )}

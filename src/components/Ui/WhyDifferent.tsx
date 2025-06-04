@@ -7,21 +7,21 @@ const WhyDifferentSection = () => {
   const { t, ready } = useTranslation("translation");
 
   return (
-    <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-12">
+    <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-6 sm:py-12">
       {ready ? (
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-center mx-auto w-[90%]">
-            <div className=" text-right ">
+            <div className="  ">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-12 font-semibold sm:mb-4">
                 {t("why.why_we")}
-                <span className="text-primary">{t("why.Differenet")}</span>
+                <span className="text-primary mx-1">{t("why.Differenet")}</span>
               </h2>
-              <p className="text-paragraph text-sm sm:text-base">
+              <p className="text-paragraph text-sm  sm:text-base">
                 {t("why.subtitle")}
               </p>
             </div>
 
-            <div className="bg-bg-purple-light px-4 py-8 flex flex-col items-start rounded-xl text-right  hover:shadow-sm transition">
+            <div className="bg-bg-purple-light px-4 py-8 w-full h-full   flex flex-col items-start rounded-xl  hover:shadow-sm transition">
               <div>
                 <img
                   loading="lazy"
@@ -32,7 +32,7 @@ const WhyDifferentSection = () => {
                   alt="دعم فوري بلا انتظار"
                 />
               </div>
-              <h3 className="font-semibold text-sm sm:text-lg  my-2">
+              <h3 className="font-semibold text-base sm:text-lg  my-2">
                 {t("why.key3")}
               </h3>
               <p className="text-sm md:text-base text-paragraph">
@@ -40,7 +40,7 @@ const WhyDifferentSection = () => {
               </p>
             </div>
 
-            <div className="bg-bg-green-light px-4 py-8   flex flex-col items-start  rounded-xl text-right  hover:shadow-sm transition">
+            <div className="bg-bg-green-light px-4 py-8   w-full h-full  flex flex-col items-start  rounded-xl  hover:shadow-sm transition">
               <div>
                 <img
                   loading="lazy"
@@ -51,7 +51,7 @@ const WhyDifferentSection = () => {
                   alt="مدربون خبراء"
                 />
               </div>
-              <h3 className="font-semibold text-sm sm:text-lg  my-2">
+              <h3 className="font-semibold text-base sm:text-lg  my-2">
                 {t("why.key2")}
               </h3>
               <p className="text-sm md:text-base text-paragraph">
@@ -59,7 +59,7 @@ const WhyDifferentSection = () => {
               </p>
             </div>
 
-            <div className="bg-bg-beby-light px-4 py-8   flex flex-col items-start rounded-xl text-right  hover:shadow-sm transition">
+            <div className="bg-bg-beby-light px-4 py-8  w-full h-full  flex flex-col items-start rounded-xl  hover:shadow-sm transition">
               <div>
                 <img
                   loading="lazy"
@@ -71,7 +71,7 @@ const WhyDifferentSection = () => {
                 />
               </div>
 
-              <h3 className="font-semibold text-sm sm:text-lg  my-2">
+              <h3 className="font-semibold text-base sm:text-lg  my-2">
                 {t("why.key1")}
               </h3>
               <p className="text-sm md:text-base text-paragraph">
@@ -83,14 +83,14 @@ const WhyDifferentSection = () => {
       ) : (
         // skeleton
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto animate-pulse">
-          <div className="text-right">
+          <div className="">
             <div className="h-10 bg-gray-200 rounded mb-4 w-[80%]"></div>
             <div className="h-4 bg-gray-200 rounded w-[60%]"></div>
           </div>
           {Array.from({ length: 3 }).map((_, i) => (
             <div
               key={i}
-              className="bg-gray-100 px-4 py-8 flex flex-col items-start rounded-xl text-right"
+              className="bg-gray-100 px-4 py-8 flex flex-col items-start rounded-xl "
             >
               <div className="w-[50px] h-[50px] bg-gray-300 rounded mb-4"></div>
               <div className="h-4 bg-gray-200 rounded w-[70%] mb-2"></div>

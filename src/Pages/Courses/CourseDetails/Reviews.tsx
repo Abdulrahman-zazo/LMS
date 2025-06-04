@@ -26,13 +26,13 @@ interface ReviewsProps {
 
 export const Reviews = ({ comments, course_id }: ReviewsProps) => {
   const { t } = useTranslation("translation");
-
   const Authtoken: string = cookieService.get("auth_token") || "";
-
+  const shouldFetch = Boolean(Authtoken); // ما نعمل query إلا إذا التوكن موجود
   const [comment, setComment] = useState<string>("");
-
   const [showAllComments, setShowAllComments] = useState(false);
-  const { data: user } = useGetuserInformationQuery(Authtoken as string);
+  const { data: user } = useGetuserInformationQuery(Authtoken as string, {
+    skip: !shouldFetch,
+  });
   const [addComments, { isLoading: isloadingAddComment }] =
     useAddCommentsMutation();
   const [deleteComments, { isLoading: isloadingDeleteComment }] =
@@ -52,12 +52,10 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
         token: Authtoken,
       }).unwrap();
 
-      toast.success(
-        "تم إرسال تعليقك بنجاح! سيتم مراجعته من الإدارة ويظهر قريبًا."
-      );
+      toast.success(t("message.comments.add"));
       setComment("");
     } catch (err) {
-      toast.error("فشل إرسال التعليق");
+      toast.error(t("message.comments.error"));
       console.error(err);
     }
   };
@@ -68,9 +66,9 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
         comment_id: commentId,
         token: Authtoken,
       }).unwrap();
-      toast.success("تم حذف التعليق");
+      toast.success(t("message.comments.delete"));
     } catch (err) {
-      toast.error("فشل حذف التعليق");
+      toast.error(t("message.comments.error_delete"));
       console.error(err);
     }
   };
@@ -118,7 +116,7 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
                     {/* {getTimeAgo(comment.time)} */}
                   </p>
 
-                  {comment.user_id === user?.data.id && (
+                  {comment.user_id === user?.user.id && (
                     <button
                       type="button"
                       onClick={() => handleDeleteComment(comment.id)}

@@ -27,7 +27,18 @@ const HomePage = () => {
   const token = cookieService.get("auth_token");
 
   return (
-    <div lang="ar" dir="rtl">
+    <article>
+      <title>
+        {t("pages.Home", { defaultValue: "H-Platform - الصفحة الرئيسية" })}
+      </title>
+      <meta
+        name="description"
+        content={t("pages.Home_description", {
+          defaultValue:
+            "في عالم يتغير بسرعة، لم يعد التعلم وحده كافيًا بل يجب أن تتميّز. منصة H-Platform ليست مجرد أداة تعليمية؛ إنها الجسر الذي يربط بين أحلامك والواقع.",
+        })}
+      />
+
       <Suspense fallback={<Loaders />}>
         <HeroHome />
         <WhyDifferentSection />
@@ -50,7 +61,7 @@ const HomePage = () => {
         <FaqSection />
         {!token ? <GetStarted /> : <ComplaintsSections />}
       </Suspense>
-    </div>
+    </article>
   );
 };
 

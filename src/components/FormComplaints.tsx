@@ -41,7 +41,7 @@ const FormComplaints = () => {
         token,
       }).unwrap();
 
-      toast.success(" شكراً لك! ستقوم الإدارة بالرد قريباً .");
+      toast.success(t("message.Complaints.add"));
       setFormData({
         name: "",
         email: "",
@@ -50,16 +50,13 @@ const FormComplaints = () => {
         token: "",
       });
     } catch (error) {
-      toast.error(" فشل في إرسال الشكوى. حاول مرة أخرى.");
+      toast.error(t("message.Complaints.error"));
       console.error("Error sending complaint:", error);
     }
   };
 
   return (
-    <section
-      className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0"
-      dir="rtl"
-    >
+    <section className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0">
       <Toaster
         toastOptions={{
           className: "",

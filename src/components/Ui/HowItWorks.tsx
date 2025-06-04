@@ -48,7 +48,7 @@ const HowItWorksSection = () => {
     : Array(3).fill({});
 
   return (
-    <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16" dir="rtl">
+    <section className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16">
       {/* Title */}
       <h2 className="text-lg sm:text-xl lg:text-3xl font-semibold text-center mb-12">
         {ready ? (

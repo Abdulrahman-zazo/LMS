@@ -12,6 +12,7 @@ interface IcourseCard {
   name: string;
   description: string;
   image: string;
+  summary: string;
 }
 
 const CoursesComponent = ({ max }: IcourseMax) => {
@@ -27,10 +28,10 @@ const CoursesComponent = ({ max }: IcourseMax) => {
   }
 
   return (
-    <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 " dir="rtl">
+    <section className="bg-bg-purple  px-4 sm:px-8 py-8 sm:py-16 ">
       <div className=" mx-auto w-[90%] max-w-[1440px] ">
         {/* Header */}
-        <div className="text-right mb-4 sm:mb-10">
+        <div className=" mb-4 sm:mb-10">
           <h2 className=" text-2xl sm:text-2xl lg:text-4xl font-semibold sm:mb-4 leading-10 sm:leading-14">
             {t("Courses.title")}
             <br />
@@ -66,11 +67,12 @@ const CoursesComponent = ({ max }: IcourseMax) => {
         {/* Course Cards */}
 
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-0">
-          {data?.data.slice(0, max).map((course: IcourseCard) => {
-            const { description, id, name, image } = course;
+          {data?.courses.slice(0, max).map((course: IcourseCard) => {
+            const { description, id, name, image, summary } = course;
             return (
               <CourseCard
                 description={description}
+                summary={summary}
                 id={id}
                 title={name}
                 image={image}

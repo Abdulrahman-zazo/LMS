@@ -25,23 +25,23 @@ export default function Login() {
     const passwordEntry = formData.get("password") as string;
 
     if (typeof emailEntry !== "string" || typeof passwordEntry !== "string") {
-      toast.error("يرجى إدخال البريد وكلمة المرور بشكل صحيح");
+      toast.error(t("message.login_message.error"));
       return;
     }
     const email = emailEntry;
     const password = passwordEntry;
-    const toastId = toast.loading("جاري تسجيل الدخول...");
+    const toastId = toast.loading(t("message.login_message.loading"));
     try {
       const result = await login({ email, password }).unwrap();
 
       if (result.authorization) {
-        toast.success("تم التسجيل بنجاح!", { id: toastId });
+        toast.success(t("message.login_message.success"), { id: toastId });
         encryptToken(result.authorization.token);
         setTimeout(() => {
           navigate(location.state?.from?.pathname || "/");
         }, 2000);
       } else {
-        toast.error(result.msg || "فشل تسجيل الدخول", {
+        toast.error(result.msg || t("message.login_message.error_register"), {
           id: toastId,
         });
       }
@@ -53,10 +53,7 @@ export default function Login() {
     }
   };
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-white px-4"
-      dir="rtl"
-    >
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
       <Toaster
         toastOptions={{
           className: "",
@@ -67,6 +64,10 @@ export default function Login() {
           },
         }}
       />
+      <title>
+        {t("pages.login", { defaultValue: "H-Platform - تسجيل الدخول" })}
+      </title>
+
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
           <h2 className="text-xl  sm:text-2xl font-semibold text-text">
@@ -83,7 +84,7 @@ export default function Login() {
               const credential = credentialResponse.credential;
 
               if (!credential) return;
-              const toastId = toast.loading("جاري تسجيل الدخول...");
+              const toastId = toast.loading(t("message.login_message.loading"));
               const decoded = jwtDecode(credential) as {
                 email: string;
                 name: string;
@@ -91,21 +92,18 @@ export default function Login() {
                 picture?: string;
                 sub: string;
               };
-              // sub: string;
-              // picture: decoded.picture,
 
               try {
                 const result = await registerByGoogle({
                   email: decoded?.email,
                   name: decoded?.name,
-                  phone: decoded?.phone,
                   sub: decoded?.sub,
-                  picture: decoded?.picture,
+                  image: decoded?.picture,
                 }).unwrap();
 
-                console.log(result);
-
-                toast.success("تم التسجيل بنجاح!", { id: toastId });
+                toast.success(t("message.login_message.success"), {
+                  id: toastId,
+                });
                 encryptToken(result.authorization.token);
                 navigate(
                   location.state.from ? location.state.form.pathname : "/"
@@ -118,7 +116,7 @@ export default function Login() {
               }
             }}
             onError={() => {
-              toast.error("Google login failed");
+              toast.error(t("message.login_message.error_register"));
             }}
           />
         </div>

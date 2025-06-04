@@ -37,11 +37,21 @@
   }
 }
 :root {
-  font-family: "Alexandria", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* الخط الافتراضي */
+html[lang="ar"] {
+  font-family: "Alexandria", sans-serif;
+  direction: rtl;
+}
+
+html[lang="en"] {
+  font-family: "Inter", sans-serif;
+  direction: ltr;
 }
 @layer base {
   html,

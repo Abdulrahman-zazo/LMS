@@ -5,6 +5,7 @@ import {
   LOGIN,
   NEW_PASSWORD,
   REGISTER,
+  REGISTERBYGOOGLE,
   SEND_CODE,
   USER_INFO,
   USERVERIFYEMAIL,
@@ -21,7 +22,7 @@ interface IRegisterData {
   email: string;
   password?: string;
   sub?: string;
-  picture?: string;
+  image?: string;
 }
 
 interface IUserVerifyEmail {
@@ -65,10 +66,10 @@ export const userApi = createApi({
       invalidatesTags: ["auth"],
     }),
     registerByGoogle: builder.mutation({
-      query: ({ email, name, phone, picture, sub }: IRegisterData) => ({
-        url: REGISTER,
+      query: ({ email, name, phone, image, sub }: IRegisterData) => ({
+        url: REGISTERBYGOOGLE,
         method: "POST",
-        body: { email, name, phone, image: picture, sub },
+        body: { email, name, phone, image, sub },
       }),
       invalidatesTags: ["auth"],
     }),

@@ -56,7 +56,7 @@ export const HeroHeader: React.FC<HeroHeaderProps> = ({
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 text-center" dir="rtl">
+      <div className="relative z-10 text-center">
         {ready ? (
           <>
             <motion.h1

@@ -5,13 +5,15 @@ import { router } from "./Routes";
 
 // import { useAppSelector } from "./app/store";
 import OfflineAlert from "./components/Ui/Offline";
+import { useAppSelector } from "./app/store";
 
 function App() {
   // const dispatch = useAppDispatch();
-  // const language = useAppSelector((state) => state.language);
+  const { lang } = useAppSelector((state) => state.language);
 
   return (
-    <div dir="rtl">
+    <div dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
+      <title>H-Platform</title>
       <OfflineAlert />
       <RouterProvider router={router} />
     </div>

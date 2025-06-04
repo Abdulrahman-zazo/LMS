@@ -12,20 +12,19 @@ import ImageHome from "../../assets/home.webp";
 import { useTranslation } from "react-i18next";
 
 const HeroHome = () => {
-  const { t, ready } = useTranslation("translation");
-
+  const { t, ready, i18n } = useTranslation("translation");
+  const isRTL = i18n.language === "ar";
   return (
     <div>
-      <div
-        className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden w-[90%] max-w-[1240px] mx-auto mt-20 sm:mt-28 mb-2 sm:mb-8"
-        dir="rtl"
-      >
+      <div className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden w-[90%] max-w-[1240px] mx-auto mt-20 sm:mt-28 mb-2 sm:mb-8">
         <link rel="preload" as="image" href={ImageHome} />
         {/* Background Icons */}
         {!ready ? null : (
           <>
             <motion.div
-              className="absolute -left-8 bottom-8 opacity-20 min-[500px]:hidden"
+              className={`absolute ${
+                !isRTL ? "-left-8" : "-right-8"
+              } bottom-8 opacity-20 min-[500px]:hidden`}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 0.2 }}
               transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -33,7 +32,9 @@ const HeroHome = () => {
               <IconBook className="w-14 h-14 md:w-28 md:h-28 text-bg-icon transform -rotate-4" />
             </motion.div>
             <motion.div
-              className="absolute right-8 top-10 opacity-20 min-[500px]:hidden"
+              className={`absolute   ${
+                isRTL ? "left-8" : "right-8"
+              }  top-10 opacity-20 min-[500px]:hidden`}
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 0.2 }}
               transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
@@ -60,7 +61,7 @@ const HeroHome = () => {
         )}
 
         {/* Main Content */}
-        <div className="flex flex-col gap-6 md:gap-2 md:flex-row justify-around text-center md:text-right items-center mx-auto">
+        <div className="flex flex-col gap-6 md:gap-2 md:flex-row justify-around text-center sm:text-start items-center mx-auto">
           {/* Text Side */}
           <div className="relative z-10">
             {ready ? (
@@ -114,11 +115,13 @@ const HeroHome = () => {
           </div>
 
           {/* Image + Floating Icons */}
-          <div className="max-[800px]:hidden">
+          <div className="max-[600px]:hidden">
             {ready ? (
               <>
                 <motion.div
-                  className="absolute left-[35%] bottom-20"
+                  className={`absolute ${
+                    !isRTL ? "right-24" : "left-[35%]"
+                  }  bottom-20`}
                   initial={{ scale: 1, opacity: 0.4 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.4, ease: "easeIn" }}
@@ -126,7 +129,9 @@ const HeroHome = () => {
                   <HomewithBack className="w-12 h-12 md:w-20 md:h-20 text-purple-300" />
                 </motion.div>
                 <motion.div
-                  className="absolute left-[35%] top-5 z-10"
+                  className={`absolute  ${
+                    !isRTL ? "right-16" : "left-[35%]"
+                  }  top-5 z-10`}
                   initial={{ scale: 0.5, opacity: 0.5 }}
                   animate={{
                     x: [0, 10, 0, -10, 0],
@@ -152,7 +157,9 @@ const HeroHome = () => {
                   className="mx-auto h-auto"
                 />
                 <motion.div
-                  className="absolute left-[12%] bottom-20"
+                  className={`absolute  ${
+                    !isRTL ? "right-[30%]" : "left-[12%]"
+                  }  bottom-20`}
                   initial={{ scale: 1, opacity: 0.4 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.4, ease: "easeIn" }}

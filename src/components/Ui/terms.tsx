@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 function Terms() {
   const { t } = useTranslation("translation");
   return (
-    <div className="w-5/6 m-auto my-10  text-right" dir="rtl">
+    <div className="w-5/6 m-auto my-10 ">
       <h1 className="sm:mb-6 text-center text-lg sm:text-2xl lg:text-3xl font-semibold  ">
         {t("term.title")}
       </h1>

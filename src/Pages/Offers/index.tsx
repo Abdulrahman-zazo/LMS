@@ -21,7 +21,15 @@ const OfferPage = () => {
 
   const token = cookieService.get("auth_token");
   return (
-    <div dir="rtl">
+    <div>
+      <title>{t("pages.offer", { defaultValue: "H-Platform - العروض" })}</title>
+      <meta
+        name="description"
+        content={t("pages.Home_description", {
+          defaultValue:
+            "  استفد من باقاتنا التعليمية المصممة بعناية لمساعدتك على تحقيق أهدافك بطريقة مرنة وبسعر أقل! اختر العرض الذي يناسب اهتماماتك وابدأ التعلم اليوم.",
+        })}
+      />
       <Suspense fallback={<Loaders />}>
         <HeroHeader
           ready={ready}

@@ -21,21 +21,12 @@ class CookiesService {
   set(name: string, value: string): void {
     cookies.set(name, value, {
       path: "/",
-      sameSite: "strict",
-      // secure: process.env.NODE_ENV === "production",
+      sameSite: "strict", // لا تُرسل الكوكيز في طلبات cross-site
+      // secure: true,
+      // httpOnly: true,  // هذا لا يعمل من client-side، يجب تعيينه من السيرفر
+      // expires: new Date(Date.now() + 60 * 60 * 1000), // ساعة مثلًا
     });
   }
-  // Set cookie with options
-  // set(name: string, value: string, options?: CookieSetOptions): void {
-  //   const defaultOptions = {
-  //     path: "/",
-  //     // secure: process.env.NODE_ENV === 'production',
-  //     sameSite: "strict" as const,
-  //     ...options,
-  //   };
-
-  //   cookies.set(name, value, defaultOptions);
-  // }
 
   // Remove cookie
   remove(name: string): void {

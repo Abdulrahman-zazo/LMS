@@ -30,25 +30,25 @@ const Offers = () => {
   }
 
   return (
-    <div className="bg-white " dir="rtl">
+    <div className="bg-white ">
       <section>
         <div className="max-w-[100%] sm:max-w-[90%]  mx-auto px-4 sm:px-6 py-16">
-          {data?.data.length > 0 && (
+          {data?.Offers.length > 0 && (
             <h2 className="text-xl sm:text-2xl text-text font-semibold text-center mb-10">
               {t("offer.title")}
             </h2>
           )}
 
           <div className="space-y-4">
-            {data?.data.length > 0 ? (
-              data?.data.map((offer: IOffer, index: number) => (
+            {data?.Offers.length > 0 ? (
+              data?.Offers.map((offer: IOffer, index: number) => (
                 <div
                   key={offer.id}
                   className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:border  hover:border-paragraph/50  "
                 >
                   <div
                     onClick={() => toggle(index)}
-                    className="w-full text-right flex justify-between items-center px-4 py-4 text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
+                    className="w-full  flex justify-between items-center px-4 py-4 text-sm sm:text-base font-medium cursor-pointer text-text hover:bg-bg-purple transition"
                   >
                     <div className="">
                       <h3 className="text-base sm:text-lg font-semibold my-2">
@@ -60,7 +60,7 @@ const Offers = () => {
                     </div>
                     <button
                       title="offer button"
-                      className="text-white bg-primary px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px]  text-sm sm:text-base"
+                      className="text-white hidden sm:inline bg-primary px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px]  text-sm sm:text-base"
                     >
                       {t("offer.button")}
                     </button>
@@ -76,28 +76,36 @@ const Offers = () => {
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        {offer.courses.length > 0 && (
+                        {offer?.courses.length > 0 && (
                           <div className="px-4 pb-4 text-sm sm:text-base text-paragraph leading-relaxed">
                             <p className="mx-2 my-4 text-paragraph/80 text-sm sm:text-base">
                               {t("offer.lable")}
                             </p>
-                            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4 sm:mb-8">
                               {offer?.courses.map((course) => (
                                 <div
                                   key={course.id}
-                                  className="pt-8 border border-neutral-300 rounded-xl"
+                                  className=" mt-4 sm:mt-8 border border-neutral-300 rounded-xl"
                                 >
                                   <CourseCard
+                                    summary={course.summary}
                                     description={course.description}
                                     id={course.id}
                                     image={course.image}
                                     title={course.name}
                                     key={course.id}
                                     link="/protected/offers/courses"
+                                    btnType="link"
                                   />
                                 </div>
                               ))}
                             </div>
+                            <button
+                              title="offer button"
+                              className="text-white inline  w-full sm:hidden bg-primary px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px]  text-sm sm:text-base"
+                            >
+                              {t("offer.button")}
+                            </button>
                           </div>
                         )}
                       </motion.div>

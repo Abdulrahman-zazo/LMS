@@ -14,7 +14,11 @@ const Header = () => {
   const { ref, inView } = useInView({ threshold: 0 });
   const { t, ready } = useTranslation("translation");
   const token = cookieService.get("auth_token");
-  const { data, isLoading } = useGetuserInformationQuery(token as string);
+  const shouldFetch = Boolean(token);
+
+  const { data, isLoading } = useGetuserInformationQuery(token as string, {
+    skip: !shouldFetch,
+  });
 
   const Navigate = useNavigate();
   return (
@@ -24,7 +28,6 @@ const Header = () => {
         className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ease-in-out  px-4 sm:px-8 py-4
         ${!inView ? "bg-white shadow-sm  rounded-b-xl" : "bg-white  "}
         `}
-        dir="rtl"
       >
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-0 sm:px-8">
           {/* Logo */}
@@ -123,9 +126,9 @@ const Header = () => {
           ) : (
             <div className="hidden lg:inline">
               <UserMenu
-                name={data?.data.name}
-                email={data?.data.email}
-                avatar={data?.data.image}
+                name={data?.user.name}
+                email={data?.user.email}
+                avatar={data?.user.image}
               />
             </div>
           )}
@@ -146,9 +149,9 @@ const Header = () => {
               <div>
                 {token && (
                   <UserMenu
-                    name={data?.data.name}
-                    email={data?.data.email}
-                    avatar={data?.data.image}
+                    name={data?.user.name}
+                    email={data?.user.email}
+                    avatar={data?.user.image}
                   />
                 )}
               </div>
