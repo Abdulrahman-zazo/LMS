@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { decryptToken } from "../../../Cookies/CryptoServices/crypto";
 import {
+  CHANGE_IMAGE,
   CHANGE_PASSWORD,
   LOGIN,
   NEW_PASSWORD,
@@ -31,10 +32,13 @@ interface IUserVerifyEmail {
   password: string;
   newpassword?: string;
 }
-interface IUserImage {
-  image: File;
+interface INewPassword {
+  email: string;
+  password: string;
+  newpassword?: string;
   token: string;
 }
+
 export const userApi = createApi({
   reducerPath: "auth",
   tagTypes: ["auth"],
@@ -98,22 +102,32 @@ export const userApi = createApi({
       invalidatesTags: ["auth"],
     }),
     changeMypassword: builder.mutation({
-      query: ({ email, password, newpassword }: IUserVerifyEmail) => ({
+      query: ({ email, password, newpassword, token }: INewPassword) => ({
         url: CHANGE_PASSWORD,
         method: "POST",
         body: { email, password, newpassword },
+        headers: {
+          Authorization: `Bearer ${decryptToken(token)}`,
+          // ملاحظة: لا تضف Content-Type يدوياً
+        },
       }),
       invalidatesTags: ["auth"],
     }),
-    ChanfeImage: builder.mutation({
-      query: ({ image, token }: IUserImage) => ({
-        url: CHANGE_PASSWORD,
-        method: "POST",
-        body: { image },
-        headers: {
-          Authorization: `Bearer ${decryptToken(token)}`,
-        },
-      }),
+    ChangeImage: builder.mutation({
+      query: ({ image, token }) => {
+        const formData = new FormData();
+        formData.append("image", image); // اسم الحقل يجب أن يتطابق مع الـ backend
+
+        return {
+          url: CHANGE_IMAGE,
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${decryptToken(token)}`,
+            // ملاحظة: لا تضف Content-Type يدوياً
+          },
+        };
+      },
       invalidatesTags: ["auth"],
     }),
   }),
@@ -122,7 +136,7 @@ export const userApi = createApi({
 export const {
   useLoginMutation,
   useGetuserInformationQuery,
-  useChanfeImageMutation,
+  useChangeImageMutation,
   useChangeMypasswordMutation, // change old password
   useChangePasswordMutation, // forget password
   useForgetPasswordMutation, // send code

@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { LogOut } from "react-feather";
 import { LogoutHandler } from "./LogoutHandler";
+import { useDispatch } from "react-redux";
+import { openModal } from "../app/features/settings/settingsModalSlice";
 
 interface User {
   name: string;
@@ -12,8 +14,9 @@ interface User {
 
 const UserMenu = ({ name, avatar, email }: User) => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation("translation");
 
+  const { t } = useTranslation("translation");
+  const dispatch = useDispatch();
   return (
     <div
       className="relative inline-block text-left "
@@ -55,7 +58,10 @@ const UserMenu = ({ name, avatar, email }: User) => {
 
             <li
               className="px-4 py-2 hover:bg-gray-100 w-full cursor-pointer text-xs  sm:text-sm"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                dispatch(openModal(avatar));
+              }}
             >
               {t("userMenu.settings")}
             </li>

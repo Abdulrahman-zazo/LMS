@@ -10,7 +10,7 @@ export const USERVERIFYEMAIL = "/api/UserVerifyEmail";
 
 /* --------------Profile---------------- */
 export const CHANGE_IMAGE = "/api/ChangeImage";
-export const CHANGE_PASSWORD = "/api/api/ChangePassword";
+export const CHANGE_PASSWORD = "/api/ChangePassword";
 export const USER_INFO = "/api/UserInformation";
 
 /* --------------Courses---------------- */

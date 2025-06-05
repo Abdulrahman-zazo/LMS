@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReduser from "./features/User/userSlice";
 import langReducer from "./features/Language/LanguageSlice";
+import settingsModalReducer from "./features/settings/settingsModalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { userApi } from "./features/User/userApi";
 import { CoursesApi } from "./features/Courses/CoursesApi";
@@ -13,6 +14,7 @@ export const store = configureStore({
     user: userReduser,
     // uiSlice: uiReduser,
     language: langReducer,
+    settingsModal: settingsModalReducer,
     [userApi.reducerPath]: userApi.reducer,
     [CoursesApi.reducerPath]: CoursesApi.reducer,
     [CurriculumsApi.reducerPath]: CurriculumsApi.reducer,
