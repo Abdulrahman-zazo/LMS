@@ -64,7 +64,7 @@ const AboutusSection = () => {
               </div>
             )}
 
-            <div className="relative hidden sm:flex items-center justify-center mx-auto w-[250px] sm:w-[400px] h-[400px]">
+            <div className="relative hidden sm:flex items-center justify-center mx-auto w-[250px] sm:w-[400px] h-[450px]">
               {!imageLoaded && (
                 <div className="absolute w-full h-full bg-neutral-200 rounded animate-pulse" />
               )}
@@ -73,7 +73,7 @@ const AboutusSection = () => {
                 src={Image1}
                 alt="About us"
                 onLoad={() => setImageLoaded(true)}
-                className={`w-[350px] h-auto object-cover rounded-2xl overflow-hidden transition-opacity duration-500 ${
+                className={`w-[350px] h-[450px] object-cover rounded-2xl overflow-hidden transition-opacity duration-500 ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />

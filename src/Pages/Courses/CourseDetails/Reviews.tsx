@@ -97,7 +97,13 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
           </button>
         </div>
       )}
-      <div className="space-y-6">
+
+      {displayedComments.length === 0 && (
+        <div className="flex justify-center text-sm text-neutral-500/50 p-2">
+          <span>{t("Courses_card.noComment")}</span>
+        </div>
+      )}
+      <div className="space-y-4">
         {displayedComments.map((comment: IComments) => (
           <div key={comment.id} className="flex space-x-4">
             <img
@@ -116,7 +122,7 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
                     {/* {getTimeAgo(comment.time)} */}
                   </p>
 
-                  {comment.user_id === user?.user.id && (
+                  {comment.user_id === user.user?.user.id && (
                     <button
                       type="button"
                       onClick={() => handleDeleteComment(comment.id)}
@@ -145,7 +151,7 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
           {/* من معلومات اليوزر  */}
           <img
             className="h-10 w-10 object-cover rounded-full"
-            src={user?.data.image} // Placeholder for current user's avatar
+            src={user?.user.image} // Placeholder for current user's avatar
             alt="Your avatar"
           />
           <form onSubmit={handleSubmit} className="flex-1">

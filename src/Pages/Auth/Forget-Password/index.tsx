@@ -12,7 +12,7 @@ import { encryptToken } from "../../../Cookies/CryptoServices/crypto";
 export default function ForgetPassword() {
   const { t } = useTranslation("translation");
   const navigate = useNavigate();
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2>(1);
   const [email, setEmail] = useState<string>("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,6 @@ export default function ForgetPassword() {
 
       try {
         const result = await forgetPassword(email);
-
         if (result.data.status === true) {
           toast.success(t("message.forget_message.send"), { id: toastId });
           setTimeout(() => {
@@ -45,11 +44,8 @@ export default function ForgetPassword() {
           id: toastId,
         });
       }
-    } else if (step === 2 && code) {
-      setStep(3);
-    } else if (step === 3 && password && password === confirmPassword) {
+    } else if (step === 2) {
       const toastId = toast.loading(t("message.forget_message.code"));
-
       try {
         const result = await changePassword({ email, code, password });
 
@@ -69,6 +65,8 @@ export default function ForgetPassword() {
           id: toastId,
         });
       }
+    } else {
+      setStep(1);
     }
   };
 
@@ -84,15 +82,15 @@ export default function ForgetPassword() {
           },
         }}
       />
-      <div className="max-w-md w-full space-y-6">
+      <div className="max-w-md w-full space-y-4 mt-8">
         <div className="text-center">
           <h2 className="text-xl  sm:text-2xl font-semibold text-text">
             {t("auth.forget_password.forget_title")}
           </h2>
           <p className="text-sm sm:text-base text-neutral-500 mt-2">
             {step === 1 && t("auth.forget_password.forget_text")}
-            {step === 2 && t("auth.forget_password.code")}
-            {step === 3 && t("auth.forget_password.new_password_text")}
+            {/* {step === 2 && t("auth.forget_password.code")} */}
+            {step === 2 && t("auth.forget_password.new_password_text")}
           </p>
         </div>
 
@@ -113,22 +111,19 @@ export default function ForgetPassword() {
           )}
 
           {step === 2 && (
-            <div>
-              <label className="text-sm sm:text-base font-medium text-gray-700 block mb-2">
-                {t("auth.forget_password.Verification")}
-              </label>
-              <input
-                type="text"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Enter the 6-digit code"
-              />
-            </div>
-          )}
-
-          {step === 3 && (
             <>
+              <div>
+                <label className="text-sm sm:text-base font-medium text-gray-700 block mb-2">
+                  {t("auth.forget_password.Verification")}
+                </label>
+                <input
+                  type="text"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Enter the 6-digit code"
+                />
+              </div>
               <div>
                 <label className="text-sm sm:text-base font-medium text-gray-700 block mb-2">
                   {t("auth.forget_password.new_password")}
@@ -163,7 +158,7 @@ export default function ForgetPassword() {
             onClick={handleNext}
             className="w-full bg-primary text-sm sm:text-base text-white py-2 rounded-md  hover:bg-primary-dark transition"
           >
-            {step === 3 ? (
+            {step === 2 ? (
               isLoadingChange ? (
                 <span className=" flex justify-center ">
                   <Loader
@@ -186,17 +181,32 @@ export default function ForgetPassword() {
             )}
           </button>
         </form>
+        {step === 2 && (
+          <div className="space-y-2">
+            <p
+              className="text-sm sm:text-base text-center text-primary mx-1 cursor-pointer hover:text-primary/80 underline "
+              onClick={() => {
+                setStep(1);
+                setEmail("");
+              }}
+            >
+              {t("auth.forget_password.resend")}
+            </p>
+          </div>
+        )}
 
         {step < 3 && (
-          <p className="text-sm sm:text-base text-center text-gray-600">
-            {t("auth.forget_password.Remembered")}
-            <Link
-              to="/auth/login"
-              className="text-primary mx-1  hover:underline"
-            >
-              {t("auth.forget_password.Login")}
-            </Link>
-          </p>
+          <div className="space-y-2">
+            <p className="text-sm sm:text-base text-center text-gray-600">
+              {t("auth.forget_password.Remembered")}
+              <Link
+                to="/auth/login"
+                className="text-primary mx-1  hover:underline"
+              >
+                {t("auth.forget_password.Login")}
+              </Link>
+            </p>
+          </div>
         )}
       </div>
     </div>

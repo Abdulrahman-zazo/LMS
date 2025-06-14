@@ -52,7 +52,7 @@ const HeroWorldMap = () => {
             <img
               src={ImageMap}
               alt="World Map"
-              className="absolute  w-full  h-auto  object-cover opacity-40 z-0"
+              className="absolute  w-full  h-full  object-cover opacity-40 z-0"
             />
 
             <motion.div
@@ -75,7 +75,7 @@ const HeroWorldMap = () => {
               transition={{ duration: 0.9, delay: 0.8, ease: "circOut" }}
               className="absolute top-[60%] left-[15%] md:top-[55%] md:left-[15%] z-20 flex items-center"
             >
-              <img src={Imagepin4} alt="a" width={100} className="h-auto" />
+              <img src={Imagepin4} alt="a" width={100} className="h-full" />
             </motion.div>
 
             <motion.div
@@ -84,7 +84,7 @@ const HeroWorldMap = () => {
               transition={{ duration: 0.9, delay: 0.9, ease: "circOut" }}
               className="absolute top-[40%] left-[25%] md:top-[35%] md:left-[30%] z-20 flex items-center"
             >
-              <img src={Imagepin5} alt="a" width={100} className="h-auto" />
+              <img src={Imagepin5} alt="a" width={100} className="h-full" />
             </motion.div>
 
             <motion.div
@@ -93,7 +93,7 @@ const HeroWorldMap = () => {
               transition={{ duration: 0.9, delay: 1, ease: "circOut" }}
               className="absolute top-[10%] left-[48%] md:top-[10%] md:left-[45%] transform -translate-x-1/2 z-20 flex items-center"
             >
-              <img src={Imagepin1} alt="a" width={120} className="h-auto" />
+              <img src={Imagepin1} alt="a" width={120} className="h-full" />
             </motion.div>
 
             <motion.div
@@ -102,7 +102,7 @@ const HeroWorldMap = () => {
               transition={{ duration: 0.9, delay: 1.1, ease: "circOut" }}
               className="absolute top-[40%] right-[25%] md:top-[35%] md:right-[30%] z-20 flex items-center"
             >
-              <img src={Imagepin3} alt="a" width={100} className="h-auto" />
+              <img src={Imagepin3} alt="a" width={100} className="h-full" />
             </motion.div>
 
             <motion.div
@@ -111,7 +111,7 @@ const HeroWorldMap = () => {
               transition={{ duration: 0.9, delay: 1.2, ease: "circOut" }}
               className="absolute top-[60%] right-[15%] md:top-[55%] md:right-[20%] z-20 flex items-center  "
             >
-              <img src={Imagepin2} alt="a" width={100} className="h-auto" />
+              <img src={Imagepin2} alt="a" width={100} className="h-full" />
             </motion.div>
           </div>
         </div>

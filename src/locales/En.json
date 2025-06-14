@@ -62,7 +62,8 @@
       "send": "Send",
       "add_comments": "Add Comment",
       "showless": "Show Less",
-      "showAll": "Show More"
+      "showAll": "Show More",
+      "noComment": "No comment yet .. "
     },
     "FAQ": {
       "title": "Frequently Asked Questions",

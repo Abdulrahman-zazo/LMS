@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 import {
   useForgetPasswordMutation,
   useRegisterMutation,
@@ -46,13 +46,14 @@ export default function Registration() {
     try {
       const result = await register({ email, password, name, phone }).unwrap();
 
-      if (!result.data && result.status === false) {
+      if (result.status === true) {
+        toast.success(t("message.registration.send"), { id: toastId });
+        setStep(2);
+      } else {
         return toast.error(`${result.msg}`, {
           id: toastId,
         });
       }
-      toast.success(t("message.registration.send"), { id: toastId });
-      setStep(2);
     } catch (err) {
       const error = err as { data?: { msg?: string } };
 
@@ -66,14 +67,14 @@ export default function Registration() {
 
     try {
       const result = await VerifyEmail({ email, password, code }).unwrap();
-      if (result.data.status) {
+      if (result.status) {
         toast.success(t("message.registration.success"), { id: toastId });
         encryptToken(result.authorization.token);
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 1000);
       } else {
-        toast.error(result.msg || t("message.registration.error_register"), {
+        toast.error("الكود الذي أدخلته غير صالح", {
           id: toastId,
         });
       }
@@ -160,15 +161,17 @@ export default function Registration() {
                 {t("auth.create_account.phone")}
               </label>
 
-              <div dir="ltr">
+              <div className="w-full" dir="ltr">
                 <PhoneInput
-                  inputClass="!w-full !text-sm sm:text-base"
-                  containerClass="!w-full"
-                  inputProps={{
-                    name: "phone",
-                    required: true,
-                    autoFocus: true,
-                  }}
+                  defaultCountry="sy"
+                  name="phone"
+                  inputStyle={{ width: "100%" }}
+                  flags={[
+                    {
+                      iso2: "sy",
+                      src: "../../../../public/syria-flag.svg",
+                    },
+                  ]}
                 />
               </div>
             </div>

@@ -112,7 +112,7 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
               {title}
             </motion.h1>
             <motion.p
-              className="text-sm leading-6 text-center  sm:text-base mb-8 max-w-2xl"
+              className="text-sm leading-6 text-center sm:text-start sm:text-base mb-8 max-w-2xl"
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >

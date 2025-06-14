@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Reviews } from "./Reviews"; // Assuming you'll create this component
 import { useParams } from "react-router-dom";
 import { HeaderCourse } from "../../../components/HederCourse";
-import ImageCourse from "../../../assets/4039100_2cfe_3.png";
 import { CourseInfo } from "./CourseInfo";
 import ComplaintsSections from "../../../components/Ui/Complaints";
 import { useGetCourseByIdQuery } from "../../../app/features/Courses/CoursesApi";
@@ -37,13 +36,12 @@ const CoursePage = () => {
       <div className="flex justify-center my-8">
         {/* Main content area */}
         <div className="bg-white rounded-lg overflow-hidden  sm:w-[90%] lg:flex">
-          {/* Left Section (Image and Course Description) */}
           <div className="lg:w-1/2 p-6">
             <img
               loading="lazy"
-              src={ImageCourse} // Replace with your actual image path
+              src={data.course?.image}
               alt="Boy learning web development"
-              className="w-full h-auto object-cover rounded-md mb-2"
+              className="w-full h-[300px] object-cover rounded-md mb-2"
             />
 
             {/* Tab Navigation */}

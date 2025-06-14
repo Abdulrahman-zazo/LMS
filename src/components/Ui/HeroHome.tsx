@@ -11,13 +11,14 @@ import {
 const ImageHome =
   "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898317/home_as9ple.webp";
 import { useTranslation } from "react-i18next";
+import ImageWithSkeleton from "./ImageHome";
 
 const HeroHome = () => {
   const { t, ready, i18n } = useTranslation("translation");
   const isRTL = i18n.language === "ar";
   return (
     <div>
-      <div className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden w-[90%] max-w-[1240px] mx-auto mt-20 sm:mt-28 mb-2 sm:mb-8">
+      <div className="bg-primary py-12 px-8 md:p-12 rounded-3xl shadow-xl text-white relative overflow-hidden w-[90%] max-w-[1240px] mx-auto mt-20 sm:mt-24 mb-2 sm:mb-8">
         <link rel="preload" as="image" href={ImageHome} />
         {/* Background Icons */}
         {!ready ? null : (
@@ -147,7 +148,7 @@ const HeroHome = () => {
                 >
                   <Certifications className="w-12 h-12 md:w-32 md:h-32 text-purple-300" />
                 </motion.div>
-                <motion.img
+                {/* <motion.img
                   loading="eager"
                   src={ImageHome}
                   alt="h-platform home"
@@ -155,8 +156,9 @@ const HeroHome = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 1 }}
-                  className="mx-auto h-auto"
-                />
+                  className="mx-auto h-full"
+                /> */}
+                <ImageWithSkeleton src={ImageHome} alt="h-platform home" />
                 <motion.div
                   className={`absolute  ${
                     !isRTL ? "right-[30%]" : "left-[12%]"

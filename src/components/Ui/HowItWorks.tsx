@@ -79,11 +79,11 @@ const HowItWorksSection = () => {
                     loading="lazy"
                     src={image}
                     alt={title}
-                    className="h-56 w-auto mx-auto mb-6 object-contain"
+                    className="h-56 w-full mx-auto mb-6 object-contain"
                   />
                 ) : (
                   <>
-                    <div className="h-56 w-auto bg-neutral-200 rounded mb-6 animate-pulse" />
+                    <div className="h-56 w-full bg-neutral-200 rounded mb-6 animate-pulse" />
                     <img
                       src={image}
                       alt={title}
@@ -118,19 +118,18 @@ const HowItWorksSection = () => {
                   <div className="h-3 w-5/6 bg-neutral-200 rounded animate-pulse" />
                 </div>
               )}
+              <div className="">
+                {/* Button */}
 
-              {/* Button */}
-              {ready ? (
                 <button
                   onClick={() => Navigate("/auth/login")}
                   title={`HeroHome ${button}`}
-                  className="bg-primary w-full text-white text-sm sm:text-base px-5 py-4 my-4 rounded hover:bg-primary/80 transition"
+                  style={{ margin: 0 }}
+                  className=" bg-primary w-full  text-white text-sm sm:text-base px-5 py-2 rounded hover:bg-primary/80 transition"
                 >
                   {button}
                 </button>
-              ) : (
-                <div className="h-10 w-full bg-neutral-300 rounded animate-pulse my-4"></div>
-              )}
+              </div>
             </div>
           );
         })}
