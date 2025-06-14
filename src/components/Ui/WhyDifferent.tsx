@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
-import Image1 from "../../assets/Icon/Online Support.png";
-import Image2 from "../../assets/Icon/Popular Man.png";
-import Image3 from "../../assets/Icon/Puzzle.png";
+const Image3 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749856799/Puzzle_lnqqiy.png";
+const Image2 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749856799/Popular_Man_vjk9zy.png";
+const Image1 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749856799/Online_Support_txel1z.png";
 
 const WhyDifferentSection = () => {
   const { t, ready } = useTranslation("translation");

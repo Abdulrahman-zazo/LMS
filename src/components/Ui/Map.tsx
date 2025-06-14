@@ -1,10 +1,16 @@
 import { motion } from "framer-motion";
-import Imagepin1 from "../../assets/Icon/pin01.png";
-import Imagepin2 from "../../assets/Icon/pin02.png";
-import Imagepin3 from "../../assets/Icon/pin03.png";
-import Imagepin4 from "../../assets/Icon/pin04.png";
-import Imagepin5 from "../../assets/Icon/pin05.png";
-import ImageMap from "../../assets/map.webp";
+const Imagepin1 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899635/pin01_tyi7pr.png";
+const Imagepin2 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899636/pin02_nfhujq.png";
+const Imagepin3 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899637/pin03_cc5v1n.png";
+const Imagepin4 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899639/pin04_ro4sw0.png";
+const Imagepin5 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899640/pin05_ko7maa.png";
+const ImageMap =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898319/map_xsfk1d.webp";
 import Logo from "./Logo";
 import { useTranslation } from "react-i18next";
 

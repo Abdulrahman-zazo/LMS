@@ -1,9 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import Image1 from "../../assets/aboutus.webp";
-import Image2 from "../../assets/Icon/Message.png";
-import Image3 from "../../assets/Icon/Mission.png";
-import Image4 from "../../assets/Icon/Vision.png";
+const Image1 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899212/child-learning-new-information-from-digital-tablet_hzecdn.webp";
+const Image2 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899631/Message_k74jze.png";
+const Image3 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899632/Mission_kcfnql.png";
+const Image4 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749899641/Vision_siyeuf.png";
 
 const AboutusSection = () => {
   const { t, ready } = useTranslation("translation");
@@ -26,15 +30,15 @@ const AboutusSection = () => {
                   return (
                     <div
                       key={item}
-                      className="flex flex-col items-center mb-4  sm:text-start sm:items-start   text-center  "
+                      className="flex flex-col items-center mb-2  sm:text-start sm:items-start   text-center  "
                     >
                       <img
                         src={icon}
                         alt="Icon"
-                        className="h-12 w-12 my-2"
+                        className="h-10 w-10 my-1"
                         loading="lazy"
                       />
-                      <h3 className="font-semibold text-lg md:text-xl my-2 w-full">
+                      <h3 className="font-semibold text-lg md:text-lg my-1 w-full">
                         {title}
                       </h3>
                       <p className="text-sm text-paragraph md:text-base w-full">
@@ -60,7 +64,7 @@ const AboutusSection = () => {
               </div>
             )}
 
-            <div className="relative flex items-center justify-center mx-auto w-[250px] sm:w-[350px] h-[400px]">
+            <div className="relative hidden sm:flex items-center justify-center mx-auto w-[250px] sm:w-[400px] h-[400px]">
               {!imageLoaded && (
                 <div className="absolute w-full h-full bg-neutral-200 rounded animate-pulse" />
               )}
@@ -69,7 +73,7 @@ const AboutusSection = () => {
                 src={Image1}
                 alt="About us"
                 onLoad={() => setImageLoaded(true)}
-                className={`w-[350px] h-auto object-cover overflow-hidden transition-opacity duration-500 ${
+                className={`w-[350px] h-auto object-cover rounded-2xl overflow-hidden transition-opacity duration-500 ${
                   imageLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />

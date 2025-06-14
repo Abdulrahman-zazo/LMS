@@ -8,7 +8,8 @@ import {
   IconBeaker,
   IconMonitorChart,
 } from "../Icons";
-import ImageHome from "../../assets/home.webp";
+const ImageHome =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898317/home_as9ple.webp";
 import { useTranslation } from "react-i18next";
 
 const HeroHome = () => {

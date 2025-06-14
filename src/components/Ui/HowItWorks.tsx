@@ -1,7 +1,10 @@
 import { useState } from "react";
-import Image1 from "../../assets/login.png";
-import Image2 from "../../assets/search.png";
-import Image3 from "../../assets/connections.png";
+const Image1 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898784/search_xjyqbb.webp";
+const Image2 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898785/login_a1zfil.webp";
+const Image3 =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1749898786/connections_ey8amd.webp";
 
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
