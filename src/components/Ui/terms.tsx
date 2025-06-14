@@ -65,7 +65,11 @@ function Terms() {
           <ol className="list-disc  sm:m-4  text-sm md:text-base text-neutral-600 leading-5 sm:leading-6 ">
             <li>
               {t("term.contact_us")}{" "}
-              <a className="text-primary" href="https://www.veguscode.com">
+              <a
+                title="https://www.veguscode.com"
+                className="text-primary"
+                href="https://www.veguscode.com"
+              >
                 www.veguscode.com
               </a>
             </li>

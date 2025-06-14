@@ -75,6 +75,7 @@ const PrivacyComponent = () => {
             <li>
               {t("privacy.contact")}
               <a
+                title="privacy"
                 className="text-primary mx-2"
                 href="https://wa.me/+963958263253?text=مرحباً، لدي استفسار بخصوص سياسة الخصوصية"
               >

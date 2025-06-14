@@ -24,6 +24,7 @@ const ComplaintsSections = React.lazy(
 const HomePage = () => {
   const Navigate = useNavigate();
   const { t } = useTranslation("translation");
+
   const token = cookieService.get("auth_token");
 
   return (

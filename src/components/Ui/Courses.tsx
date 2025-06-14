@@ -43,7 +43,7 @@ const CoursesComponent = ({ max }: IcourseMax) => {
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-3 mb-6  sm:mb-10">
+        {/* <div className="flex flex-wrap gap-3 mb-6  sm:mb-10">
           <button
             title="All courses"
             className="bg-primary text-white px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-primary-dark"
@@ -62,7 +62,7 @@ const CoursesComponent = ({ max }: IcourseMax) => {
           >
             {t("Courses.button3")}
           </button>
-        </div>
+        </div> */}
 
         {/* Course Cards */}
 
@@ -83,9 +83,9 @@ const CoursesComponent = ({ max }: IcourseMax) => {
           })}
         </div>
 
-        {data?.length === 0 && (
+        {data?.courses.length === 0 && (
           <div className="flex justify-center py-12">
-            <p className="text-xs sm:text-sm text-neutral-500">
+            <p className="text-xs sm:text-base text-neutral-500">
               {t("Courses.Nocourse")}
             </p>
           </div>

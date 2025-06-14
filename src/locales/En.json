@@ -42,7 +42,8 @@
       "what_we_learn": "What You’ll Learn",
       "content_course": "Course Content",
       "requairment": "Course Requirements",
-      "button_free": "Book a Free Session Now"
+      "button_free": "Book a Free Session Now",
+      "noCourses": "There are no courses added currently, more will be added soon .."
     },
     "how-work": {
       "title": "How H-Platform Works",

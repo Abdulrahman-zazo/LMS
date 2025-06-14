@@ -26,12 +26,14 @@ const Footer = () => {
           </p>
           <div className="flex gap-4 text-white text-base">
             <a
+              title="H-platform on Facebook"
               href="/facebook"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
               <Facebook size={18} />
             </a>
             <a
+              title="H-platform on twitter"
               href="/twitter"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
@@ -39,6 +41,7 @@ const Footer = () => {
             </a>
 
             <a
+              title="H-platform on youtube"
               href="/youtube"
               className="bg-bg-icon p-2 rounded-full hover:text-primary"
             >
