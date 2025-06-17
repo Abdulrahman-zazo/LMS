@@ -208,7 +208,7 @@ const Curricula = () => {
                 <img
                   src={subject.image}
                   alt={subject.name}
-                  className="w-full object-cover  h-full"
+                  className="w-full object-cover  h-[200px]"
                   onError={(e) => {
                     e.currentTarget.src =
                       "https://placehold.co/100x60/F0F4F8/000000?text=N/A";
