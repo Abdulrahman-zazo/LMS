@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ADD_COMMINTS, DELETE_COMMINTS } from "../../../api/api";
+import { ADD_COMMINTS } from "../../../api/api";
 import { decryptToken } from "../../../Cookies/CryptoServices/crypto";
 
 export interface ICommentsdata {
@@ -29,19 +29,7 @@ export const CommentsApi = createApi({
       }),
       invalidatesTags: ["Comments"],
     }),
-    deleteComments: builder.mutation({
-      query: ({ comment_id, token }: IDeleteComment) => ({
-        url: DELETE_COMMINTS,
-        method: "POST",
-        body: { comment_id },
-        headers: {
-          Authorization: `Bearer ${decryptToken(token)}`,
-        },
-      }),
-      invalidatesTags: ["Comments"],
-    }),
   }),
 });
 
-export const { useDeleteCommentsMutation, useAddCommentsMutation } =
-  CommentsApi;
+export const { useAddCommentsMutation } = CommentsApi;

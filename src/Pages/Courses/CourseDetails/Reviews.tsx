@@ -1,24 +1,13 @@
-// src/components/Reviews.tsx
-// import { formatDistanceToNow } from "date-fns";
-// import { ar } from "date-fns/locale";
 import { useState } from "react";
 import type { IComments } from "../../../types";
 import { useTranslation } from "react-i18next";
 import { useGetuserInformationQuery } from "../../../app/features/User/userApi";
 import { cookieService } from "../../../Cookies/CookiesServices";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  useAddCommentsMutation,
-  useDeleteCommentsMutation,
-} from "../../../app/features/Comments/CommentsApi";
+import { useAddCommentsMutation } from "../../../app/features/Comments/CommentsApi";
 import { Loader } from "react-feather";
+import { useDeleteCommentsMutation } from "../../../app/features/Courses/CoursesApi";
 
-// const getTimeAgo = (dateString: string) => {
-//   return formatDistanceToNow(new Date(dateString), {
-//     addSuffix: true,
-//     locale: ar,
-//   });
-// };
 interface ReviewsProps {
   comments: IComments[];
   course_id: number;
@@ -33,6 +22,8 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
   const { data: user } = useGetuserInformationQuery(Authtoken as string, {
     skip: !shouldFetch,
   });
+  console.log(user);
+  console.log(comments);
   const [addComments, { isLoading: isloadingAddComment }] =
     useAddCommentsMutation();
   const [deleteComments, { isLoading: isloadingDeleteComment }] =
@@ -122,7 +113,7 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
                     {/* {getTimeAgo(comment.time)} */}
                   </p>
 
-                  {comment.user_id === user.user?.user.id && (
+                  {comment?.user_id === user?.user.id && (
                     <button
                       type="button"
                       onClick={() => handleDeleteComment(comment.id)}
