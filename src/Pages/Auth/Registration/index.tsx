@@ -222,6 +222,9 @@ export default function Registration() {
               className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
               placeholder="Enter the 6-digit code"
             />
+            <span className="text-xs text-neutral-800">
+              {t("auth.forget_password.code_ex")}
+            </span>
 
             <button
               title="login btn"

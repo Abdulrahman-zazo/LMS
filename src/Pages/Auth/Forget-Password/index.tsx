@@ -123,6 +123,9 @@ export default function ForgetPassword() {
                   className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="Enter the 6-digit code"
                 />
+                <span className="text-xs text-neutral-800">
+                  {t("auth.forget_password.code_ex")}
+                </span>
               </div>
               <div>
                 <label className="text-sm sm:text-base font-medium text-gray-700 block mb-2">
