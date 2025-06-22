@@ -33,7 +33,6 @@ interface IUserVerifyEmail {
   newpassword?: string;
 }
 interface INewPassword {
-  email: string;
   password: string;
   newpassword?: string;
   token: string;
@@ -102,10 +101,10 @@ export const userApi = createApi({
       invalidatesTags: ["auth"],
     }),
     changeMypassword: builder.mutation({
-      query: ({ email, password, newpassword, token }: INewPassword) => ({
+      query: ({ password, newpassword, token }: INewPassword) => ({
         url: CHANGE_PASSWORD,
         method: "POST",
-        body: { email, password, newpassword },
+        body: { password, newpassword },
         headers: {
           Authorization: `Bearer ${decryptToken(token)}`,
           // ملاحظة: لا تضف Content-Type يدوياً

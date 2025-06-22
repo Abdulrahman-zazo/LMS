@@ -6,8 +6,8 @@ import {
   useChangeImageMutation,
   useChangeMypasswordMutation,
 } from "../app/features/User/userApi";
-import toast from "react-hot-toast";
-import { Lock, User, X } from "react-feather";
+import toast, { Toaster } from "react-hot-toast";
+import { Loader, Lock, User, X } from "react-feather";
 
 interface Isetting {
   isOpen: boolean;
@@ -18,7 +18,6 @@ interface Isetting {
 const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
   const [activeTab, setActiveTab] = useState("profile");
   const [profileImage, setProfileImage] = useState<File | null>(null);
-  const [email, setEmail] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const { t } = useTranslation("translation");
@@ -29,9 +28,15 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
   const [changeMypassword, { isLoading: isloadingMypassword }] =
     useChangeMypasswordMutation();
 
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif"];
+
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("الرجاء اختيار صورة بصيغة: JPEG, PNG, JPG, أو GIF.");
+        return;
+      }
       setProfileImage(file);
     }
   };
@@ -42,14 +47,17 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
 
     try {
       const result = await ChangeImage({ token, image: profileImage }).unwrap();
-
-      if (result.status === true) {
+      console.log(result);
+      if (result.status) {
         toast.success(t("settings.messages.success1"), {
           id: toastId,
         });
+        onClose();
         setProfileImage(null);
       } else {
-        toast.error(result.message);
+        toast(result.msg, {
+          id: toastId,
+        });
       }
     } catch (err) {
       console.log(err);
@@ -65,23 +73,21 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
 
     try {
       const result = await changeMypassword({
-        email,
         password: oldPassword,
         newpassword: newPassword,
         token,
       }).unwrap();
-
-      if (result.status === true) {
+      console.log(result);
+      if (result?.status === true) {
         toast.success(t("settings.messages.success2"), { id: toastId });
-        setEmail("");
         setOldPassword("");
         setNewPassword("");
       } else {
-        toast.error(result.message);
+        toast.error(result.msg, { id: toastId });
       }
     } catch (err) {
-      const error = err as { data?: { msg?: string } };
-      toast.error(error.data?.msg || t("settings.messages.error2"));
+      const error = err as { data: { error: string } };
+      toast.error(error?.data.error, { id: toastId });
     }
   };
 
@@ -89,6 +95,7 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
+      <Toaster />
       <div className="bg-white w-[95%] max-w-md rounded-xl shadow-2xl relative p-6">
         <button
           onClick={onClose}
@@ -145,32 +152,29 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
                 className="hidden"
               />
             </label>
-            <div className="flex items-center   gap-4">
-              <button
-                onClick={submitImage}
-                disabled={isLoading}
-                className="bg-primary text-white  text-xs sm:text-sm px-4 py-1.5 rounded-md hover:bg-primary/80 transition"
-              >
-                {t("settings.save")}
-              </button>
-            </div>
+            <button
+              onClick={submitImage}
+              disabled={!profileImage || isLoading}
+              className={`bg-primary text-white text-xs sm:text-sm px-4 py-1.5 rounded-md transition
+    ${
+      !profileImage || isLoading
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:bg-primary/80 cursor-pointer"
+    }`}
+            >
+              {isLoading ? (
+                <div className="px-4 animate-spin animate-duration-1500 ">
+                  <Loader />
+                </div>
+              ) : (
+                t("settings.save")
+              )}
+            </button>
           </div>
         )}
 
         {activeTab === "password" && (
           <form onSubmit={handlePasswordChange} className="space-y-4 mt-2">
-            <div>
-              <label className=" text-xs sm:text-sm block mb-1">
-                {t("settings.email")}
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border border-neutral-300 rounded-md text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-                required
-              />
-            </div>
             <div>
               <label className="text-xs sm:text-sm block mb-1">
                 {t("settings.old_password")}
@@ -197,10 +201,20 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
             </div>
             <button
               type="submit"
-              disabled={isloadingMypassword}
-              className="bg-primary text-white text-xs sm:text-sm px-4 py-2 mt-1 rounded-md hover:bg-primary/80 transition w-full"
+              disabled={isloadingMypassword || !newPassword || !oldPassword}
+              className={`  ${
+                isloadingMypassword || !newPassword || !oldPassword
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-primary/80"
+              } bg-primary text-white text-xs sm:text-sm px-4 py-1.5 rounded-md transition mx-auto text-center w-full`}
             >
-              {t("settings.update")}
+              {isloadingMypassword ? (
+                <div className="px-4 animate-spin animate-duration-1500 ">
+                  <Loader className="mx-auto" />
+                </div>
+              ) : (
+                t("settings.update")
+              )}
             </button>
           </form>
         )}
