@@ -72,7 +72,7 @@ export default function Login() {
       <title>
         {t("pages.login", { defaultValue: "H-Platform - تسجيل الدخول" })}
       </title>
-
+      <meta property="og:title" content="H-Platform - تسجيل الدخول" />
       <div className="max-w-md w-full space-y-6">
         <div className="text-center">
           <h2 className="text-xl  sm:text-2xl font-semibold text-text">

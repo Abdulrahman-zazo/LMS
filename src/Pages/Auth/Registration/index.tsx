@@ -120,6 +120,7 @@ export default function Registration() {
       <title>
         {t("pages.Register", { defaultValue: "H-Platform - إنشاء حساب" })}
       </title>
+      <meta property="og:title" content="H-Platform - إنشاء حساب" />
 
       <div className="max-w-md w-full space-y-6 mt-10">
         <div className="text-center">

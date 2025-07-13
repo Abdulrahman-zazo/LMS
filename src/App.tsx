@@ -16,7 +16,6 @@ function App() {
   return (
     <div dir={lang === "ar" ? "rtl" : "ltr"} lang={lang}>
       <ContactContext.Provider value={data?.Contact[0] || {}}>
-        <title>H-Platform</title>
         <OfflineAlert />
         <RouterProvider router={router} />
         <FloatingButton lang={lang} />

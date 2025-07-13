@@ -27,6 +27,7 @@ const AboutPage = () => {
             "H-Platform مجتمع يقودك نحو التميز، ويمنحك الأدوات والمعرفة لتتقدّم بثقة في عالم سريع التغيّر نصنع تجربة تعلم رقمية متكاملة ترتقي بطموحك من الفكرة إلى الإنجاز.",
         })}
       />
+      <meta property="og:title" content="H-Platform - من نحن" />
       <Suspense fallback={<Loaders />}>
         <HeroHeader
           ready={ready}
