@@ -1,1 +1,0 @@
-import{n as e,r}from"./index-BIRCEoYC.js";const a=()=>{const o=e();return r.useLayoutEffect(()=>{const t=o.hash;if(t){const s=document.querySelector(t);s&&setTimeout(()=>{s.scrollIntoView({behavior:"smooth",block:"start"})},100)}},[o]),null};export{a as S};
