@@ -19,9 +19,9 @@ const AboutusSection = () => {
 
       <div className="max-w-[1440px] px-2 sm:px-6 py-8 sm:py-16 mx-auto">
         <div className="mx-auto w-[100%] sm:w-[80%]">
-          <div className="flex flex-col md:flex-row justify-around mx-auto sm:gap-14  items-center">
+          <div className="flex flex-col lg:flex-row justify-around mx-auto sm:gap-14  items-center">
             {ready ? (
-              <div className="w-[80%] h-auto sm:w-1/2 mx-6">
+              <div className="w-[80%] h-auto lg:w-1/2 mx-6">
                 {[1, 2, 3].map((item) => {
                   const icon =
                     item === 1 ? Image2 : item === 2 ? Image3 : Image4;
@@ -30,7 +30,7 @@ const AboutusSection = () => {
                   return (
                     <div
                       key={item}
-                      className="flex flex-col items-center mb-2  sm:text-start sm:items-start   text-center  "
+                      className="flex flex-col items-center mb-2  lg:text-start lg:items-start   text-center  "
                     >
                       <img
                         src={icon}
@@ -64,7 +64,7 @@ const AboutusSection = () => {
               </div>
             )}
 
-            <div className="relative hidden sm:flex items-center justify-center mx-auto w-[250px] sm:w-[400px] h-[450px]">
+            <div className="relative hidden md:flex items-center justify-center mx-auto w-[250px] sm:w-[400px] h-[450px]">
               {!imageLoaded && (
                 <div className="absolute w-full h-full bg-neutral-200 rounded animate-pulse" />
               )}

@@ -38,8 +38,13 @@ export default function Login() {
         toast.success(t("message.login_message.success"), { id: toastId });
         encryptToken(result.authorization.token);
         setTimeout(() => {
-          navigate(location.state?.from?.pathname || "/");
-        }, 2000);
+          navigate(
+            location.state?.from ? location.state.from.state.slug : "/",
+            {
+              state: { id: location.state?.from.state.id },
+            }
+          );
+        }, 500);
       } else {
         toast.error(result.msg || t("message.login_message.error_register"), {
           id: toastId,
@@ -99,15 +104,28 @@ export default function Login() {
                   name: decoded?.name,
                   sub: decoded?.sub,
                   image: decoded?.picture,
-                }).unwrap();
-
-                toast.success(t("message.login_message.success"), {
-                  id: toastId,
                 });
-                encryptToken(result.authorization.token);
-                navigate(
-                  location.state.from ? location.state.form.pathname : "/"
-                );
+
+                if (result.data.status === true) {
+                  toast.success(t("message.login_message.success"), {
+                    id: toastId,
+                  });
+                  encryptToken(result.data.authorization.token);
+                  setTimeout(() => {
+                    navigate(
+                      location.state?.from
+                        ? location.state.from.state.slug
+                        : "/",
+                      {
+                        state: { id: location.state?.from.state.id },
+                      }
+                    );
+                  }, 500);
+                } else {
+                  toast.error(t("message.login_message.error_register"), {
+                    id: toastId,
+                  });
+                }
               } catch (err) {
                 const error = err as { data?: { msg?: string } };
                 toast.error(error.data?.msg || "حدث خطأ أثناء التسجيل", {

@@ -1,8 +1,10 @@
+import { useContactData } from "../ContactContext";
 import ScrollToHash from "../ScrollToHash";
 import { useTranslation } from "react-i18next";
 
 export default function InstructorCallSection() {
   const { t, ready } = useTranslation();
+  const contact = useContactData();
   return (
     <div>
       <ScrollToHash />
@@ -20,12 +22,19 @@ export default function InstructorCallSection() {
               {t("Instructor.title2")}
             </p>
 
-            <button
-              title="Instructor.title"
+            <a
+              href={`https://wa.me/${
+                contact?.whatsapp_num
+              }?text=${encodeURIComponent(
+                "، مرحبًا، أرغب بالانضمام كمدرّب على منصتكم، اريد المزيد من التفاصيل."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={t("Instructor.title3")}
               className="bg-primary  text-white text-sm sm:text-base shadow-sm px-8 py-4 my-4 rounded-lg hover:bg-primary/80 transition"
             >
               {t("Instructor.title3")}
-            </button>
+            </a>
           </div>
         </section>
       ) : (

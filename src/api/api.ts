@@ -29,3 +29,5 @@ export const GET_ALL_CURRICULUMS = "/api/UserAllCurriculums";
 
 /* --------------- Complaints -------------- */
 export const ADD_COMPLAINT = "/api/UserAddComplaint";
+
+export const GET_CONTACTS = "/api/UserAllContact";

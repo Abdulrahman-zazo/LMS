@@ -46,18 +46,18 @@ export default function Registration() {
     try {
       const result = await register({ email, password, name, phone }).unwrap();
 
-      if (result.status === true) {
+      if (result?.status === true) {
         toast.success(t("message.registration.send"), { id: toastId });
         setStep(2);
       } else {
-        return toast.error(`${result.msg}`, {
+        return toast.error(`${result?.data.error}`, {
           id: toastId,
         });
       }
     } catch (err) {
-      const error = err as { data?: { msg?: string } };
+      const error = err as { data?: { error?: string } };
 
-      toast.error(error.data?.msg || "حدث خطأ أثناء التسجيل", {
+      toast.error(error.data?.error || "حدث خطأ أثناء التسجيل", {
         id: toastId,
       });
     }
@@ -89,7 +89,7 @@ export default function Registration() {
     const toastId = toast.loading(t("message.registration.resend"));
     try {
       const result = await forgetPassword(email);
-      console.log(result);
+
       if (result.data.status) {
         toast.success(t("message.registration.done_send"), { id: toastId });
       } else {
@@ -110,7 +110,7 @@ export default function Registration() {
       <Toaster
         toastOptions={{
           className: "",
-          duration: 5000,
+          duration: 2000,
           removeDelay: 1000,
           style: {
             fontSize: "14px",
@@ -169,7 +169,7 @@ export default function Registration() {
                   flags={[
                     {
                       iso2: "sy",
-                      src: "../../../../public/syria-flag.svg",
+                      src: "https://res.cloudinary.com/dmn6uzy82/image/upload/v1751981403/syria-flag_fiz83y.svg",
                     },
                   ]}
                 />

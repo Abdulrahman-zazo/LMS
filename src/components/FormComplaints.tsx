@@ -56,7 +56,7 @@ const FormComplaints = () => {
   };
 
   return (
-    <section className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0">
+    <section className="bg-white sm:rounded-4xl sm:shadow-md py-12 px-6 sm:px-4 sm:py-0   xl:max-w-[1240px] mx-auto">
       <Toaster
         toastOptions={{
           className: "",
@@ -72,7 +72,7 @@ const FormComplaints = () => {
         <h2 className="mb-4  text-lg sm:text-2xl lg:text-3xl font-semibold text-center text-text tracking-tight">
           {t("complaints_system.title")}
         </h2>
-        <p className="mb-8 lg:mb-8 font-light text-center w-[70%] mx-auto text-gray-500 dark:text-paragraph text-sm  sm:text-base">
+        <p className="mb-8 lg:mb-8 font-light text-center w-[90%] md:w-[70%] mx-auto text-gray-500 dark:text-paragraph text-sm  sm:text-base">
           {t("complaints_system.description")}
         </p>
         <form

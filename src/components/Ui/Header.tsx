@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { X, Menu } from "react-feather";
+import { X, Menu, LogOut } from "react-feather";
 import Logo from "./Logo";
 
 import { useTranslation } from "react-i18next";
 import UserMenu from "../userMenu";
 import { cookieService } from "../../Cookies/CookiesServices";
 import { useGetuserInformationQuery } from "../../app/features/User/userApi";
+import { LogoutHandler } from "../LogoutHandler";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,13 +33,13 @@ const Header = () => {
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-0 sm:px-8">
           {/* Logo */}
           <Link to="/" className={"mx-4"}>
-            <Logo type="h" className="w-32 h-full" />
+            <Logo type="h" className="w-28 lg:w-32 h-full" />
           </Link>
 
           {/* Desktop Nav */}
           {ready ? (
             <nav
-              className={`hidden mx-6 md:hidden lg:flex items-center gap-6 font-medium text-paragraph text-sm `}
+              className={`hidden mx-2 md:hidden lg:flex items-center gap-2 lg:gap-6 font-medium text-paragraph md:text-xs  lg:text-sm `}
             >
               <NavLink
                 to="/"
@@ -100,14 +101,14 @@ const Header = () => {
             <div className="hidden md:hidden lg:flex gap-3">
               <button
                 title="Login"
-                className="text-sm text-primary hover:text-primary/80 cursor-pointer "
+                className="text-xs lg:text-sm text-primary hover:text-primary/80 cursor-pointer "
                 onClick={() => Navigate("/auth/login")}
               >
                 {t("Header.login")}
               </button>
               <button
                 title="Register"
-                className="bg-primary text-white px-4 py-1.5 rounded text-sm  hover:bg-primary/80  cursor-pointer"
+                className="bg-primary text-white px-4 py-1.5 rounded text-xs lg:text-sm  hover:bg-primary/80  cursor-pointer"
                 onClick={() => Navigate("/auth/get-started")}
               >
                 {t("Header.Register")}
@@ -148,11 +149,13 @@ const Header = () => {
             ) : (
               <div>
                 {token && (
-                  <UserMenu
-                    name={data?.user.name}
-                    email={data?.user.email}
-                    avatar={data?.user.image}
-                  />
+                  <div className="flex justify-center items-center">
+                    <UserMenu
+                      name={data?.user.name}
+                      email={data?.user.email}
+                      avatar={data?.user.image}
+                    />
+                  </div>
                 )}
               </div>
             )}
@@ -223,6 +226,17 @@ const Header = () => {
                 >
                   {t("Header.FAQ")}
                 </NavLink>
+                <div className="flex justify-center items-center rounded-lg  my-2 py-2 bg-red-100/40 w-full">
+                  <button
+                    onClick={() => LogoutHandler()}
+                    className="px-4 w-full py-2 flex items-center justify-center mx-auto  text-xs  sm:text-sm  cursor-pointer text-red-600"
+                  >
+                    <span>
+                      <LogOut size={16} className="mx-2" />
+                    </span>
+                    <span> {t("userMenu.logout")}</span>
+                  </button>
+                </div>
               </nav>
             ) : (
               <nav className="flex flex-col text-sm font-medium text-gray-700 space-y-2 ">

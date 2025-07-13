@@ -18,7 +18,7 @@ const ComplaintsSections = () => {
             </p>
 
             <button
-              title=" complaints title3 "
+              title={t("complaints.title3")}
               onClick={() => {
                 Navigate("/protected/complaints");
               }}

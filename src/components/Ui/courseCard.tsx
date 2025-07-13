@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { slugify } from "../../utils/Slug";
 
 interface Icourse {
   id: number;
@@ -14,7 +15,7 @@ const CourseCard = (course: Icourse) => {
   const { btnType = "button", image, title, id, link, summary } = course;
   const Navigate = useNavigate();
   const { t } = useTranslation("translation");
-
+  const slug = slugify(title);
   return (
     <div
       key={id}
@@ -35,7 +36,12 @@ const CourseCard = (course: Icourse) => {
 
         <button
           title="buttons btn-details"
-          onClick={() => Navigate(`${link}/${id}`)}
+          // onClick={() => Navigate(`${link}/${title}`, { state: { id: id } })}
+          onClick={() =>
+            Navigate(`${link}/${slug}`, {
+              state: { slug: `${link}/${slug}`, id },
+            })
+          }
           className={`mt-auto w-full text-sm sm:text-base ${
             btnType === "button" ? "bg-primary text-white" : "text-primary"
           } border border-primary px-4 py-2 shadow-md rounded hover:bg-primary/80 hover:text-white transition`}

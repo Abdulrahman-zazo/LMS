@@ -53,3 +53,12 @@ export interface ICourse {
   comments: IComments[];
   summary: string;
 }
+export interface Contact {
+  facebook_url?: string;
+  instagram_url?: string;
+  whatsapp_num?: string;
+  telegram_url?: string;
+  youtube_url?: string;
+  tiktok_url?: string;
+  twitter_url?: string;
+}

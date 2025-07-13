@@ -47,7 +47,7 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
 
     try {
       const result = await ChangeImage({ token, image: profileImage }).unwrap();
-      console.log(result);
+
       if (result.status) {
         toast.success(t("settings.messages.success1"), {
           id: toastId,
@@ -77,7 +77,7 @@ const SettingsModal = ({ isOpen, ImageUser, onClose }: Isetting) => {
         newpassword: newPassword,
         token,
       }).unwrap();
-      console.log(result);
+
       if (result?.status === true) {
         toast.success(t("settings.messages.success2"), { id: toastId });
         setOldPassword("");

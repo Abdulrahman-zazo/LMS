@@ -22,8 +22,7 @@ export const Reviews = ({ comments, course_id }: ReviewsProps) => {
   const { data: user } = useGetuserInformationQuery(Authtoken as string, {
     skip: !shouldFetch,
   });
-  console.log(user);
-  console.log(comments);
+
   const [addComments, { isLoading: isloadingAddComment }] =
     useAddCommentsMutation();
   const [deleteComments, { isLoading: isloadingDeleteComment }] =

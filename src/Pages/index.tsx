@@ -10,6 +10,7 @@ import { closeModal } from "../app/features/settings/settingsModalSlice";
 const Landing = () => {
   const { isOpen, image } = useAppSelector((state) => state.settingsModal);
   const dispatch = useDispatch();
+
   return (
     <>
       <Header />

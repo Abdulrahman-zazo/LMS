@@ -42,30 +42,6 @@ const CoursesComponent = ({ max }: IcourseMax) => {
           </p>
         </div>
 
-        {/* Tabs */}
-        {/* <div className="flex flex-wrap gap-3 mb-6  sm:mb-10">
-          <button
-            title="All courses"
-            className="bg-primary text-white px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-primary-dark"
-          >
-            {t("Courses.button1")}
-          </button>
-          <button
-            title="Recorded courses"
-            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-gray-200"
-          >
-            {t("Courses.button2")}
-          </button>
-          <button
-            title="Online courses"
-            className="bg-gray-100 text-gray-700 px-5 py-2 rounded-full text-sm  sm:text-base hover:bg-gray-200"
-          >
-            {t("Courses.button3")}
-          </button>
-        </div> */}
-
-        {/* Course Cards */}
-
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mb-0">
           {data?.courses.slice(0, max).map((course: IcourseCard) => {
             const { description, id, name, image, summary } = course;

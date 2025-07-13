@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { useGetAllCurriculumsQuery } from "../app/features/Curriculum/CurriculumApi";
 import SkeletonCustom from "./Skeleton";
 import HandelError from "./HandelError";
+import { useContactData } from "./ContactContext";
 
 const Curricula = () => {
   const { t } = useTranslation("translation");
   const { data, isLoading, isError } = useGetAllCurriculumsQuery({});
 
-  const curricula = data?.Curriculum ?? [];
+  const curricula = data?.curriculums ?? [];
   const initialCurriculum = curricula[0];
   const initialPivot = initialCurriculum?.pivot?.[0];
 
@@ -69,13 +70,14 @@ const Curricula = () => {
       setDisplayedSubjects([]);
     }
   };
+  const contact = useContactData();
 
   if (isLoading) return <SkeletonCustom type="card" />;
   if (isError) return <HandelError />;
 
   return (
     <div className="bg-bg-purple py-6 sm:py-10">
-      <div className="container mx-auto p-6 max-w-[90%]">
+      <div className="container mx-auto p-6 max-w-[90%] lg:max-w-[1240px] ">
         <p className="text-sm  sm:text-base text-text text-center sm:hidden">
           {t("curricula.select")}
         </p>
@@ -84,7 +86,7 @@ const Curricula = () => {
             {t("curricula.select")}
           </p>
 
-          <div className="relative flex-1 text-sm sm:text-base">
+          <div className="relative flex-1 text-xs sm:text-sm md:text-base">
             <label htmlFor="curriculum-select" className="sr-only">
               {t("curricula.curricula_select")}
             </label>
@@ -114,7 +116,7 @@ const Curricula = () => {
                 <option
                   value=""
                   disabled
-                  className="text-sm sm:text-base w-full"
+                  className="text-xs sm:text-sm md:text-base w-full"
                 >
                   {t("curricula.curricula_select")}
                 </option>
@@ -122,7 +124,7 @@ const Curricula = () => {
                   <option
                     key={curriculum.id}
                     value={curriculum.id}
-                    className="text-sm sm:text-base w-full"
+                    className="text-xs sm:text-sm md:text-base w-full"
                   >
                     {curriculum.name}
                   </option>
@@ -162,7 +164,7 @@ const Curricula = () => {
                 <option
                   value=""
                   disabled
-                  className="text-sm sm:text-base w-full"
+                  className="text-xs sm:text-sm md:text-base w-full"
                 >
                   {stages.length === 0
                     ? t("error.Nostage")
@@ -172,7 +174,7 @@ const Curricula = () => {
                   <option
                     key={stage.id}
                     value={stage.id}
-                    className="text-sm sm:text-base w-full"
+                    className="text-xs sm:text-sm md:text-base w-full"
                   >
                     {stage.name}
                   </option>
@@ -199,7 +201,7 @@ const Curricula = () => {
         </div>
 
         {displayedSubjects.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8">
             {displayedSubjects.map((subject) => (
               <div
                 key={subject.id}
@@ -215,15 +217,16 @@ const Curricula = () => {
                   }}
                 />
                 <div className="p-4 flex justify-between items-center">
-                  <h3 className="text-sm sm:text-lg font-semibold text-gray-800 text-center">
+                  <h3 className="text-xm sm:text-base md:text-lg font-semibold text-gray-800 text-center">
                     {subject.name}
                   </h3>
-                  <button
+                  <a
+                    href={`https://wa.me/${contact?.whatsapp_num}`}
                     title="curricula"
-                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-medium text-sm  py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                    className="bg-primary hover:shadow-sm cursor-pointer text-white font-medium text-xs md:text-sm py-2 px-4 rounded-sm shadow-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
                   >
                     {t("curricula.button")}
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}

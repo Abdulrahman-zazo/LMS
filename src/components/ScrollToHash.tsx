@@ -12,7 +12,7 @@ const ScrollToHash = () => {
       if (el) {
         setTimeout(() => {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100); // وقت بسيط للتأكد من الرندر
+        }, 100);
       }
     }
   }, [location]);

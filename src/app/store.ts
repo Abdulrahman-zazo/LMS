@@ -17,6 +17,7 @@ import storage from "redux-persist/lib/storage";
 
 // استيراد الأدوات اللازمة للتخزين الدائم
 import { persistReducer, persistStore } from "redux-persist";
+import { contactApi } from "./features/Contacts/contactApi";
 
 // إعداد config لـ redux-persist
 const persistConfig = {
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   user: userReduser,
   language: langReducer,
   settingsModal: settingsModalReducer,
+  [contactApi.reducerPath]: contactApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [CoursesApi.reducerPath]: CoursesApi.reducer,
   [CurriculumsApi.reducerPath]: CurriculumsApi.reducer,
@@ -52,7 +54,8 @@ export const store = configureStore({
       CurriculumsApi.middleware,
       CommentsApi.middleware,
       OfferApi.middleware,
-      ComplaintsApi.middleware
+      ComplaintsApi.middleware,
+      contactApi.middleware
     ),
 });
 

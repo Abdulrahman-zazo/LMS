@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { IconBeaker, IconBook, IconComputer, IconMonitorChart } from "./Icons";
 import { useTranslation } from "react-i18next";
+import { useContactData } from "./ContactContext";
 
 interface HeaderCourseProps {
   title: string;
@@ -18,9 +19,13 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
 }) => {
   const { t, ready, i18n } = useTranslation("translation");
   const isRTL = i18n.language === "ar";
+  const contact = useContactData();
 
+  const whatsappMessage = encodeURIComponent(
+    `مرحبًا،\nأرغب بالحصول على مزيد من التفاصيل حول كورس "${title}".\nهل ما زال التسجيل متاحًا؟ وما هي المواعيد والتكاليف؟\nشكرًا لكم.`
+  );
   return (
-    <div className="bg-primary p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden max-w-[100%] mx-auto mt-20 sm:mt-24">
+    <div className="bg-primary mb-6 p-8 md:p-16 rounded-3xl shadow-xl text-white relative overflow-hidden  max-w-[90%] xl:max-w-[1240px] mx-auto mt-20 sm:mt-24">
       {/* Animated Icons */}
       <motion.div
         className={`hidden sm:block absolute  ${
@@ -125,7 +130,8 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
             >
               - {hours && `${hours} ساعة ,`} {type}
             </motion.p>
-            <motion.button
+            <motion.a
+              href={`https://wa.me/${contact?.whatsapp_num}?text=${whatsappMessage}`}
               title="buttons eroll"
               className="bg-white text-primary font-medium sm:font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 transition-colors duration-300 text-[10px] text-sm sm:text-base"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -135,7 +141,7 @@ export const HeaderCourse: React.FC<HeaderCourseProps> = ({
               whileTap={{ scale: 0.95 }}
             >
               {t("buttons.eroll")}
-            </motion.button>
+            </motion.a>
           </>
         )}
       </div>

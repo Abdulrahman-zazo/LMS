@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Reviews } from "./Reviews"; // Assuming you'll create this component
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { HeaderCourse } from "../../../components/HederCourse";
 import { CourseInfo } from "./CourseInfo";
 import ComplaintsSections from "../../../components/Ui/Complaints";
@@ -13,10 +13,14 @@ import { useTranslation } from "react-i18next";
 
 const CoursePage = () => {
   const [activeTab, setActiveTab] = useState<"info" | "reviews">("info");
-  const path = useParams();
-  const { id } = path;
-  const { data, isLoading, isError } = useGetCourseByIdQuery(Number(id));
+
+  const loaction = useLocation();
+
+  const { data, isLoading, isError } = useGetCourseByIdQuery(
+    Number(loaction.state.id)
+  );
   const { t } = useTranslation("translation");
+
   if (isLoading) {
     return <SkeletonCustom type="list" />;
   }
