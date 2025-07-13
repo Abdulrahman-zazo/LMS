@@ -1,5 +1,6 @@
 {
-  "name": "H-Platform",
+  "name": "h-platform",
+  "homepage": "https://h-platform.online",
   "private": true,
   "version": "0.0.0",
   "type": "module",
